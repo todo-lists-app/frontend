@@ -1,0 +1,24 @@
+.topBarContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.navItems {
+  display: flex;
+  gap: 15px;
+}
+.navItemsFloor {
+  align-items: center;
+}
+
+.item {
+  text-decoration: none;
+}
