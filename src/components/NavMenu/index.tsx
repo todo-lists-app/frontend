@@ -49,8 +49,9 @@ export const NavMenu: FC = () => {
           <AccountMenu />
           ) : (
             <>
-              <FontAwesomeIcon icon={faUser} />&nbsp;
-              <Button color="purple" as="button" onClick={() => auth.signinRedirect()}>Login</Button>
+              <Button color="purple" as="button" onClick={() => auth.signinRedirect()}>
+                <FontAwesomeIcon icon={faUser} />&nbsp;Login
+              </Button>
             </>
         )}
       </Box>

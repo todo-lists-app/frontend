@@ -3,7 +3,7 @@ import {Box, Heading, Paragraph} from "dracula-ui";
 
 export const Terms: FC = () => {
   return (
-    <Box m="md">
+    <Box>
       <Box>
         <Heading>TERMS AND CONDITIONS</Heading>
         <Paragraph>

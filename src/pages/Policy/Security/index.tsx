@@ -3,7 +3,7 @@ import {Box, Heading, OrderedList, Paragraph} from "dracula-ui";
 
 export const Security: FC = () => {
   return (
-    <Box m="md">
+    <Box>
       <Box>
         <Heading>SECURITY POLICY</Heading>
         <Paragraph>

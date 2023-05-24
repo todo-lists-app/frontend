@@ -9,7 +9,7 @@ export const Layout: FC<{ children: ReactElement }> = ({ children }) => {
   return (
     <Box className={styles.mainArea}>
       <NavMenu />
-      <Box scrollbar={true} className={styles.contentArea}>
+      <Box scrollbar={true} className={styles.contentArea} m="md">
         {children}
       </Box>
       <Footer />
