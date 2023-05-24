@@ -1,0 +1,13 @@
+.contentArea {
+  flex-grow: 1;
+  min-height: 2em;
+  margin-bottom: 200px;
+}
+
+.mainArea {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 100%;
+}

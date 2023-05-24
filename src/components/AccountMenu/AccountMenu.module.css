@@ -1,0 +1,22 @@
+.accountMenu {
+  position: fixed;
+  top: 5.2em;
+  right: 0;
+  border-radius: 4px;
+  z-index: 1000;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.accountBox {
+  cursor: pointer;
+}
+
+.accountItems {
+  margin-top: 1em;
+}
+
+.accountMenuList {
+  padding-left: 1em;
+  padding-right: 1em;
+}

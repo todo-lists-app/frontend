@@ -5,8 +5,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useAuth} from "react-oidc-context";
 
 import styles from "./NavMenu.module.css";
-import {faClipboardList, faHouse} from "@fortawesome/free-solid-svg-icons";
-import {AccountMenu} from "./AccountMenu";
+import {faClipboardList, faHouse, faUser} from "@fortawesome/free-solid-svg-icons";
+import {AccountMenu} from "../AccountMenu";
 import {appConfig} from "../../app.config";
 
 export const NavMenu: FC = () => {
@@ -49,6 +49,7 @@ export const NavMenu: FC = () => {
           <AccountMenu />
           ) : (
             <>
+              <FontAwesomeIcon icon={faUser} />&nbsp;
               <Button color="purple" as="button" onClick={() => auth.signinRedirect()}>Login</Button>
             </>
         )}

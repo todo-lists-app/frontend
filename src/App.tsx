@@ -6,6 +6,13 @@ import 'dracula-ui/styles/dracula-ui.css';
 import {Layout} from "./components/Layout";
 import {Home} from "./pages/Home";
 import {TodoPage} from "./pages/Todo";
+import {Privacy} from "./pages/Policy/Privacy";
+import {Security} from "./pages/Policy/Security";
+import {Terms} from "./pages/Policy/Terms";
+import {Apps} from "./pages/Apps";
+import {About} from "./pages/Company/About";
+import {Contact} from "./pages/Company/Contact";
+import {Careers} from "./pages/Company/Careers";
 
 const App: FC = () => {
   const auth = useAuth();
@@ -24,6 +31,13 @@ const App: FC = () => {
               <Route path="/" element={<Home />} />
             </>
           )}
+          <Route path="/company/about" element={<About />} />
+          <Route path="/company/contact" element={<Contact />} />
+          <Route path="/company/careers" element={<Careers />} />
+          <Route path="/policy/privacy" element={<Privacy />} />
+          <Route path="/policy/security" element={<Security />} />
+          <Route path="/policy/terms" element={<Terms />} />
+          <Route path="/apps" element={<Apps />} />
         </Routes>
       </Layout>
     </BrowserRouter>
