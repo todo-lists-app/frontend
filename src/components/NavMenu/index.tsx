@@ -7,7 +7,6 @@ import {useAuth} from "react-oidc-context";
 import styles from "./NavMenu.module.css";
 import {faClipboardList, faHouse, faUser} from "@fortawesome/free-solid-svg-icons";
 import {AccountMenu} from "../AccountMenu";
-import {appConfig} from "../../app.config";
 
 export const NavMenu: FC = () => {
   const auth = useAuth();
@@ -15,21 +14,6 @@ export const NavMenu: FC = () => {
   let menuFloor = ""
   if (given_name) {
     menuFloor = styles.navItemsFloor;
-  }
-
-  if (auth?.user?.profile) {
-    let subject = auth?.user?.profile.email;
-    if (subject !== undefined) {
-      fetch(appConfig.apiURL + `/account`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-User-Subject': subject,
-        }
-      }).then(res => res.json())
-        .then(data => console.log("return data", data))
-        .catch(err => console.log("error", err))
-    }
   }
 
   return (

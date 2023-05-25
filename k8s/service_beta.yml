@@ -1,0 +1,99 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-beta
+  namespace: todo-list
+  labels:
+    name: frontend-beta
+    app: frontend-beta
+spec:
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 3
+  selector:
+    matchLabels:
+      name: frontend-beta
+  template:
+    metadata:
+      labels:
+        name: frontend-beta
+        app: frontend-beta
+    spec:
+      imagePullSecrets:
+        - name: docker-registry-secret
+      containers:
+        - name: frontend-beta
+          image: containers.chewed-k8s.net/todo-list/frontend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          env:
+            - name: REACT_APP_KEYCLOAK_URL
+              valueFrom:
+                secretKeyRef:
+                  name: frontend-secrets
+                  key: keycloak-url
+            - name: REACT_APP_KEYCLOAK_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: frontend-secrets
+                  key: keycloak-client-id
+            - name: REACT_APP_KEYCLOAK_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: frontend-secrets
+                  key: keycloak-client-secret
+            - name: REACT_APP_BACKEND_URL
+              valueFrom:
+                secretKeyRef:
+                  name: frontend-secrets
+                  key: backend-url
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-beta
+  namespace: todo-list
+  labels:
+    name: frontend-beta
+    app: frontend-beta
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: frontend-beta
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontend-beta
+  namespace: todo-list
+  annotations:
+    cert-manager.io/cluster-issuer: live-issuer
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  labels:
+    app: frontend-beta
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - beta.todo-list.app
+      secretName: frontend-beta-tls
+  rules:
+    - host: beta.todo-list.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend-beta
+                port:
+                  number: 80
