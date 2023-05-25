@@ -1,3 +1,5 @@
+import {TodoList} from "../todo";
+
 async function generateKey(userid: string, salt: string): Promise<CryptoKey> {
     const encoder = new TextEncoder();
     const baseKey = encoder.encode(userid);
@@ -23,10 +25,10 @@ async function generateKey(userid: string, salt: string): Promise<CryptoKey> {
     return derivedKey;
 }
 
-async function encryptData(userid: string, salt: string, data: string): Promise<{data: ArrayBuffer, iv: Uint8Array}> {
+async function encryptData(userid: string, salt: string, data: TodoList): Promise<{data: ArrayBuffer, iv: Uint8Array}> {
     const derivedKey = await generateKey(userid, salt);
     const encoder = new TextEncoder();
-    const encodedData = encoder.encode(data);
+    const encodedData = encoder.encode(JSON.stringify(data));
     const iv = window.crypto.getRandomValues(new Uint8Array(12));
     const encryptedData = await window.crypto.subtle.encrypt(
         {
@@ -39,7 +41,7 @@ async function encryptData(userid: string, salt: string, data: string): Promise<
     return {data: encryptedData, iv: iv};
 }
 
-async function decryptData(userid: string, salt: string, encryptedData: ArrayBuffer, iv: Uint8Array): Promise<string> {
+async function decryptData(userid: string, salt: string, encryptedData: ArrayBuffer, iv: Uint8Array): Promise<TodoList> {
     const derivedKey = await generateKey(userid, salt);
     const decryptedData = await window.crypto.subtle.decrypt(
         {
@@ -50,7 +52,7 @@ async function decryptData(userid: string, salt: string, encryptedData: ArrayBuf
         encryptedData
     );
     const decoder = new TextDecoder();
-    return decoder.decode(decryptedData);
+    return JSON.parse(decoder.decode(decryptedData));
 }
 
 function arrayBufferToBase64(buffer: ArrayBuffer) {

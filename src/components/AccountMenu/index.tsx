@@ -6,7 +6,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faGears, faRightFromBracket, faUserPen} from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./AccountMenu.module.css";
-import {appConfig} from "../../app.config";
 
 export const AccountMenu: FC = () => {
   const auth = useAuth();

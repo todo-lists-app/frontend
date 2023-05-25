@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import {Box, Heading, List, OrderedList, Paragraph} from "dracula-ui";
+import {Box, Heading, OrderedList, Paragraph, Text} from "dracula-ui";
 
 export const Privacy: FC = () => {
   return (
@@ -12,18 +12,18 @@ export const Privacy: FC = () => {
       </Box>
       <Box>
         <Heading size="md">1. Information Collection</Heading>
-        <Paragraph>
+        <Text>
           We may collect personal information from you when you voluntarily provide it while using the Service. This information may include, but is not limited to:
           <OrderedList>
             <li>Your name, email address, and other contact information provided during account registration.</li>
             <li>Your todo items, associated notes, and any other content you create or store using the Service.</li>
             <li>Information obtained through your interactions with the Service, such as usage data, IP addresses, and device information.</li>
           </OrderedList>
-        </Paragraph>
+        </Text>
       </Box>
       <Box>
         <Heading size="md">2. Information Use</Heading>
-        <Paragraph>
+        <Text>
           We use the personal information collected for the following purposes:
           <OrderedList>
             <li>To provide and maintain the Service, including account management and customer support.</li>
@@ -32,18 +32,18 @@ export const Privacy: FC = () => {
             <li>To analyze and monitor usage patterns and trends to enhance the Service's performance and functionality.</li>
             <li>To enforce our Terms and Conditions and comply with applicable legal requirements.</li>
           </OrderedList>
-        </Paragraph>
+        </Text>
       </Box>
       <Box>
         <Heading size="md">3. Information Sharing</Heading>
-        <Paragraph>
+        <Text>
           We do not sell, trade, or rent your personal information to third parties without your consent. However, we may share your information in the following circumstances:
           <OrderedList>
             <li>With trusted third-party service providers who assist us in delivering the Service and performing related functions.</li>
             <li>In response to a legal request, such as a court order or government inquiry, when required by law, or to protect our rights, property, or safety.</li>
             <li>In the event of a merger, acquisition, or sale of all or a portion of our assets, your personal information may be transferred as part of the transaction.</li>
           </OrderedList>
-        </Paragraph>
+        </Text>
       </Box>
       <Box>
         <Heading size="md">4. Data Security</Heading>
