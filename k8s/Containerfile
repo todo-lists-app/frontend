@@ -3,6 +3,7 @@ FROM containers.chewed-k8s.net/docker_hub_cache/library/node:20-alpine AS builde
 
 WORKDIR /frontend
 
+COPY vendor ./vendor
 COPY package*.json ./
 COPY yarn.lock ./
 RUN yarn install
