@@ -22,6 +22,8 @@ export const TodoPage: FC = () => {
   const [todos, setTodos] = useState<TodoList>({items: []});
   const [userSubject, setUserSubject] = useState<string>("");
 
+  console.log("appConfig", appConfig);
+
   useEffect(() => {
     if (auth?.user?.profile) {
       let subject = auth?.user?.profile.sub || "";
