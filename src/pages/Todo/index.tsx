@@ -23,6 +23,7 @@ export const TodoPage: FC = () => {
   const [userSubject, setUserSubject] = useState<string>("");
 
   console.log("appConfig", appConfig);
+  console.log("process.env", process.env);
 
   useEffect(() => {
     if (auth?.user?.profile) {
