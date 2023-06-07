@@ -43,7 +43,16 @@ export const TodoPage: FC = () => {
               // console.log("decrypting data", data);
               decryptData(subject, salt, base64ToArrayBuffer(data.data), base64ToUint8Array(data.iv)).then((decryptedData) => {
                 setTodos(decryptedData);
-              }).catch(err => console.log("decrypt error", err))
+              }).catch(err => {
+                if (err instanceof DOMException) {
+                  if (err.message.includes('operation-specific reason')) {
+                    setSalt(null)
+                    localStorage.removeItem('salt')
+                  }
+                } else {
+                  console.log("decrypt error", err)
+                }
+              })
             }
           })
           .catch(err => console.log("fetch list error", err));
@@ -60,6 +69,7 @@ export const TodoPage: FC = () => {
   };
 
   const handleAddItem = (formData: TodoFormData, subject: string, salt: string) => {
+    const todoCount = todos.items.length;
     let newTodo: TodoItem = {
       id: Math.random().toString(36).substring(2, 15),
       title: formData.title,
@@ -69,6 +79,27 @@ export const TodoPage: FC = () => {
       createdAt: new Date().toISOString(),
     };
     setTodos({items: [...todos.items, newTodo]});
+    if (todoCount === 0) {
+      encryptData(subject, salt, {items: [...todos.items, newTodo]}).then((data) => {
+        fetch(appConfig.apiURL + `/list`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-User-Subject': subject,
+          },
+          body: JSON.stringify({
+            data: arrayBufferToBase64(data.data),
+            iv: uint8ArrayToBase64(data.iv),
+          })
+        }).then(res => {
+          if (res.status === 200) {
+            console.log("success create")
+          }
+        })
+      }).catch(err => console.log("encrypt error", err));
+      return;
+    }
+
     encryptData(subject, salt, {items: [...todos.items, newTodo]}).then((data) => {
       fetch(appConfig.apiURL + `/list`, {
         method: 'PUT',
@@ -82,7 +113,7 @@ export const TodoPage: FC = () => {
         })
       }).then(res => {
         if (res.status === 200) {
-          console.log("success")
+          console.log("success update")
         }
       })
     }).catch(err => console.log("encrypt error", err));
@@ -91,8 +122,8 @@ export const TodoPage: FC = () => {
   return (
     <Box>
       {!salt ? (
-        <Box p="lg" borderColor="purple">
-          <Heading size="sm">Enter your password</Heading>
+        <Box p="lg" borderColor="purple" color={"black"} rounded={"lg"}>
+          <Heading size="sm">Enter your list password</Heading>
           <Text>Enter your password to encrypt/decrypt your todo list</Text>
           <Box display="flex">
             <Input type="password" id="salt" variant="outline" borderSize="md" color="purple" m="sm"/>
