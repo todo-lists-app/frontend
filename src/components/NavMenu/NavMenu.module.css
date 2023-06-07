@@ -16,6 +16,9 @@
   display: flex;
   gap: 15px;
 }
+.navItems a {
+  color: inherit;
+}
 .navItemsFloor {
   align-items: center;
 }

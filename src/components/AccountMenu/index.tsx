@@ -1,4 +1,4 @@
-import React, {FC, useState} from "react";
+import React, {FC, useEffect, useRef, useState} from "react";
 import {Avatar, Box, Button, List} from "dracula-ui";
 import {useAuth} from "react-oidc-context";
 import gravatarUrl from "gravatar-url";
@@ -37,30 +37,44 @@ export const AccountMenu: FC = () => {
   const avatarClick = () => {
     setIsOpen(!isOpen);
   }
+  const menuRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && event.target instanceof Element && !menuRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [menuRef]);
 
   return (
     <Box className={styles.accountBox}>
       <Avatar title={given_name} src={picture} onClick={avatarClick} className={`${styles.accountBox} drac-avatar`}/>
       {isOpen && (
-        <Box color="blackSecondary" borderColor="purple" display="block" className={styles.accountMenu}>
-          <List className={styles.accountMenuList}>
-            <li>
-              <Button color="purple" size="sm" as="a" href="/profile">
-                <FontAwesomeIcon icon={faUserPen} />&nbsp;Profile
-              </Button>
+        <div ref={menuRef}>
+          <Box color="blackSecondary" borderColor="purple" display="block" className={styles.accountMenu}>
+            <List className={styles.accountMenuList}>
+              <li>
+                <Button color="purple" size="sm" as="a" href="/profile">
+                  <FontAwesomeIcon icon={faUserPen} />&nbsp;Profile
+                </Button>
+                </li>
+              <li className={styles.accountItems}>
+                <Button color="purple" size="sm" as="a" href="/settings">
+                  <FontAwesomeIcon icon={faGears} />&nbsp;Settings
+                </Button>
               </li>
-            <li className={styles.accountItems}>
-              <Button color="purple" size="sm" as="a" href="/settings">
-                <FontAwesomeIcon icon={faGears} />&nbsp;Settings
-              </Button>
-            </li>
-            <li className={styles.accountItems}>
-              <Button color="pink" size="sm" onClick={() => auth.signoutSilent()}>
-                <FontAwesomeIcon icon={faRightFromBracket} />&nbsp;Logout
-              </Button>
-            </li>
-          </List>
-        </Box>
+              <li className={styles.accountItems}>
+                <Button color="pink" size="sm" onClick={() => auth.signoutSilent()}>
+                  <FontAwesomeIcon icon={faRightFromBracket} />&nbsp;Logout
+                </Button>
+              </li>
+            </List>
+          </Box>
+        </div>
       )}
     </Box>
   );

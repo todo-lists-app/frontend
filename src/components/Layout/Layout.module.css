@@ -1,6 +1,7 @@
 .contentArea {
   flex-grow: 1;
   min-height: 85vh;
+  padding: 1%;
 }
 
 .mainArea {

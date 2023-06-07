@@ -23,10 +23,8 @@ export const NavMenu: FC = () => {
         <h1 className="drac-box">Todo-List.app</h1>
       </Anchor>
       <Box className={`${styles.navItems} ${menuFloor}`}>
-        <Button color="purple" variant="outline">
-          <Link to={"/"} className={`${styles.item}`}>
-            <FontAwesomeIcon icon={faHouse} />&nbsp;Home
-          </Link>
+        <Button color="purple" as="a" href={"/"}>
+          <FontAwesomeIcon icon={faHouse} />&nbsp;Home
         </Button>
 
         {given_name ? (

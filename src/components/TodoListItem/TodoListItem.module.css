@@ -1,0 +1,10 @@
+.completed {
+    text-decoration: line-through;
+    color: #ccc;
+}
+
+.itemBox {
+  border-width: thin;
+  border-style: solid;
+  border-color: var(--drac-border-purple);
+}
