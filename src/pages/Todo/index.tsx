@@ -1,6 +1,7 @@
 import React, {FC, useState, useEffect, Fragment} from "react";
 import {useAuth} from "react-oidc-context";
-import {Box, Card, Heading, Text, Button, Input} from "dracula-ui";
+import {Box, Card, Heading, Text, Button, Input, Select} from "dracula-ui";
+import styles from "./Todo.module.css";
 
 import {
   encryptData,
@@ -138,7 +139,7 @@ export const TodoPage: FC = () => {
             </Col>
           </Row>
           <Row>
-            <Col md={1} xl={10}>
+            <Col md={7} xl={9} sm={1}>
               <Fragment>
                 {todos.items.length === 0 ? (
                   <Box>
@@ -151,8 +152,8 @@ export const TodoPage: FC = () => {
                 )}
               </Fragment>
             </Col>
-            <Col md={1} xl={2}>
-              <AddItem processor={handleAddItem} userSubject={userSubject} userSalt={salt} />
+            <Col md={5} xl={3} sm={1}>
+              <AddItem processor={handleAddItem} userSubject={userSubject} userSalt={salt} itemsExist={true} />
             </Col>
           </Row>
         </Box>

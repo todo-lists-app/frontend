@@ -8,12 +8,14 @@
   z-index: 1000;
 }
 
-.Sidebar {
-  border-width: 1px;
-  border-style: solid;
-}
-
 .addItemButtons {
   display: flex;
   justify-content: space-between;
+}
+
+.sideBar {
+  display: flex;
+  justify-content: space-between;
+  border-width: 1px;
+  border-style: solid;
 }

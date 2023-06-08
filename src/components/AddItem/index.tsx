@@ -5,14 +5,16 @@ import {Form} from "react-final-form";
 import styles from "./AddItem.module.css";
 import {Container} from "react-bootstrap";
 import {TodoFormData} from "../../lib/todo";
+import {appConfig, isFeatureImplemented} from "../../app.config";
 
 interface AddItemProps {
   processor: (formData: any, userSubject: string, userSalt: string) => void;
   userSubject: string;
   userSalt: string;
+  itemsExist: boolean
 }
 
-export const AddItem: FC<AddItemProps> = ({processor, userSubject, userSalt}) => {
+export const AddItem: FC<AddItemProps> = ({processor, userSubject, userSalt, itemsExist}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
 
@@ -62,7 +64,7 @@ export const AddItem: FC<AddItemProps> = ({processor, userSubject, userSalt}) =>
   }
 
   return (
-    <Box color="greyLight" borderColor="purple" className={styles.Sidebar} rounded={"sm"}>
+    <>
       {isOpen && (
         <Container>
           <Box className={styles.addItemBox} p="sm" color="purpleCyan" rounded="lg">
@@ -93,9 +95,23 @@ export const AddItem: FC<AddItemProps> = ({processor, userSubject, userSalt}) =>
           </Box>
         </Container>
       )}
-      <Box display="inline-block" m="sm" className={styles.addItemButton}>
+      <Box color="greyLight" borderColor="purple" className={styles.sideBar} rounded={"sm"} p={"sm"}>
         <Button onClick={handleNewItem}>New Item</Button>
+        {itemsExist && (
+          <Select name={"sort"} id={"sort"} defaultValue={"sortBy"} color={"purple"} variant={"outline"}>
+            <option value={"sortBy"} disabled={true}>Sort By</option>
+            {isFeatureImplemented({featureSet: "todo", featureName: "sortByCompletedDate"}) && (
+              <option value={"completedDate"}>Completed Date</option>
+            )}
+            {isFeatureImplemented({featureSet: "todo", featureName: "sortByDueDate"}) && (
+              <option value={"dueDate"}>Due Date</option>
+            )}
+            {isFeatureImplemented({featureSet: "todo", featureName: "sortByPriority"}) && (
+              <option value={"priority"}>Priority</option>
+            )}
+          </Select>
+        )}
       </Box>
-    </Box>
+    </>
   );
 }
