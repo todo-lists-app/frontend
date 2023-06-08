@@ -4,6 +4,7 @@ export interface TodoItem {
   id: string;
   title: string;
   completed: boolean;
+  archived?: boolean;
   dueDate?: string;
   priority?: keyof typeof priorities;
   content?: string;

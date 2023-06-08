@@ -76,6 +76,7 @@ export const TodoPage: FC = () => {
       title: formData.title,
       content: formData.content,
       dueDate: formData.dueDate,
+      priority: formData.priority,
       completed: false,
       createdAt: new Date().toISOString(),
     };
@@ -121,43 +122,41 @@ export const TodoPage: FC = () => {
   }
 
   return (
-    <Box>
-      {!salt ? (
-        <Box p="lg" borderColor="purple" color={"black"} rounded={"lg"}>
-          <Heading size="sm">Enter your list password</Heading>
-          <Text>Enter your password to encrypt/decrypt your todo list</Text>
-          <Box display="flex">
-            <Input type="password" id="salt" variant="outline" borderSize="md" color="purple" m="sm"/>
-            <Button onClick={handleSaltFormSubmit} m="sm">Submit</Button>
+    <>
+      <Heading m={"md"}>Todo List</Heading>
+      <Box>
+        {!salt ? (
+          <Box p="lg" borderColor="purple" color={"black"} rounded={"lg"}>
+            <Heading size="sm">Enter your list password</Heading>
+            <Text>Enter your password to encrypt/decrypt your todo list</Text>
+            <Box display="flex">
+              <Input type="password" id="salt" variant="outline" borderSize="md" color="purple" m="sm"/>
+              <Button onClick={handleSaltFormSubmit} m="sm">Submit</Button>
+            </Box>
           </Box>
-        </Box>
-      ) : (
-        <Box>
-          <Row>
-            <Col md={8}>
-              <Heading>Todo List</Heading>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={7} xl={9} sm={1}>
-              <Fragment>
-                {todos.items.length === 0 ? (
-                  <Box>
-                    <Text size="sm">No items in list</Text>
-                  </Box>
-                ) : (
-                  todos.items.map((item) => (
-                    <TodoListItem item={item} key={item.id} />
-                  ))
-                )}
-              </Fragment>
-            </Col>
-            <Col md={5} xl={3} sm={1}>
-              <AddItem processor={handleAddItem} userSubject={userSubject} userSalt={salt} itemsExist={true} />
-            </Col>
-          </Row>
-        </Box>
-      )}
-    </Box>
+        ) : (
+          <Box>
+            <Row>
+              <Col md={7} xl={9} sm={1}>
+                <Fragment>
+                  {todos.items.length === 0 ? (
+                    <Box>
+                      <Text size="sm">No items in list</Text>
+                    </Box>
+                  ) : (
+                    todos.items.map((item) => (
+                      <TodoListItem item={item} key={item.id} />
+                    ))
+                  )}
+                </Fragment>
+              </Col>
+              <Col md={5} xl={3} sm={1}>
+                <AddItem processor={handleAddItem} userSubject={userSubject} userSalt={salt} itemsExist={true} />
+              </Col>
+            </Row>
+          </Box>
+        )}
+      </Box>
+    </>
   );
 }
