@@ -71,6 +71,9 @@ export const TodoPage: FC = () => {
 
   const handleAddItem = (formData: TodoFormData, subject: string, salt: string) => {
     const todoCount = todos.items.length;
+
+    console.log("formData", formData)
+
     let newTodo: TodoItem = {
       id: Math.random().toString(36).substring(2, 15),
       title: formData.title,

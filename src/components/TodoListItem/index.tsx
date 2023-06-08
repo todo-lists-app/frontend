@@ -4,6 +4,7 @@ import {Box, Badge, Checkbox, Heading, Text, Card, Button} from "dracula-ui";
 import {TodoItem} from "../../lib/todo";
 import styles from "./TodoListItem.module.css";
 import {isFeatureImplemented} from "../../app.config";
+import ReactMarkdown from "react-markdown";
 
 interface TodoListItemProps {
   item: TodoItem;
@@ -42,7 +43,9 @@ export const TodoListItem: FC<TodoListItemProps> = ({item, doneCallback, editCal
                 <Text m={"md"} weight={"bold"} size={"lg"}>{item.title}</Text>
               </Heading>
               {item.content && (
-                <Text className={styles.description}>{item.content}</Text>
+                <Text className={styles.description}>
+                  <ReactMarkdown>{item.content}</ReactMarkdown>
+                </Text>
               )}
             </Box>
             <Box className={styles.additionalWrapper}>

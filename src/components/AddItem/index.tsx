@@ -79,8 +79,8 @@ export const AddItem: FC<AddItemProps> = ({processor, userSubject, userSalt, ite
                   <Input placeholder={"Title"} name={"title"} m={"xs"} ref={titleRef} />
                   <Textarea placeholder={"Content"} name={"content"} m={"xs"} ref={contentRef} />
                   <Input type={"datetime-local"} name={"dueDate"} m={"xs"} title={"Due Date"} ref={dueDateRef} />
-                  <Select defaultValue={""} name={"priority"} m={"xs"} title={"Priority"} ref={priorityRef}>
-                    <option value={""} disabled={true}>Optional Priority</option>
+                  <Select defaultValue={"low"} name={"priority"} m={"xs"} title={"Priority"} ref={priorityRef}>
+                    <option value={"low"} disabled={true}>Optional Priority</option>
                     <option value={"low"}>Low</option>
                     <option value={"medium"}>Medium</option>
                     <option value={"high"}>High</option>
