@@ -45,6 +45,8 @@ export const appConfig: AppConfig = {
       "email": false,
       "sms": false,
       "push": false,
+      "update": false,
+      "slack": false,
     }
   }
 }
@@ -55,6 +57,11 @@ interface ShowFeatureProps {
 }
 
 export const isFeatureImplemented = ({ featureSet, featureName }: ShowFeatureProps): boolean => {
+  if (!appConfig.implementedFeatures[featureSet]) {
+    return false;
+  }
+
+
   if (appConfig.implementedFeatures[featureSet][featureName]) {
     return true;
   }

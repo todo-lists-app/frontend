@@ -6,6 +6,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faGears, faRightFromBracket, faUserPen} from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./AccountMenu.module.css";
+import {isFeatureImplemented} from "../../app.config";
 
 export const AccountMenu: FC = () => {
   const auth = useAuth();
@@ -57,16 +58,20 @@ export const AccountMenu: FC = () => {
         <div ref={menuRef}>
           <Box color="blackSecondary" borderColor="purple" display="block" className={styles.accountMenu}>
             <List className={styles.accountMenuList}>
-              <li>
-                <Button color="purple" size="sm" as="a" href="/profile">
-                  <FontAwesomeIcon icon={faUserPen} />&nbsp;Profile
-                </Button>
+              {isFeatureImplemented({featureSet: "account", featureName: "update"}) && (
+                <li>
+                  <Button color="purple" size="sm" as="a" href="/profile">
+                    <FontAwesomeIcon icon={faUserPen} />&nbsp;Profile
+                  </Button>
                 </li>
-              <li className={styles.accountItems}>
-                <Button color="purple" size="sm" as="a" href="/settings">
-                  <FontAwesomeIcon icon={faGears} />&nbsp;Settings
-                </Button>
-              </li>
+              )}
+              {isFeatureImplemented({featureSet: "notifications", featureName: "update"}) && (
+                <li className={styles.accountItems}>
+                  <Button color="purple" size="sm" as="a" href="/settings">
+                    <FontAwesomeIcon icon={faGears} />&nbsp;Notfications
+                  </Button>
+                </li>
+              )}
               <li className={styles.accountItems}>
                 <Button color="pink" size="sm" onClick={() => auth.signoutSilent()}>
                   <FontAwesomeIcon icon={faRightFromBracket} />&nbsp;Logout
