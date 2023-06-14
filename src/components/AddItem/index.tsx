@@ -95,23 +95,7 @@ export const AddItem: FC<AddItemProps> = ({processor, userSubject, userSalt, ite
           </Box>
         </Container>
       )}
-      <Box color="greyLight" borderColor="purple" className={styles.sideBar} rounded={"sm"} p={"sm"}>
-        <Button onClick={handleNewItem}>New Item</Button>
-        {itemsExist && (
-          <Select name={"sort"} id={"sort"} defaultValue={"sortBy"} color={"purple"} variant={"outline"}>
-            <option value={"sortBy"} disabled={true}>Sort By</option>
-            {isFeatureImplemented({featureSet: "todo", featureName: "sortByCompletedDate"}) && (
-              <option value={"completedDate"}>Completed Date</option>
-            )}
-            {isFeatureImplemented({featureSet: "todo", featureName: "sortByDueDate"}) && (
-              <option value={"dueDate"}>Due Date</option>
-            )}
-            {isFeatureImplemented({featureSet: "todo", featureName: "sortByPriority"}) && (
-              <option value={"priority"}>Priority</option>
-            )}
-          </Select>
-        )}
-      </Box>
+      <Button onClick={handleNewItem} m={"xs"}>New Item</Button>
     </>
   );
 }

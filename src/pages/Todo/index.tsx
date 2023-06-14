@@ -1,21 +1,21 @@
-import React, {FC, useState, useEffect, Fragment} from "react";
+import React, {FC, useState, useEffect, Fragment, useMemo} from "react";
 import {useAuth} from "react-oidc-context";
 import {Box, Card, Heading, Text, Button, Input, Select} from "dracula-ui";
-import styles from "./Todo.module.css";
 
 import {
-  encryptData,
   decryptData,
-  arrayBufferToBase64,
   base64ToArrayBuffer,
-  uint8ArrayToBase64,
   base64ToUint8Array
 } from "../../lib/cryption";
-import {TodoFormData, TodoItem, TodoList} from "../../lib/todo";
+import {AddItemToList, TodoFormData, TodoItem, TodoList, UpdateList} from "../../lib/todo";
 import {appConfig} from "../../app.config";
-import {TodoListItem} from "../../components/TodoListItem";
+import {TodoListItems} from "../../components/TodoListItem";
 import {AddItem} from "../../components/AddItem";
-import {Col, Container, Row} from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
+import {DividerLine} from "../../components/DividerLine/DividerLine";
+import {SortItems} from "../../components/SortItems/SortItems";
+import {FilterItems} from "../../components/FilterItems/FilterItems";
+import styles from "./Todo.module.css";
 
 export const TodoPage: FC = () => {
   const auth = useAuth();
@@ -43,7 +43,7 @@ export const TodoPage: FC = () => {
             if (salt) {
               // console.log("decrypting data", data);
               decryptData(subject, salt, base64ToArrayBuffer(data.data), base64ToUint8Array(data.iv)).then((decryptedData) => {
-                setTodos(decryptedData);
+                setTodos(decryptedData)
               }).catch(err => {
                 if (err instanceof DOMException) {
                   if (err.message.includes('operation-specific reason')) {
@@ -70,59 +70,49 @@ export const TodoPage: FC = () => {
   };
 
   const handleAddItem = (formData: TodoFormData, subject: string, salt: string) => {
-    const todoCount = todos.items.length;
-
-    console.log("formData", formData)
-
-    let newTodo: TodoItem = {
-      id: Math.random().toString(36).substring(2, 15),
-      title: formData.title,
-      content: formData.content,
-      dueDate: formData.dueDate,
-      priority: formData.priority,
-      completed: false,
-      createdAt: new Date().toISOString(),
-    };
-    setTodos({items: [...todos.items, newTodo]});
-    if (todoCount === 0) {
-      encryptData(subject, salt, {items: [...todos.items, newTodo]}).then((data) => {
-        fetch(appConfig.apiURL + `/list`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-User-Subject': subject,
-          },
-          body: JSON.stringify({
-            data: arrayBufferToBase64(data.data),
-            iv: uint8ArrayToBase64(data.iv),
-          })
-        }).then(res => {
-          if (res.status === 200) {
-            console.log("success create")
-          }
-        })
-      }).catch(err => console.log("encrypt error", err));
-      return;
-    }
-
-    encryptData(subject, salt, {items: [...todos.items, newTodo]}).then((data) => {
-      fetch(appConfig.apiURL + `/list`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-User-Subject': subject,
-        },
-        body: JSON.stringify({
-          data: arrayBufferToBase64(data.data),
-          iv: uint8ArrayToBase64(data.iv),
-        })
-      }).then(res => {
-        if (res.status === 200) {
-          console.log("success update")
-        }
-      })
-    }).catch(err => console.log("encrypt error", err));
+    AddItemToList(formData, subject, salt, todos, setTodos);
   }
+
+  const handleCompleteItem = (item: TodoItem) => {
+    if (salt) {
+      item.completed = !item.completed
+      setTodos({...todos, items: todos.items.map(i => i.id === item.id ? item : i)})
+      UpdateList(userSubject, salt, todos)
+    }
+  }
+
+  const handleArchiveCallback = (item: TodoItem) => {
+    if (salt) {
+      item.archived = !item.archived
+      setTodos({...todos, items: todos.items.map(i => i.id === item.id ? item : i)})
+      UpdateList(userSubject, salt, todos)
+    }
+  }
+
+  const handleDeleteCallback = (item: TodoItem) => {
+    if (salt) {
+      const newTodos = todos.items.filter(i => i.id !== item.id)
+      setTodos({items: newTodos})
+      UpdateList(userSubject, salt, {items: newTodos})
+    }
+  }
+
+  const handleEditCallback = (item: TodoItem) => {
+    console.info("edit", item)
+  }
+
+  const completedItems = useMemo(() => {
+    const filteredItems = todos.items.filter(i => i.completed)
+    return filteredItems
+  }, [todos.items])
+  const activeItems = useMemo(() => {
+    const filteredItems = todos.items.filter(i => !i.completed && !i.archived)
+    return filteredItems
+  }, [todos.items])
+  const archivedItems = useMemo(() => {
+    const filteredItems = todos.items.filter(i => i.archived)
+    return filteredItems
+  }, [todos.items])
 
   return (
     <>
@@ -140,21 +130,62 @@ export const TodoPage: FC = () => {
         ) : (
           <Box>
             <Row>
-              <Col md={7} xl={9} sm={1}>
+              <Col md={9} xl={10} sm={1}>
                 <Fragment>
                   {todos.items.length === 0 ? (
                     <Box>
                       <Text size="sm">No items in list</Text>
                     </Box>
                   ) : (
-                    todos.items.map((item) => (
-                      <TodoListItem item={item} key={item.id} />
-                    ))
+                    <>
+                      {activeItems.length > 0 && (
+                          <>
+                          <DividerLine title={"Active"} />
+                          <TodoListItems
+                            items={activeItems}
+                            doneCallback={handleCompleteItem}
+                            editCallback={handleEditCallback}
+                            archiveCallback={handleArchiveCallback}
+                          />
+                        </>
+                      )}
+                      {completedItems.length > 0 && (
+                        <>
+                          <DividerLine title={"Completed"} />
+                          <TodoListItems
+                            items={completedItems}
+                            doneCallback={handleCompleteItem}
+                            editCallback={handleEditCallback}
+                            archiveCallback={handleArchiveCallback}
+                          />
+                        </>
+                      )}
+                      {archivedItems.length > 0 && (
+                        <>
+                          <DividerLine title={"Archived"} />
+                          <TodoListItems
+                            items={archivedItems}
+                            doneCallback={handleCompleteItem}
+                            editCallback={handleEditCallback}
+                            archiveCallback={handleArchiveCallback}
+                          />
+                        </>
+                      )}
+                    </>
                   )}
                 </Fragment>
               </Col>
-              <Col md={5} xl={3} sm={1}>
-                <AddItem processor={handleAddItem} userSubject={userSubject} userSalt={salt} itemsExist={true} />
+              <Col md={2} xl={2} sm={1}>
+                <Box color="black" borderColor="purple" className={styles.sideBar} rounded={"lg"} p={"sm"}>
+                  <AddItem
+                    processor={handleAddItem}
+                    userSubject={userSubject}
+                    userSalt={salt}
+                    itemsExist={true}
+                  />
+                  <SortItems />
+                  <FilterItems />
+                </Box>
               </Col>
             </Row>
           </Box>

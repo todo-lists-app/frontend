@@ -1,7 +1,5 @@
 import App from "./App";
 
-console.log("env", process.env)
-
 interface AppConfig {
   apiURL: string;
   production: boolean;

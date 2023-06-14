@@ -8,11 +8,49 @@ import ReactMarkdown from "react-markdown";
 
 interface TodoListItemProps {
   item: TodoItem;
-  doneCallback?: () => void;
-  editCallback?: () => void;
+  doneCallback?: (item: TodoItem) => void;
+  editCallback?: (item: TodoItem) => void;
+  deleteCallback?: (item: TodoItem) => void;
+  archiveCallback?: (item: TodoItem) => void;
+}
+interface TodoListItemsProps {
+  items: TodoItem[];
+  doneCallback?: (item: TodoItem) => void;
+  editCallback?: (item: TodoItem) => void;
+  deleteCallback?: (item: TodoItem) => void;
+  archiveCallback?: (item: TodoItem) => void;
 }
 
-export const TodoListItem: FC<TodoListItemProps> = ({item, doneCallback, editCallback}) => {
+export const TodoListItems: FC<TodoListItemsProps> = ({
+                                                        items,
+                                                        doneCallback,
+                                                        editCallback,
+                                                        deleteCallback,
+                                                        archiveCallback
+}) => {
+  return(
+    <>
+      {items.map((item) => (
+        <TodoListItem
+          key={item.id}
+          item={item}
+          doneCallback={doneCallback}
+          editCallback={editCallback}
+          deleteCallback={deleteCallback}
+          archiveCallback={archiveCallback}
+        />
+      ))}
+    </>
+  )
+}
+
+export const TodoListItem: FC<TodoListItemProps> = ({
+                                                      item,
+                                                      doneCallback,
+                                                      editCallback,
+                                                      deleteCallback,
+                                                      archiveCallback
+}) => {
   const priorityColor = item.priority === "urgent" ? "red" : item.priority === "high" ? "purple" : item.priority === "medium" ? "orange" : "blackSecondary";
   if (item.priority === null || item.priority === undefined) {
     item.priority = "low";
@@ -23,7 +61,12 @@ export const TodoListItem: FC<TodoListItemProps> = ({item, doneCallback, editCal
       {item.completed ? (
         <Box p="sm" color={"black"} rounded={"lg"} key={item.id} className={styles.itemBox}>
           <Heading size="sm" className={styles.completed}>
-            <Checkbox checked={item.completed} onChange={doneCallback} />
+            {doneCallback && (
+              <Checkbox checked={true} onChange={(e) => {
+                e.preventDefault()
+                doneCallback(item)
+              }} />
+            )}
             <Text weight={"bold"} size={"md"}>{item.title}</Text>
           </Heading>
           {item.content && (
@@ -34,7 +77,12 @@ export const TodoListItem: FC<TodoListItemProps> = ({item, doneCallback, editCal
         <Box p="sm" color={"black"} borderColor={"purple"} rounded={"lg"} key={item.id} className={styles.itemBox}>
           {isFeatureImplemented({featureSet: "todo", featureName: "done"}) && (
             <Box className={styles.doneButton}>
-              <Checkbox color={"white"} onChange={doneCallback} />
+              {doneCallback && (
+                <Checkbox onChange={(e) => {
+                  e.preventDefault()
+                  doneCallback(item)
+                }} color={"white"} />
+              )}
             </Box>
           )}
           <Box className={styles.info}>
@@ -60,15 +108,36 @@ export const TodoListItem: FC<TodoListItemProps> = ({item, doneCallback, editCal
                 </Card>
               </Box>
               <Box className={styles.buttonWrapper}>
-                {isFeatureImplemented({featureSet: "todo", featureName: "archive"}) && (
-                  <Button m={"sm"}>Archive</Button>
-                )}
-                {isFeatureImplemented({featureSet: "todo", featureName: "edit"}) && (
-                  <Button m={"sm"}>Edit</Button>
-                )}
-                {isFeatureImplemented({featureSet: "todo", featureName: "delete"}) && (
-                  <Button m={"sm"}>Delete</Button>
-                )}
+                <Card color={"blackSecondary"} rounded={"lg"} p={"xs"} m={"xs"} className={styles.priorityTag}>
+                  {isFeatureImplemented({featureSet: "todo", featureName: "archive"}) && (
+                    <Button as={"button"} m={"sm"} onClick={(e) => {
+                      e.preventDefault()
+                      if (archiveCallback) {
+                        archiveCallback(item)
+                      }
+                    }}>Archive</Button>
+                  )}
+                  {isFeatureImplemented({featureSet: "todo", featureName: "edit"}) && (
+                    !item.archived && (
+                      <Button as={"button"} m={"sm"} onClick={(e) => {
+                        e.preventDefault()
+                        if (editCallback) {
+                          editCallback(item)
+                        }
+                      }}>Edit</Button>
+                    )
+                  )}
+                  {isFeatureImplemented({featureSet: "todo", featureName: "delete"}) && (
+                    item.archived && (
+                      <Button m={"sm"} as={"button"} onClick={(e) => {
+                        e.preventDefault()
+                        if (deleteCallback) {
+                          deleteCallback(item)
+                        }
+                      }}>Delete</Button>
+                    )
+                  )}
+                </Card>
               </Box>
             </Box>
           </Box>

@@ -12,10 +12,3 @@
   display: flex;
   justify-content: space-between;
 }
-
-.sideBar {
-  display: flex;
-  justify-content: space-between;
-  border-width: 1px;
-  border-style: solid;
-}
