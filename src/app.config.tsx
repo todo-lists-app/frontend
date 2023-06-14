@@ -17,20 +17,30 @@ export const appConfig: AppConfig = {
     "todo": {
       "encrypt": true,
       "decrypt": true,
+
       "add": true,
       "edit": false,
       "archive": false,
       "delete": false,
       "complete": false,
+
       "list": true,
       "listAll": false,
       "listCompleted": false,
       "listUncompleted": false,
+
+      "sortBy": false,
       "sortByDate": false,
       "sortByPriority": false,
       "sortByAddDate": true,
       "sortByCompleteDate": false,
       "sortByUpdatedDate": false,
+
+      "filterBy": false,
+      "filterByPriority": false,
+      "filterByDate": false,
+      "filterByCompleteDate": false,
+      "filterByUpdatedDate": false,
     },
     "account": {
       "login": true,

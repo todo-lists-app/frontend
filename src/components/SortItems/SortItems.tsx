@@ -5,6 +5,7 @@ import {isFeatureImplemented} from "../../app.config";
 export const SortItems: FC = () => {
   return(
     <>
+      {isFeatureImplemented({featureSet: "todo", featureName: "sortBy"}) && (
       <Select name={"sort"} id={"sort"} defaultValue={"sortBy"} color={"purple"} variant={"outline"}>
         <option value={"sortBy"} disabled={true}>Sort By</option>
         {isFeatureImplemented({featureSet: "todo", featureName: "sortByCompletedDate"}) && (
@@ -17,6 +18,7 @@ export const SortItems: FC = () => {
           <option value={"priority"}>Priority</option>
         )}
       </Select>
+      )}
     </>
   )
 }
