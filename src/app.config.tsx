@@ -18,9 +18,9 @@ export const appConfig: AppConfig = {
 
       "add": true,
       "edit": false,
-      "archive": false,
-      "delete": false,
-      "complete": false,
+      "archive": true,
+      "delete": true,
+      "complete": true,
 
       "list": true,
       "listAll": false,
