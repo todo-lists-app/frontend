@@ -1,6 +1,6 @@
 import React, {FC, useState, useEffect, Fragment, useMemo} from "react";
 import {useAuth} from "react-oidc-context";
-import {Box, Card, Heading, Text, Button, Input, Select} from "dracula-ui";
+import {Box, Heading, Text, Button, Input} from "dracula-ui";
 
 import {
   decryptData,
@@ -168,6 +168,7 @@ export const TodoPage: FC = () => {
                             doneCallback={handleCompleteItem}
                             editCallback={handleEditCallback}
                             archiveCallback={handleArchiveCallback}
+                            deleteCallback={handleDeleteCallback}
                           />
                         </>
                       )}

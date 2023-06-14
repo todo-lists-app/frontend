@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import {Box, Heading, Radio, Select} from "dracula-ui";
+import {Box, Select} from "dracula-ui";
 import {isFeatureImplemented} from "../../app.config";
 
 export const FilterItems: FC = () => {

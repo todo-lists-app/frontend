@@ -1,11 +1,9 @@
 import React, {FC, FormEvent, useEffect, useState} from "react";
 import {Box, Button, Heading, Input, Select, Text, Textarea} from "dracula-ui";
-import {Form} from "react-final-form";
 
 import styles from "./AddItem.module.css";
 import {Container} from "react-bootstrap";
 import {TodoFormData} from "../../lib/todo";
-import {appConfig, isFeatureImplemented} from "../../app.config";
 
 interface AddItemProps {
   processor: (formData: any, userSubject: string, userSalt: string) => void;

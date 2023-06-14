@@ -1,5 +1,3 @@
-import App from "./App";
-
 interface AppConfig {
   apiURL: string;
   production: boolean;
