@@ -23,7 +23,7 @@ export const appConfig: AppConfig = {
       "complete": true,
 
       "list": true,
-      "listAll": false,
+      "listAll": true,
       "listCompleted": false,
       "listUncompleted": false,
 
