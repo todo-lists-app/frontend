@@ -22,6 +22,7 @@ export const TodoPage: FC = () => {
   const [salt, setSalt] = useState<string | null>(localStorage.getItem('salt') || null);
   const [todos, setTodos] = useState<TodoList>({items: []});
   const [userSubject, setUserSubject] = useState<string>("");
+  const [priorityFilter, setPriorityFilter] = useState<string>("all");
 
   useEffect(() => {
     if (auth?.user?.profile) {
@@ -106,16 +107,25 @@ export const TodoPage: FC = () => {
     if (filteredItems.length > 0) {
       filteredItems = filteredItems.filter(i => !i.archived)
     }
+    if (priorityFilter !== "all") {
+      filteredItems = filteredItems.filter(i => i.priority === priorityFilter)
+    }
     return filteredItems
-  }, [todos.items])
+  }, [todos.items, priorityFilter])
   const activeItems = useMemo(() => {
-    const filteredItems = todos.items.filter(i => !i.completed && !i.archived)
+    let filteredItems = todos.items.filter(i => !i.completed && !i.archived)
+    if (priorityFilter !== "all") {
+      filteredItems = filteredItems.filter(i => i.priority === priorityFilter)
+    }
     return filteredItems
-  }, [todos.items])
+  }, [todos.items, priorityFilter])
   const archivedItems = useMemo(() => {
-    const filteredItems = todos.items.filter(i => i.archived)
+    let filteredItems = todos.items.filter(i => i.archived)
+    if (priorityFilter !== "all") {
+      filteredItems = filteredItems.filter(i => i.priority === priorityFilter)
+    }
     return filteredItems
-  }, [todos.items])
+  }, [todos.items, priorityFilter])
 
   return (
     <>
@@ -188,7 +198,7 @@ export const TodoPage: FC = () => {
                     itemsExist={true}
                   />
                   <SortItems />
-                  <FilterItems />
+                  <FilterItems filterCallback={setPriorityFilter} />
                 </Box>
               </Col>
             </Row>

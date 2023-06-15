@@ -34,8 +34,8 @@ export const appConfig: AppConfig = {
       "sortByCompleteDate": false,
       "sortByUpdatedDate": false,
 
-      "filterBy": false,
-      "filterByPriority": false,
+      "filterBy": true,
+      "filterByPriority": true,
       "filterByDate": false,
       "filterByCompleteDate": false,
       "filterByUpdatedDate": false,
@@ -54,7 +54,7 @@ export const appConfig: AppConfig = {
       "update": false,
       "slack": false,
     }
-  }
+  },
 }
 
 interface ShowFeatureProps {
