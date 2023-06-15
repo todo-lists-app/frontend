@@ -23,6 +23,60 @@ export const TodoPage: FC = () => {
   const [todos, setTodos] = useState<TodoList>({items: []});
   const [userSubject, setUserSubject] = useState<string>("");
   const [priorityFilter, setPriorityFilter] = useState<string>("all");
+  const [sortOrder, setSortOrder] = useState<string>("creationDate");
+
+  function prioritySort(priority: string) {
+    switch (priority) {
+      case "high":
+        return 1;
+      case "medium":
+        return 2;
+      case "low":
+        return 3;
+      default:
+        return 4; //urgent
+    }
+  }
+  function sortTodos(todos: TodoItem[], sortOrder: string): TodoItem[] {
+  let sortedTodos = [...todos];
+
+  switch (sortOrder) {
+    case "priority":
+      sortedTodos.sort((a, b) => prioritySort(a.priority) - prioritySort(b.priority));
+      break;
+    case "Due Date":
+      sortedTodos.sort((a, b) => {
+        if (b.dueDate && a.dueDate) {
+          return new Date(b.dueDate).getTime() - new Date(a.dueDate).getTime();
+        } else if (b.dueDate) {
+          return -1;
+        } else if (a.dueDate) {
+          return 1;
+        } else {
+          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+        }
+      });
+      break;
+    case "Updated Date":
+      sortedTodos.sort((a, b) => {
+        if (b.updatedAt && a.updatedAt) {
+          return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
+        } else if (b.updatedAt) {
+          return -1;
+        } else if (a.updatedAt) {
+          return 1;
+        } else {
+          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+        }
+      });
+      break;
+    default:
+      break;
+  }
+
+  return sortedTodos;
+}
+
 
   useEffect(() => {
     if (auth?.user?.profile) {
@@ -111,21 +165,22 @@ export const TodoPage: FC = () => {
       filteredItems = filteredItems.filter(i => i.priority === priorityFilter)
     }
     return filteredItems
-  }, [todos.items, priorityFilter])
+  }, [todos.items, priorityFilter, sortOrder])
   const activeItems = useMemo(() => {
     let filteredItems = todos.items.filter(i => !i.completed && !i.archived)
     if (priorityFilter !== "all") {
       filteredItems = filteredItems.filter(i => i.priority === priorityFilter)
     }
+    filteredItems = sortTodos(filteredItems, sortOrder)
     return filteredItems
-  }, [todos.items, priorityFilter])
+  }, [todos.items, priorityFilter, sortOrder])
   const archivedItems = useMemo(() => {
     let filteredItems = todos.items.filter(i => i.archived)
     if (priorityFilter !== "all") {
       filteredItems = filteredItems.filter(i => i.priority === priorityFilter)
     }
     return filteredItems
-  }, [todos.items, priorityFilter])
+  }, [todos.items, priorityFilter, sortOrder])
 
   return (
     <>
@@ -190,14 +245,14 @@ export const TodoPage: FC = () => {
                 </Fragment>
               </Col>
               <Col md={2} xl={2} sm={1}>
-                <Box color="black" borderColor="purple" className={styles.sideBar} rounded={"lg"} p={"sm"}>
+                <Box color="black" borderColor="purple" className={styles.sideBar} rounded={"lg"}>
                   <AddItem
                     processor={handleAddItem}
                     userSubject={userSubject}
                     userSalt={salt}
                     itemsExist={true}
                   />
-                  <SortItems />
+                  <SortItems sortCallback={setSortOrder} />
                   <FilterItems filterCallback={setPriorityFilter} />
                 </Box>
               </Col>

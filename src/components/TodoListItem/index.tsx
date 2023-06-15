@@ -98,7 +98,7 @@ export const TodoListItem: FC<TodoListItemProps> = ({
               </Card>
             )}
             <Card color={priorityColor} rounded={"lg"} p={"xs"} m={"xs"} className={styles.priorityTag}>
-              <Text>Priority: {item.priority}</Text>
+              <Text className={styles.priorityLabel}>Priority: {item.priority}</Text>
             </Card>
           </Box>
           <Box className={styles.buttonWrapper}>

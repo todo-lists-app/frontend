@@ -79,6 +79,10 @@
   align-self: flex-end;
 }
 
+.priorityLabel {
+  text-transform: capitalize;
+}
+
 @media screen and (min-width: 400px) {
   .additionalWrapper {
     flex-flow: row;

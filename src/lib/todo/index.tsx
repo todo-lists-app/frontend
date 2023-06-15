@@ -6,11 +6,12 @@ export interface TodoItem {
   id: string;
   title: string;
   completed: boolean;
+  priority: keyof typeof priorities;
+  createdAt: string;
+
   archived?: boolean;
   dueDate?: string;
-  priority?: keyof typeof priorities;
   content?: string;
-  createdAt: string;
   updatedAt?: string;
 }
 
@@ -39,6 +40,9 @@ export const AddItemToList = (
   todos: TodoList, setTodos: Dispatch<SetStateAction<TodoList>>
 ) => {
   const todoCount = todos.items.length;
+  if (formData.priority === undefined) {
+    formData.priority = "low";
+  }
 
   let newTodo: TodoItem = {
     id: Math.random().toString(36).substring(2, 15),

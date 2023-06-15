@@ -14,10 +14,10 @@ export const FilterItems: FC<FilterItemsProps> = ({filterCallback}) => {
           <Divider color={"orange"} />
           {isFeatureImplemented({featureSet: "todo", featureName: "filterByPriority"}) && (
             <>
-              <Heading size={"xl"}>
+              <Heading size={"xl"} p={"xs"}>
                 <Text m={"sm"} color={"white"}>Priority</Text>
               </Heading>
-              <Box m={"sm"}>
+              <Box>
                 <Radio color={"green"} name={"priorityFilter"} value={"all"} defaultChecked={true} onChange={(e) => {
                   if (filterCallback) {
                     filterCallback(e.target.value);
@@ -25,7 +25,7 @@ export const FilterItems: FC<FilterItemsProps> = ({filterCallback}) => {
                 }} />
                 <Text m={"sm"} color={"white"}>All</Text>
               </Box>
-              <Box m={"sm"}>
+              <Box>
                 <Radio color={"red"} name={"priorityFilter"} value={"urgent"} onChange={(e) => {
                   if (filterCallback) {
                     filterCallback(e.target.value);
@@ -33,7 +33,7 @@ export const FilterItems: FC<FilterItemsProps> = ({filterCallback}) => {
                 }} />
                 <Text m={"sm"} color={"white"}>Urgent</Text>
               </Box>
-              <Box m={"sm"}>
+              <Box>
                 <Radio color={"purple"} name={"priorityFilter"} value={"high"} onChange={(e) => {
                   if (filterCallback) {
                     filterCallback(e.target.value);
@@ -41,7 +41,7 @@ export const FilterItems: FC<FilterItemsProps> = ({filterCallback}) => {
                 }} />
                 <Text m={"sm"} color={"white"}>High</Text>
               </Box>
-              <Box m={"sm"}>
+              <Box>
                 <Radio color={"orange"} name={"priorityFilter"} value={"medium"} onChange={(e) => {
                   if (filterCallback) {
                     filterCallback(e.target.value);
@@ -49,7 +49,7 @@ export const FilterItems: FC<FilterItemsProps> = ({filterCallback}) => {
                 }} />
                 <Text m={"sm"} color={"white"}>Medium</Text>
               </Box>
-              <Box m={"sm"}>
+              <Box>
                 <Radio color={"white"} name={"priorityFilter"} value={"low"} onChange={(e) => {
                   if (filterCallback) {
                     filterCallback(e.target.value);

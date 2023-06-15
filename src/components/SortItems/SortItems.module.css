@@ -1,0 +1,16 @@
+.sortBy {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-direction: column;
+  width: 100%;
+}
+
+.sortBy > div {
+  flex-grow: 1;
+  width: 100%;
+}
+
+.sortByTitle {
+  text-align: center;
+}
