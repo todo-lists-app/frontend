@@ -24,7 +24,7 @@ export const SortItems: FC<SortItemsProps> = ({sortCallback}) => {
                     sortCallback(e.target.value)
                   }
                 }} defaultChecked={true} />
-                <Text m={"sm"} size="sm" color={"white"}>Creation Date</Text>
+                <Text m={"sm"} color={"white"}>Creation Date</Text>
               </Box>
             )}
             {isFeatureImplemented({featureSet: "todo", featureName: "sortByUpdatedDate"}) && (
@@ -34,7 +34,7 @@ export const SortItems: FC<SortItemsProps> = ({sortCallback}) => {
                     sortCallback(e.target.value)
                   }
                 }} />
-                <Text m={"sm"} size="sm" color={"white"}>Updated Date</Text>
+                <Text m={"sm"} color={"white"}>Updated Date</Text>
               </Box>
             )}
             {isFeatureImplemented({featureSet: "todo", featureName: "sortByPriority"}) && (
@@ -44,7 +44,7 @@ export const SortItems: FC<SortItemsProps> = ({sortCallback}) => {
                     sortCallback(e.target.value)
                   }
                 }} />
-                <Text m={"sm"} size="sm" color={"white"}>Priority</Text>
+                <Text m={"sm"} color={"white"}>Priority</Text>
               </Box>
             )}
             {isFeatureImplemented({featureSet: "todo", featureName: "sortByDueDate"}) && (
@@ -54,7 +54,7 @@ export const SortItems: FC<SortItemsProps> = ({sortCallback}) => {
                     sortCallback(e.target.value)
                   }
                 }} />
-                <Text m={"sm"} size="sm" color={"white"}>Due Date</Text>
+                <Text m={"sm"} color={"white"}>Due Date</Text>
               </Box>
             )}
           </Box>
