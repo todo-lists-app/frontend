@@ -44,33 +44,26 @@ export const TodoPage: FC = () => {
     case "priority":
       sortedTodos.sort((a, b) => prioritySort(a.priority) - prioritySort(b.priority));
       break;
-    case "Due Date":
+    case "dueDate":
       sortedTodos.sort((a, b) => {
-        if (b.dueDate && a.dueDate) {
-          return new Date(b.dueDate).getTime() - new Date(a.dueDate).getTime();
-        } else if (b.dueDate) {
-          return -1;
-        } else if (a.dueDate) {
-          return 1;
-        } else {
-          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-        }
+        let aDate = a.dueDate && a.dueDate !== "" ? new Date(a.dueDate) : new Date(a.createdAt);
+        let bDate = b.dueDate && b.dueDate !== "" ? new Date(b.dueDate) : new Date(b.createdAt);
+        return bDate.getTime() - aDate.getTime();
       });
       break;
-    case "Updated Date":
+    case "updatedDate":
       sortedTodos.sort((a, b) => {
-        if (b.updatedAt && a.updatedAt) {
-          return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
-        } else if (b.updatedAt) {
-          return -1;
-        } else if (a.updatedAt) {
-          return 1;
-        } else {
-          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-        }
+        let aDate = a.updatedAt && a.updatedAt !== "" ? new Date(a.updatedAt) : new Date(a.createdAt);
+        let bDate = b.updatedAt && b.updatedAt !== "" ? new Date(b.updatedAt) : new Date(b.createdAt);
+        return bDate.getTime() - aDate.getTime();
       });
       break;
     default:
+      sortedTodos.sort((a, b) => {
+        let aDate = a.createdAt && a.createdAt !== "" ? new Date(a.createdAt) : new Date(a.createdAt);
+        let bDate = b.createdAt && b.createdAt !== "" ? new Date(b.createdAt) : new Date(b.createdAt);
+        return bDate.getTime() - aDate.getTime();
+      });
       break;
   }
 
