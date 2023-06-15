@@ -32,6 +32,10 @@ export const Home: FC = () => {
           <Heading>A To-Do List You Can Trust</Heading>
           <Paragraph>
             We've been developing Todo-List.app with your data privacy in mind since day one. We are in it for the long haul.
+            <br />
+            All encryption takes place on-device, so if thats in an app its on device, if its on the web its in your browser. We never see your data before its encrypted.
+            <br />
+            All our code is open source and available on <a href="https://github.com/todo-lists-app">GitHub</a>
           </Paragraph>
         </Box>
         <Box>
