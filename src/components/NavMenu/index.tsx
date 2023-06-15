@@ -1,5 +1,4 @@
 import React, {FC} from "react";
-import {Link} from "react-router-dom";
 import {Box, Anchor, Button} from "dracula-ui";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useAuth} from "react-oidc-context";

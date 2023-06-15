@@ -6454,6 +6454,11 @@ mdast-util-to-string@^3.1.0:
   dependencies:
     "@types/mdast" "^3.0.0"
 
+mdi-react@^9.2.0:
+  version "9.2.0"
+  resolved "https://registry.yarnpkg.com/mdi-react/-/mdi-react-9.2.0.tgz#58fa8654937e5d86c7dfd8be5ba9259940d21115"
+  integrity sha512-NI1sIvu142SQKkOMe4bjA9KuvMXpT8PfNOkCblSEuUeakFpgciMuKV9rEyJbQkvFBppDLx1f1xmbcIc06oRyAQ==
+
 mdn-data@2.0.14:
   version "2.0.14"
   resolved "https://registry.yarnpkg.com/mdn-data/-/mdn-data-2.0.14.tgz#7113fc4281917d63ce29b43446f701e68c25ba50"

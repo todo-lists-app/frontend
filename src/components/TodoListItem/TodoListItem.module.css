@@ -24,6 +24,12 @@
   display: flex;
 }
 
+.itemButtons {
+  border: none;
+  cursor: pointer;
+  background-color: var(--blackSecondary)
+}
+
 .info {
   display: flex;
   justify-content: space-between;

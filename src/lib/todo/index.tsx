@@ -70,8 +70,8 @@ const CreateList = (subject: string, salt: string, todos: TodoList, newTodo: Tod
           iv: uint8ArrayToBase64(data.iv),
         })
       }).then(res => {
-        if (res.status === 200) {
-          console.log("success create")
+        if (res.status !== 200) {
+          throw new Error("CreateList failed")
         }
       })
     }).catch(err => console.log("encrypt error", err));
@@ -95,8 +95,8 @@ export const UpdateList = (subject: string, salt: string, todos: TodoList) => {
         iv: uint8ArrayToBase64(data.iv),
       })
     }).then(res => {
-      if (res.status === 200) {
-        console.log("success update")
+      if (res.status !== 200) {
+        throw new Error("UpdateList failed")
       }
     })
   }).catch(err => console.log("encrypt error", err));

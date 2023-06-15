@@ -1,10 +1,13 @@
 import React, {FC} from "react";
-import {Box, Badge, Checkbox, Heading, Text, Card, Button} from "dracula-ui";
-
+import {Box, Checkbox, Heading, Text, Card, Button} from "dracula-ui";
 import {TodoItem} from "../../lib/todo";
 import styles from "./TodoListItem.module.css";
 import {isFeatureImplemented} from "../../app.config";
 import ReactMarkdown from "react-markdown";
+import DeleteForeverIcon from "mdi-react/DeleteForeverIcon";
+import PencilOutlineIcon from "mdi-react/PencilOutlineIcon";
+import PackageVariantIcon from "mdi-react/PackageVariantIcon";
+import PackageVariantClosedIcon from "mdi-react/PackageVariantClosedIcon";
 
 interface TodoListItemProps {
   item: TodoItem;
@@ -56,9 +59,9 @@ export const TodoListItem: FC<TodoListItemProps> = ({
     item.priority = "low";
   }
 
-  let archiveTitle = "Archive";
+  let archiveTitle = <PackageVariantClosedIcon />;
   if (item.archived) {
-    archiveTitle = "Un-Archive";
+    archiveTitle = <PackageVariantIcon />;
   }
   let completedStyle = ''
   if (item.completed) {
@@ -101,7 +104,7 @@ export const TodoListItem: FC<TodoListItemProps> = ({
           <Box className={styles.buttonWrapper}>
             <Card color={"blackSecondary"} rounded={"lg"} p={"xs"} m={"xs"} className={styles.priorityTag}>
               {isFeatureImplemented({featureSet: "todo", featureName: "archive"}) && (
-                <Button as={"button"} m={"sm"} onClick={(e) => {
+                <Button className={styles.itemButtons} as={"button"} m={"sm"} onClick={(e) => {
                   e.preventDefault()
                   if (archiveCallback) {
                     archiveCallback(item)
@@ -110,22 +113,22 @@ export const TodoListItem: FC<TodoListItemProps> = ({
               )}
               {isFeatureImplemented({featureSet: "todo", featureName: "edit"}) && (
                 !item.archived && !item.completed && (
-                  <Button as={"button"} m={"sm"} onClick={(e) => {
+                  <Button className={styles.itemButtons} as={"button"} m={"sm"} onClick={(e) => {
                     e.preventDefault()
                     if (editCallback) {
                       editCallback(item)
                     }
-                  }}>Edit</Button>
+                  }}><PencilOutlineIcon /></Button>
                 )
               )}
               {isFeatureImplemented({featureSet: "todo", featureName: "delete"}) && (
                 item.archived && (
-                  <Button m={"sm"} as={"button"} onClick={(e) => {
+                  <Button className={styles.itemButtons} as="button" m={"sm"} onClick={(e) => {
                     e.preventDefault()
                     if (deleteCallback) {
                       deleteCallback(item)
                     }
-                  }}>Delete</Button>
+                  }}><DeleteForeverIcon /></Button>
                 )
               )}
             </Card>
