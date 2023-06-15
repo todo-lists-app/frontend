@@ -102,7 +102,10 @@ export const TodoPage: FC = () => {
   }
 
   const completedItems = useMemo(() => {
-    const filteredItems = todos.items.filter(i => i.completed)
+    let filteredItems = todos.items.filter(i => i.completed)
+    if (filteredItems.length > 0) {
+      filteredItems = filteredItems.filter(i => !i.archived)
+    }
     return filteredItems
   }, [todos.items])
   const activeItems = useMemo(() => {

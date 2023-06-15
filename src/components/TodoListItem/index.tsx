@@ -56,22 +56,59 @@ export const TodoListItem: FC<TodoListItemProps> = ({
     item.priority = "low";
   }
 
+  let archiveTitle = "Archive";
+  if (item.archived) {
+    archiveTitle = "Un-Archive";
+  }
+
   return (
-    <Box>
+    <Box m={"sm"}>
       {item.completed ? (
         <Box p="sm" color={"black"} rounded={"lg"} key={item.id} className={styles.itemBox}>
-          <Heading size="sm" className={styles.completed}>
+          <Box className={styles.doneButton}>
             {doneCallback && (
               <Checkbox checked={true} onChange={(e) => {
                 e.preventDefault()
                 doneCallback(item)
               }} />
             )}
-            <Text weight={"bold"} size={"md"}>{item.title}</Text>
-          </Heading>
-          {item.content && (
-            <Text className={styles.completed}>{item.content}</Text>
-          )}
+          </Box>
+          <Box className={styles.info}>
+            <Box className={`${styles.content} ${styles.completed}`}>
+              <Heading m={"sm"} className={`${styles.title} ${styles.completed}`}>
+                <Text weight={"bold"} size={"md"}>{item.title}</Text>
+              </Heading>
+              {item.content && (
+                <Text className={`${styles.description} ${styles.completed}`}>
+                  <ReactMarkdown>{item.content}</ReactMarkdown>
+                </Text>
+              )}
+            </Box>
+            <Box className={styles.additionalWrapper}>
+              <Box className={styles.buttonWrapper}>
+                <Card color={"blackSecondary"} rounded={"lg"} p={"xs"} m={"xs"} className={styles.priorityTag}>
+                  {isFeatureImplemented({featureSet: "todo", featureName: "archive"}) && (
+                    <Button as={"button"} m={"sm"} onClick={(e) => {
+                      e.preventDefault()
+                      if (archiveCallback) {
+                        archiveCallback(item)
+                      }
+                    }}>{archiveTitle}</Button>
+                  )}
+                  {isFeatureImplemented({featureSet: "todo", featureName: "delete"}) && (
+                    item.archived && (
+                      <Button m={"sm"} as={"button"} onClick={(e) => {
+                        e.preventDefault()
+                        if (deleteCallback) {
+                          deleteCallback(item)
+                        }
+                      }}>Delete</Button>
+                    )
+                  )}
+                </Card>
+              </Box>
+            </Box>
+          </Box>
         </Box>
       ) : (
         <Box p="sm" color={"black"} borderColor={"purple"} rounded={"lg"} key={item.id} className={styles.itemBox}>
@@ -115,7 +152,7 @@ export const TodoListItem: FC<TodoListItemProps> = ({
                       if (archiveCallback) {
                         archiveCallback(item)
                       }
-                    }}>Archive</Button>
+                    }}>{archiveTitle}</Button>
                   )}
                   {isFeatureImplemented({featureSet: "todo", featureName: "edit"}) && (
                     !item.archived && (
@@ -143,7 +180,6 @@ export const TodoListItem: FC<TodoListItemProps> = ({
           </Box>
         </Box>
       )}
-      <br />
     </Box>
   );
 }
