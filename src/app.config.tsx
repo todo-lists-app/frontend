@@ -17,7 +17,7 @@ export const appConfig: AppConfig = {
       "decrypt": true,
 
       "add": true,
-      "edit": false,
+      "edit": true,
       "archive": true,
       "delete": true,
       "complete": true,

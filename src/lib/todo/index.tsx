@@ -20,6 +20,7 @@ export interface TodoList {
 }
 
 export type TodoFormData = {
+  id?: string;
   title: string;
   content?: string;
   dueDate?: string;

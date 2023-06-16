@@ -12,9 +12,9 @@ import {appConfig} from "../../app.config";
 import {TodoListItems} from "../../components/TodoListItem";
 import {AddItem} from "../../components/AddItem";
 import {Col, Row} from "react-bootstrap";
-import {DividerLine} from "../../components/DividerLine/DividerLine";
-import {SortItems} from "../../components/SortItems/SortItems";
-import {FilterItems} from "../../components/FilterItems/FilterItems";
+import {DividerLine} from "../../components/DividerLine";
+import {SortItems} from "../../components/SortItems";
+import {FilterItems} from "../../components/FilterItems";
 import styles from "./Todo.module.css";
 
 export const TodoPage: FC = () => {
@@ -117,8 +117,10 @@ export const TodoPage: FC = () => {
     }
   };
 
-  const handleAddItem = (formData: TodoFormData, subject: string, salt: string) => {
-    AddItemToList(formData, subject, salt, todos, setTodos);
+  const handleAddItem = (formData: TodoFormData) => {
+    if (salt && userSubject) {
+      AddItemToList(formData, userSubject, salt, todos, setTodos);
+    }
   }
 
   const handleCompleteItem = (item: TodoItem) => {
@@ -145,8 +147,18 @@ export const TodoPage: FC = () => {
     }
   }
 
-  const handleEditCallback = (item: TodoItem) => {
-    console.info("edit", item)
+  const handleEditCallback = (formData: TodoFormData, item: TodoItem) => {
+    item.title = formData.title
+    item.content = formData.content
+    if (formData.priority !== undefined) {
+      item.priority = formData.priority
+    }
+    item.dueDate = formData.dueDate
+    item.updatedAt = new Date().toISOString()
+    setTodos({...todos, items: todos.items.map(i => i.id === item.id ? item : i)})
+    if (salt && userSubject) {
+      UpdateList(userSubject, salt, todos)
+    }
   }
 
   const completedItems = useMemo(() => {
@@ -241,9 +253,6 @@ export const TodoPage: FC = () => {
                 <Box color="black" borderColor="purple" className={styles.sideBar} rounded={"lg"}>
                   <AddItem
                     processor={handleAddItem}
-                    userSubject={userSubject}
-                    userSalt={salt}
-                    itemsExist={true}
                   />
                   <SortItems sortCallback={setSortOrder} />
                   <FilterItems filterCallback={setPriorityFilter} />

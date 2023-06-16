@@ -1,0 +1,14 @@
+.formBox {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-width: 1px;
+  border-style: solid;
+  z-index: 1000;
+}
+
+.formButtons {
+  display: flex;
+  justify-content: space-between;
+}

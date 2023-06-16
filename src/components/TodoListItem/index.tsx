@@ -8,18 +8,19 @@ import DeleteForeverIcon from "mdi-react/DeleteForeverIcon";
 import PencilOutlineIcon from "mdi-react/PencilOutlineIcon";
 import PackageVariantIcon from "mdi-react/PackageVariantIcon";
 import PackageVariantClosedIcon from "mdi-react/PackageVariantClosedIcon";
+import {TodoForm} from "../TodoForm";
 
 interface TodoListItemProps {
   item: TodoItem;
   doneCallback?: (item: TodoItem) => void;
-  editCallback?: (item: TodoItem) => void;
+  editCallback?: (formData: any, todoItem: TodoItem) => void;
   deleteCallback?: (item: TodoItem) => void;
   archiveCallback?: (item: TodoItem) => void;
 }
 interface TodoListItemsProps {
   items: TodoItem[];
   doneCallback?: (item: TodoItem) => void;
-  editCallback?: (item: TodoItem) => void;
+  editCallback?: (formData: any, todoItem: TodoItem) => void;
   deleteCallback?: (item: TodoItem) => void;
   archiveCallback?: (item: TodoItem) => void;
 }
@@ -68,7 +69,17 @@ export const TodoListItem: FC<TodoListItemProps> = ({
     completedStyle = styles.completed
   }
 
+  const [editFormOpen, setEditFormOpen] = React.useState(false);
+
   return (
+    <>
+    {editFormOpen ? (
+      editCallback && <TodoForm
+        editProcessor={editCallback}
+        openCallback={setEditFormOpen}
+        todoItem={item}
+      />
+    ) : (
     <Box p="sm" color={"black"} borderColor={"purple"} rounded={"lg"} key={item.id} className={styles.itemBox} m={"sm"}>
       <Box className={styles.doneButton}>
         {doneCallback ? (
@@ -116,7 +127,7 @@ export const TodoListItem: FC<TodoListItemProps> = ({
                   <Button className={styles.itemButtons} as={"button"} m={"sm"} onClick={(e) => {
                     e.preventDefault()
                     if (editCallback) {
-                      editCallback(item)
+                      setEditFormOpen(true)
                     }
                   }}><PencilOutlineIcon /></Button>
                 )
@@ -136,5 +147,7 @@ export const TodoListItem: FC<TodoListItemProps> = ({
         </Box>
       </Box>
     </Box>
+    )}
+    </>
   );
 }
