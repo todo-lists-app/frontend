@@ -37,7 +37,7 @@ export const appConfig: AppConfig = {
       "filterByPriority": true,
       "filterByDate": false,
       "filterByCompleteDate": false,
-      "filterByUpdatedDate": false,
+      "filterByUpdatedDate": true,
     },
     "account": {
       "login": true,
