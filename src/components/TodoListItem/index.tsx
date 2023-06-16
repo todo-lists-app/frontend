@@ -9,6 +9,7 @@ import PencilOutlineIcon from "mdi-react/PencilOutlineIcon";
 import PackageVariantIcon from "mdi-react/PackageVariantIcon";
 import PackageVariantClosedIcon from "mdi-react/PackageVariantClosedIcon";
 import {TodoForm} from "../TodoForm";
+import remarkGfm from "remark-gfm";
 
 interface TodoListItemProps {
   item: TodoItem;
@@ -97,7 +98,7 @@ export const TodoListItem: FC<TodoListItemProps> = ({
           </Heading>
           {item.content && (
             <Text className={`${styles.description} ${completedStyle}`}>
-              <ReactMarkdown>{item.content}</ReactMarkdown>
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>{item.content}</ReactMarkdown>
             </Text>
           )}
         </Box>
@@ -105,7 +106,11 @@ export const TodoListItem: FC<TodoListItemProps> = ({
           <Box className={styles.tagWrapper}>
             {item.dueDate && (
               <Card color={"blackSecondary"} rounded={"lg"} p={"xs"} m={"xs"} className={styles.dueDateTag}>
-                <Text>Due Date: {item.dueDate}</Text>
+                {item.dueTime ? (
+                  <Text>Due: {item.dueDate} {item.dueTime}</Text>
+                ) : (
+                  <Text>Due Date: {item.dueDate}</Text>
+                )}
               </Card>
             )}
             <Card color={priorityColor} rounded={"lg"} p={"xs"} m={"xs"} className={styles.priorityTag}>

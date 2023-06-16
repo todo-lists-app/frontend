@@ -7,7 +7,7 @@ import {
   base64ToArrayBuffer,
   base64ToUint8Array
 } from "../../lib/cryption";
-import {AddItemToList, TodoFormData, TodoItem, TodoList, UpdateList} from "../../lib/todo";
+import {AddItemToList, TodoFormData, TodoItem, TodoList, UpdateList, UpdateItemInList} from "../../lib/todo";
 import {appConfig} from "../../app.config";
 import {TodoListItems} from "../../components/TodoListItem";
 import {AddItem} from "../../components/AddItem";
@@ -148,16 +148,8 @@ export const TodoPage: FC = () => {
   }
 
   const handleEditCallback = (formData: TodoFormData, item: TodoItem) => {
-    item.title = formData.title
-    item.content = formData.content
-    if (formData.priority !== undefined) {
-      item.priority = formData.priority
-    }
-    item.dueDate = formData.dueDate
-    item.updatedAt = new Date().toISOString()
-    setTodos({...todos, items: todos.items.map(i => i.id === item.id ? item : i)})
     if (salt && userSubject) {
-      UpdateList(userSubject, salt, todos)
+      UpdateItemInList(formData, userSubject, salt, item, todos, setTodos);
     }
   }
 

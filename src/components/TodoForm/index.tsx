@@ -4,6 +4,7 @@ import {Container} from "react-bootstrap";
 
 import styles from "./TodoForm.module.css";
 import {TodoFormData, TodoItem} from "../../lib/todo";
+import {DividerLine} from "../DividerLine";
 
 interface TodoFormProps {
   editProcessor?: (formData: any, todoItem: TodoItem) => void;
@@ -34,6 +35,7 @@ export const TodoForm: FC<TodoFormProps> = ({
       content: contentRef.current?.value,
       dueDate: dueDateRef.current?.value,
       priority: priorityRef.current?.value,
+      dueTime: dueTimeRef.current?.value,
     } as TodoFormData;
     openCallback(false);
     if (addProcessor) {
@@ -53,11 +55,13 @@ export const TodoForm: FC<TodoFormProps> = ({
   const contentRef = React.useRef<HTMLTextAreaElement | null>(null);
   const dueDateRef = React.useRef<HTMLInputElement | null>(null);
   const priorityRef = React.useRef<HTMLSelectElement | null>(null);
+  const dueTimeRef = React.useRef<HTMLInputElement | null>(null);
 
   let priorityValue = "low";
   let titleValue = "";
   let contentValue = "";
   let dueDateValue = "";
+  let dueTimeValue = "";
   if (todoItem) {
     if (todoItem.priority) {
       priorityValue = todoItem.priority;
@@ -70,6 +74,9 @@ export const TodoForm: FC<TodoFormProps> = ({
     }
     if (todoItem.dueDate) {
       dueDateValue = todoItem.dueDate;
+    }
+    if (todoItem.dueTime) {
+      dueTimeValue = todoItem.dueTime;
     }
   }
 
@@ -86,7 +93,6 @@ export const TodoForm: FC<TodoFormProps> = ({
           <Container>
             <Input placeholder={"Title"} name={"title"} m={"xs"} ref={titleRef} defaultValue={titleValue} />
             <Textarea placeholder={"Content"} name={"content"} m={"xs"} ref={contentRef} defaultValue={contentValue} />
-            <Input type={"datetime-local"} name={"dueDate"} m={"xs"} title={"Due Date"} ref={dueDateRef} defaultValue={dueDateValue} />
             <Select defaultValue={priorityValue} name={"priority"} m={"xs"} title={"Priority"} ref={priorityRef}>
               <option value={"low"} disabled={true}>Optional Priority</option>
               <option value={"low"}>Low</option>
@@ -94,6 +100,9 @@ export const TodoForm: FC<TodoFormProps> = ({
               <option value={"high"}>High</option>
               <option value={"urgent"}>Urgent</option>
             </Select>
+            <DividerLine title={"Due Date"} />
+            <Input type={"date"} name={"dueDate"} m={"xs"} title={"Due Date"} ref={dueDateRef} defaultValue={dueDateValue} />
+            <Input type={"time"} name={"dueTime"} m={"xs"} title={"dueTime"} ref={dueTimeRef} defaultValue={dueTimeValue} />
             <Box className={styles.formButtons}>
               <Button type="submit" m={"sm"} color={"purple"}>Submit</Button>
               <Button onClick={handleCancel} m={"sm"} color={"red"}>Cancel</Button>

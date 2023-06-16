@@ -11,6 +11,7 @@ export interface TodoItem {
 
   archived?: boolean;
   dueDate?: string;
+  dueTime?: string;
   content?: string;
   updatedAt?: string;
 }
@@ -24,6 +25,7 @@ export type TodoFormData = {
   title: string;
   content?: string;
   dueDate?: string;
+  dueTime?: string;
   priority?: keyof typeof priorities;
 }
 
@@ -38,11 +40,18 @@ export const AddItemToList = (
   formData: TodoFormData,
   subject: string,
   salt: string,
-  todos: TodoList, setTodos: Dispatch<SetStateAction<TodoList>>
+  todos: TodoList,
+  setTodos: Dispatch<SetStateAction<TodoList>>
 ) => {
   const todoCount = todos.items.length;
   if (formData.priority === undefined) {
     formData.priority = "low";
+  }
+
+  if (formData.dueTime !== undefined) {
+    if (formData.dueDate === undefined) {
+      formData.dueDate = new Date().toISOString();
+    }
   }
 
   let newTodo: TodoItem = {
@@ -50,6 +59,7 @@ export const AddItemToList = (
     title: formData.title,
     content: formData.content,
     dueDate: formData.dueDate,
+    dueTime: formData.dueTime,
     priority: formData.priority,
     completed: false,
     createdAt: new Date().toISOString(),
@@ -60,6 +70,33 @@ export const AddItemToList = (
   }
 
   return AddToUpdateList(subject, salt, todos, newTodo);
+}
+
+export const UpdateItemInList = (
+  formData: TodoFormData,
+  subject: string,
+  salt: string,
+  item: TodoItem,
+  todos: TodoList,
+  setTodos: Dispatch<SetStateAction<TodoList>>
+) => {
+  item.title = formData.title
+  item.content = formData.content
+  if (formData.priority !== undefined) {
+    item.priority = formData.priority
+  }
+  if (formData.dueDate !== undefined) {
+    item.dueDate = formData.dueDate
+  }
+  if (formData.dueTime !== undefined) {
+    item.dueTime = formData.dueTime
+    if (item.dueDate === undefined) {
+      item.dueDate = new Date().toISOString()
+    }
+  }
+  item.updatedAt = new Date().toISOString()
+  setTodos({...todos, items: todos.items.map(i => i.id === item.id ? item : i)})
+  return UpdateList(subject, salt, todos)
 }
 
 const CreateList = (subject: string, salt: string, todos: TodoList, newTodo: TodoItem) => {
