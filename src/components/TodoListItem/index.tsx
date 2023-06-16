@@ -84,11 +84,11 @@ export const TodoListItem: FC<TodoListItemProps> = ({
     <Box p="sm" color={"black"} borderColor={"purple"} rounded={"lg"} key={item.id} className={styles.itemBox} m={"sm"}>
       <Box className={styles.doneButton}>
         {doneCallback ? (
-          <Checkbox checked={item.completed} color={"green"} onChange={(e) => {
+          <Checkbox checked={item.completed} color={item.completed ? "cyan" : "green"}  onChange={(e) => {
             doneCallback(item);
           }} />
         ) : (
-          <Checkbox checked={item.completed} color={"green"} />
+          <Checkbox checked={item.completed} color={"red"} />
         )}
       </Box>
       <Box className={styles.info}>
