@@ -61,9 +61,9 @@ export const TodoListItem: FC<TodoListItemProps> = ({
     item.priority = "low";
   }
 
-  let archiveTitle = <PackageVariantClosedIcon />;
+  let archiveTitle = <PackageVariantClosedIcon color={"#9580ff"} />;
   if (item.archived) {
-    archiveTitle = <PackageVariantIcon />;
+    archiveTitle = <PackageVariantIcon color={"#9580ff"} />;
   }
   let completedStyle = ''
   if (item.completed) {
@@ -134,7 +134,7 @@ export const TodoListItem: FC<TodoListItemProps> = ({
                     if (editCallback) {
                       setEditFormOpen(true)
                     }
-                  }}><PencilOutlineIcon /></Button>
+                  }}><PencilOutlineIcon color={"#80ffea"} /></Button>
                 )
               )}
               {isFeatureImplemented({featureSet: "todo", featureName: "delete"}) && (
@@ -144,7 +144,7 @@ export const TodoListItem: FC<TodoListItemProps> = ({
                     if (deleteCallback) {
                       deleteCallback(item)
                     }
-                  }}><DeleteForeverIcon /></Button>
+                  }}><DeleteForeverIcon color={"#ff80bf"} /></Button>
                 )
               )}
             </Card>
