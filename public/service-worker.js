@@ -26,7 +26,6 @@ self.addEventListener('notificationclick', function(e) {
   let url = new URL(self.location.href)
   let development = url.searchParams.get("development")
   let testAgainstAddress = "https://beta.todo-list.app/"
-  console.log("development: " + development)
   if (development) {
     testAgainstAddress = "http://localhost:3000/"
   }

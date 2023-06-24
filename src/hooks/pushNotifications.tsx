@@ -5,7 +5,11 @@ const usePushNotifications = (subject: string) => {
   useEffect(() => {
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", function () {
-        navigator.serviceWorker.register("/service-worker.js?development=" + !appConfig.production).then(
+        let registerAddress = "/service-worker.js";
+        if (!appConfig.production) {
+          registerAddress = "/service-worker.js?development=true";
+        }
+        navigator.serviceWorker.register(registerAddress).then(
           function (registration) {
             console.log("Service Worker registration successful with scope: ", registration.scope);
           },
