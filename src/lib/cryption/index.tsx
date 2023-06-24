@@ -125,9 +125,10 @@ function getEncryptedData(
       decryptData(subject, salt, base64ToArrayBuffer(data.data), base64ToUint8Array(data.iv)).then((decryptedData) => {
         dataLocation(decryptedData)
       }).catch(err => {
+        saltDeclare('')
         if (err instanceof DOMException) {
           if (err.message.includes('operation-specific reason')) {
-            localStorage.removeItem('salt')
+            console.log("data failed to decrypt")
             saltDeclare('')
           }
         } else {

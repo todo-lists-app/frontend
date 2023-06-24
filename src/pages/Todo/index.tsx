@@ -68,13 +68,12 @@ export const TodoPage: FC = () => {
   useEffect(() => {
     setUserSubject(auth?.user?.profile.sub || "");
     getEncryptedData(UserSubject, Salt, setTodos, setSalt);
-  }, [auth, Salt]);
+  }, [auth, Salt, UserSubject, setSalt, setUserSubject]);
 
   const handleSaltFormSubmit = () => {
     let saltElem = document.getElementById("salt") as HTMLInputElement;
     if (saltElem) {
       setSalt(saltElem.value);
-      localStorage.setItem("salt", saltElem.value);
     }
   };
 
@@ -149,8 +148,10 @@ export const TodoPage: FC = () => {
             <Heading size="sm">Enter your list password</Heading>
             <Text>Enter your password to encrypt/decrypt your todo list</Text>
             <Box display="flex">
-              <Input type="password" id="salt" variant="outline" borderSize="md" color="purple" m="sm"/>
-              <Button onClick={handleSaltFormSubmit} m="sm">Submit</Button>
+              <form onSubmit={handleSaltFormSubmit}>
+                <Input type="password" id="salt" variant="outline" borderSize="md" color="purple" m="sm"/>
+                <Button type="submit" m="sm">Submit</Button>
+              </form>
             </Box>
           </Box>
         ) : (

@@ -51,7 +51,7 @@ export const TaskPage: FC = () => {
       UpdateList(UserSubject, Salt, tasks)
       navigate("/");
     }
-  }, [completeMode, filteredTask, taskId])
+  }, [completeMode, filteredTask, taskId, navigate, UserSubject, Salt, tasks])
 
   return (
     <>
