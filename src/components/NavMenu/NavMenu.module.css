@@ -15,9 +15,10 @@
 .navItems {
   display: flex;
   gap: 15px;
+  color: #21222c;
 }
 .navItems a {
-  color: inherit;
+  color: var(--black);
 }
 .navItemsFloor {
   align-items: center;

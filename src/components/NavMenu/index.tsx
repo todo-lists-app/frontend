@@ -6,10 +6,12 @@ import {useAuth} from "react-oidc-context";
 import styles from "./NavMenu.module.css";
 import {faClipboardList, faHouse, faUser} from "@fortawesome/free-solid-svg-icons";
 import {AccountMenu} from "../AccountMenu";
+import Notification from "../Notification";
 
 export const NavMenu: FC = () => {
   const auth = useAuth();
   const given_name = auth?.user?.profile.given_name;
+  const subject = auth?.user?.profile.sub;
   let menuFloor = ""
   if (given_name) {
     menuFloor = styles.navItemsFloor;
@@ -27,13 +29,20 @@ export const NavMenu: FC = () => {
         </Button>
 
         {given_name ? (
-          <AccountMenu />
-          ) : (
-            <>
-              <Button color="purple" as="button" onClick={() => auth.signinRedirect()}>
-                <FontAwesomeIcon icon={faUser} />&nbsp;Login
-              </Button>
-            </>
+          <>
+            {subject &&
+              <>
+                <Notification Subject={subject} />
+                </>
+            }
+            <AccountMenu />
+          </>
+        ) : (
+          <>
+            <Button color="purple" as="button" onClick={() => auth.signinRedirect()}>
+              <FontAwesomeIcon icon={faUser} />&nbsp;Login
+            </Button>
+          </>
         )}
       </Box>
     </Box>

@@ -1,4 +1,5 @@
 import {TodoList} from "../todo";
+import {appConfig} from "../../app.config";
 
 async function generateKey(userid: string, salt: string): Promise<CryptoKey> {
   const encoder = new TextEncoder();
@@ -10,10 +11,6 @@ async function generateKey(userid: string, salt: string): Promise<CryptoKey> {
     false,
     ["deriveKey"]
   );
-  // console.log("generateKey userid", userid)
-  // console.log("generateKey key", key)
-  // console.log("generateKey baseKey", baseKey)
-  // console.log("generateKey salt", salt)
   return await window.crypto.subtle.deriveKey(
     {
       "name": "PBKDF2",
@@ -39,8 +36,6 @@ async function encryptData(userid: string, salt: string, data: TodoList): Promis
   const encoder = new TextEncoder();
   const encodedData = encoder.encode(JSON.stringify(data));
   const iv = window.crypto.getRandomValues(new Uint8Array(12));
-  // console.log("encryptData iv", iv)
-  // console.log("encryptData derivedKey", derivedKey)
   const encryptedData = await window.crypto.subtle.encrypt(
     {
       name: "AES-GCM",
@@ -54,8 +49,6 @@ async function encryptData(userid: string, salt: string, data: TodoList): Promis
 
 async function decryptData(userid: string, salt: string, encryptedData: ArrayBuffer, iv: Uint8Array): Promise<TodoList> {
   const derivedKey = await generateKey(userid, salt);
-  // console.log("decryptData iv", iv)
-  // console.log("decryptData derivedKey", derivedKey)
   const decryptedData = await window.crypto.subtle.decrypt(
     {
       name: "AES-GCM",
@@ -105,11 +98,52 @@ function base64ToUint8Array(base64: string) {
   return bytes;
 }
 
+function getEncryptedData(
+                            subject: string,
+                            salt: string,
+                            dataLocation: (data: TodoList) => void,
+                            saltDeclare: (saltValue: string) => void) {
+  if (subject === "" || subject === undefined) {
+    return;
+  }
+  if (salt === "" || salt === undefined) {
+    return;
+  }
+
+  fetch(appConfig.apiURL + `/list`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-User-Subject': subject,
+    }
+  }).then(res => res.json())
+    .then(data => {
+      if (data.data === "" || data.data === undefined) {
+        return;
+      }
+      // console.log("decrypting data", data);
+      decryptData(subject, salt, base64ToArrayBuffer(data.data), base64ToUint8Array(data.iv)).then((decryptedData) => {
+        dataLocation(decryptedData)
+      }).catch(err => {
+        if (err instanceof DOMException) {
+          if (err.message.includes('operation-specific reason')) {
+            localStorage.removeItem('salt')
+            saltDeclare('')
+          }
+        } else {
+          console.log("decrypt error", err)
+        }
+      })
+  })
+  .catch(err => console.log("fetch list error", err));
+}
+
 export {
   encryptData,
   decryptData,
   arrayBufferToBase64,
   base64ToArrayBuffer,
   uint8ArrayToBase64,
-  base64ToUint8Array
+  base64ToUint8Array,
+  getEncryptedData
 };

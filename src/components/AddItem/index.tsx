@@ -1,9 +1,6 @@
-import React, {FC, FormEvent, useEffect, useState} from "react";
-import {Box, Button, Heading, Input, Select, Text, Textarea} from "dracula-ui";
+import React, {FC, useEffect, useState} from "react";
+import {Button} from "dracula-ui";
 
-import styles from "./AddItem.module.css";
-import {Container} from "react-bootstrap";
-import {TodoFormData} from "../../lib/todo";
 import {TodoForm} from "../TodoForm";
 
 interface AddItemProps {

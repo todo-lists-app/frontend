@@ -17,24 +17,24 @@ export const SortItems: FC<SortItemsProps> = ({sortCallback}) => {
             <Text color={"white"}>Sort By</Text>
           </Heading>
           <Box className={styles.sortBy}>
-            {isFeatureImplemented({featureSet: "todo", featureName: "sortByCreationDate"}) && (
-              <Box className={styles.sortByBox}>
-                <Radio color={"green"} name={"sortBy"} value={"creationDate"} onChange={(e) => {
-                  if (sortCallback) {
-                    sortCallback(e.target.value)
-                  }
-                }} defaultChecked={true} />
-                <Text m={"sm"} color={"white"}>Creation Date</Text>
-              </Box>
-            )}
             {isFeatureImplemented({featureSet: "todo", featureName: "sortByUpdatedDate"}) && (
               <Box>
                 <Radio color={"green"} name={"sortBy"} value={"updatedDate"} onChange={(e) => {
                   if (sortCallback) {
                     sortCallback(e.target.value)
                   }
-                }} />
+                }} defaultChecked={true} />
                 <Text m={"sm"} color={"white"}>Updated Date</Text>
+              </Box>
+            )}
+            {isFeatureImplemented({featureSet: "todo", featureName: "sortByCreationDate"}) && (
+              <Box className={styles.sortByBox}>
+                <Radio color={"green"} name={"sortBy"} value={"creationDate"} onChange={(e) => {
+                  if (sortCallback) {
+                    sortCallback(e.target.value)
+                  }
+                }} />
+                <Text m={"sm"} color={"white"}>Creation Date</Text>
               </Box>
             )}
             {isFeatureImplemented({featureSet: "todo", featureName: "sortByPriority"}) && (

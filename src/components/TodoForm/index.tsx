@@ -9,7 +9,9 @@ import {DividerLine} from "../DividerLine";
 interface TodoFormProps {
   editProcessor?: (formData: any, todoItem: TodoItem) => void;
   addProcessor?: (formData: any) => void;
-  openCallback: (isOpen: boolean) => void;
+  cancelCallback?: () => void;
+  openCallback?: (isOpen: boolean) => void;
+  completeCallback?: (todoItem: TodoItem) => void;
 
   todoItem?: TodoItem;
 }
@@ -18,7 +20,9 @@ export const TodoForm: FC<TodoFormProps> = ({
                                               addProcessor,
                                               editProcessor,
                                               openCallback,
-  todoItem,
+                                              todoItem,
+                                              cancelCallback,
+                                              completeCallback,
                                               }) => {
   const [formError, setFormError] = useState<string | null>(null);
   const handleSubmit = (event: FormEvent) => {
@@ -37,7 +41,9 @@ export const TodoForm: FC<TodoFormProps> = ({
       priority: priorityRef.current?.value,
       dueTime: dueTimeRef.current?.value,
     } as TodoFormData;
-    openCallback(false);
+    if (openCallback) {
+      openCallback(false);
+    }
     if (addProcessor) {
       addProcessor(formData);
       return;
@@ -48,7 +54,12 @@ export const TodoForm: FC<TodoFormProps> = ({
     }
   }
   const handleCancel = () => {
-    openCallback(false);
+    if (openCallback) {
+      openCallback(false);
+    }
+    if (cancelCallback) {
+      cancelCallback();
+    }
   }
 
   const titleRef = React.useRef<HTMLInputElement | null>(null);
@@ -62,6 +73,7 @@ export const TodoForm: FC<TodoFormProps> = ({
   let contentValue = "";
   let dueDateValue = "";
   let dueTimeValue = "";
+  let pageTitle = "Add Item";
   if (todoItem) {
     if (todoItem.priority) {
       priorityValue = todoItem.priority;
@@ -78,12 +90,13 @@ export const TodoForm: FC<TodoFormProps> = ({
     if (todoItem.dueTime) {
       dueTimeValue = todoItem.dueTime;
     }
+    pageTitle = "Edit Item";
   }
 
   return (
     <Container>
       <Box className={styles.formBox} p="sm" color="purpleCyan" rounded="lg">
-        <Heading>Add Item</Heading>
+        <Heading>{pageTitle}</Heading>
         {formError && (
           <Box color="red" borderColor="red" rounded="sm" p="sm" m="sm">
             <Text>{formError}</Text>
@@ -105,6 +118,12 @@ export const TodoForm: FC<TodoFormProps> = ({
             <Input type={"time"} name={"dueTime"} m={"xs"} title={"dueTime"} ref={dueTimeRef} defaultValue={dueTimeValue} />
             <Box className={styles.formButtons}>
               <Button type="submit" m={"sm"} color={"purple"}>Submit</Button>
+              {completeCallback && todoItem && (
+                <Button onClick={(e) => {
+                  e.preventDefault();
+                  completeCallback(todoItem)
+                }} m={"sm"} color={"animated"}>Complete</Button>
+              )}
               <Button onClick={handleCancel} m={"sm"} color={"red"}>Cancel</Button>
             </Box>
           </Container>
