@@ -5,11 +5,7 @@ const usePushNotifications = (subject: string) => {
   useEffect(() => {
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", function () {
-        let registerAddress = "/service-worker.js";
-        if (!appConfig.production) {
-          registerAddress = "/service-worker.js?development=true";
-        }
-        navigator.serviceWorker.register(registerAddress).then(
+        navigator.serviceWorker.register(appConfig.notification.address).then(
           function (registration) {
             console.log("Service Worker registration successful with scope: ", registration.scope);
           },
@@ -31,7 +27,7 @@ const usePushNotifications = (subject: string) => {
           if (existedSubscription === null) {
             console.log('No subscription detected, make a request.');
             registration.pushManager.subscribe({
-              applicationServerKey: "BIZS8VXZKiWXGjcIAt2EA-2s4aY9w87rRu1cVshjWx7yzl_jrPvhAbL9X3WpdaNa_1fgpUbjk1I6C-OPscEwR5k",
+              applicationServerKey: appConfig.notification.key,
               userVisibleOnly: true,
             }).then(function(newSubscription) {
               if (subject === null || subject === undefined || subject === '') {

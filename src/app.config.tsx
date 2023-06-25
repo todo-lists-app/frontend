@@ -1,6 +1,10 @@
 interface AppConfig {
   apiURL: string;
   production: boolean;
+  notification: {
+    key: string;
+    address: string;
+  }
   implementedFeatures: {
     [featureSet: string]: {
       [featureName: string]: boolean;
@@ -11,6 +15,10 @@ interface AppConfig {
 export const appConfig: AppConfig = {
   apiURL: process.env.REACT_APP_BACKEND_URL || "https://api.todo-list.app/v1",
   production: process.env.REACT_APP_PRODUCTION === "true",
+  notification: {
+    key: process.env.REACT_APP_NOTIFICATION_KEY || "BIZS8VXZKiWXGjcIAt2EA-2s4aY9w87rRu1cVshjWx7yzl_jrPvhAbL9X3WpdaNa_1fgpUbjk1I6C-OPscEwR5k",
+    address: process.env.REACT_APP_NOTIFICATION_ADDRESS || "/service-worker.js",
+  },
   implementedFeatures: {
     "todo": {
       "encrypt": true,
