@@ -110,7 +110,7 @@ function getEncryptedData(
     return;
   }
 
-  fetch(appConfig.apiURL + `/list`, {
+  fetch(appConfig.services.api + `/list`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

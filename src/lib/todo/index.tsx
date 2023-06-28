@@ -101,7 +101,7 @@ export const UpdateItemInList = (
 
 const CreateList = (subject: string, salt: string, todos: TodoList, newTodo: TodoItem) => {
   encryptData(subject, salt, {items: [...todos.items, newTodo]}).then((data) => {
-      fetch(appConfig.apiURL + `/list`, {
+      fetch(appConfig.services.api + `/list`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -126,7 +126,7 @@ const AddToUpdateList = (subject: string, salt: string, todos: TodoList, newTodo
 
 export const UpdateList = (subject: string, salt: string, todos: TodoList) => {
   encryptData(subject, salt, todos).then((data) => {
-    fetch(appConfig.apiURL + `/list`, {
+    fetch(appConfig.services.api + `/list`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

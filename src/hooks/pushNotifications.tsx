@@ -34,7 +34,7 @@ const usePushNotifications = (subject: string) => {
                 return;
               }
               // Send this subscription to your server to store and use to send push notifications
-              fetch(appConfig.apiURL + '/notifications/subscribe', {
+              fetch(appConfig.services.api + '/notifications/subscribe', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',

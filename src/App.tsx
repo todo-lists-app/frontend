@@ -17,6 +17,7 @@ import {Settings} from "./pages/Settings";
 import {Profile} from "./pages/Profile";
 import {TaskPage} from "./pages/Task";
 import usePushNotifications from "./hooks/pushNotifications";
+import ServicePing from "./components/ServicePing";
 
 const App: FC = () => {
   const auth = useAuth();
@@ -26,6 +27,9 @@ const App: FC = () => {
 
   return (
     <BrowserRouter>
+      {subject && (
+        <ServicePing Subject={subject} />
+      )}
       <Layout>
         <Routes>
           {given_name ? (

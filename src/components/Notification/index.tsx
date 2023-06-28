@@ -22,7 +22,7 @@ const Notification: FC<NotificationProps> = ({Subject}) => {
 
   useEffect(() => {
     const fetchNotifications = async () => {
-      const response = await fetch(appConfig.apiURL + "/notifications", {
+      const response = await fetch(appConfig.services.api + "/notifications", {
       headers: {
         'Content-Type': 'application/json',
         'X-User-Subject': Subject,
