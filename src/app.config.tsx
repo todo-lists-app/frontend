@@ -66,6 +66,8 @@ export const appConfig: AppConfig = {
       "push": false,
       "update": false,
       "slack": false,
+      "alert": false,
+      "list": false,
     }
   },
 }

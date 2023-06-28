@@ -1,0 +1,19 @@
+.notificationBox {
+  position: fixed;
+  top:6em;
+  right: 1em;
+  border-radius: 4px;
+  z-index: 1000;
+  border-style: solid;
+  border-width: 1px;
+  padding-top: 1%;
+}
+.notificationList {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.showBell {
+  color: var(--white);
+  cursor: pointer;
+}

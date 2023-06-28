@@ -1,12 +1,16 @@
-import React, {FC, useEffect, useState} from "react";
+import React, {FC, useEffect, useRef, useState} from "react";
 import BellIcon from "mdi-react/BellIcon";
-import {appConfig} from "../../app.config";
+import {appConfig, isFeatureImplemented} from "../../app.config";
 import {useStorePersist} from "../../lib/storage"; // Import the bell icon component
+import styles from "./Notification.module.css";
+import {Box, Heading, List, Text} from "dracula-ui";
 
-type Notification = {
+interface Notification {
   id: string;
-  message: string;
+  title: string;
+  message?: string;
   read: boolean;
+  priority: string;
 };
 
 interface NotificationProps {
@@ -19,8 +23,10 @@ const Notification: FC<NotificationProps> = ({Subject}) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedNotification, setSelectedNotification] = useState<Notification | null>(null);
   const {UserSubject} = useStorePersist();
+  const modalRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
+    setShowBellIcon(false)
     const fetchNotifications = async () => {
       const response = await fetch(appConfig.services.api + "/notifications", {
       headers: {
@@ -29,29 +35,44 @@ const Notification: FC<NotificationProps> = ({Subject}) => {
       }
     });
       const data = await response.json();
+      if (data.length > 0) {
+        setShowBellIcon(true);
+      }
       setNotifications(data);
     };
 
-    fetchNotifications();
+    //fetchNotifications();
+
+    let dummyData: Notification[] = [
+      {
+        id: '1',
+        title: 'test1',
+        message: 'This is a high priority message',
+        read: false,
+        priority: 'high'
+      },
+      {
+        id: '2',
+        title: 'test2',
+        message: 'This is a medium priority message',
+        read: false,
+        priority: 'medium'
+      },
+      {
+        id: '3',
+        title: 'test3',
+        message: 'This is a low priority message',
+        read: true,
+        priority: 'low'
+      }
+    ];
+    setNotifications(dummyData);
+    setShowBellIcon(true);
   }, [Subject]);
 
-  useEffect(() => {
-    setShowBellIcon(notifications.length > 0 && document.hasFocus());
-    const handleVisibilityChange = () => {
-      setShowBellIcon(notifications.length > 0 && document.hasFocus());
-    };
-
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-
-    // Clean up event listener when component is unmounted
-    return () => {
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-    };
-  }, [notifications]);
-
-  const handleIconClick = (notification: Notification) => {
-    setSelectedNotification(notification);
-    setShowModal(true);
+  const handleIconClick = () => {
+    // setSelectedNotification();
+    setShowModal(!showModal);
   };
 
   const closeModal = () => {
@@ -59,17 +80,28 @@ const Notification: FC<NotificationProps> = ({Subject}) => {
   };
 
   return (
-    <div>
-      {showBellIcon && <BellIcon onClick={() => handleIconClick(notifications[0])} />}
+    <>
+      {isFeatureImplemented({featureSet: "notifications", featureName: "alert"}) && showBellIcon && (
+        <BellIcon className={styles.showBell} onClick={handleIconClick} />
+      )}
 
-      {showModal && selectedNotification && (
-        <div className="modal">
-          <h2>Notification</h2>
-          <p>{selectedNotification.message}</p>
-          <button onClick={closeModal}>Close</button>
+      {isFeatureImplemented({featureSet: "notifications", featureName: "modal"}) && showModal && (
+        <div ref={modalRef}>
+          <Box color="blackSecondary" borderColor="purple" display="block" className={styles.notificationBox}>
+            <List className={styles.notificationList}>
+              {notifications.map((notification) => (
+                <li>
+                  <Box>
+                    <Heading>{notification.title}</Heading>
+                    <Text>{notification.message}</Text>
+                  </Box>
+                </li>
+              ))}
+            </List>
+          </Box>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

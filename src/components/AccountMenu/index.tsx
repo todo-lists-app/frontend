@@ -19,43 +19,28 @@ export const AccountMenu: FC = () => {
     }
   }
 
-  // if (auth?.user?.profile) {
-  //   let subject = auth?.user?.profile.email;
-  //   if (subject !== undefined) {
-  //     fetch(appConfig.apiURL + `/account`, {
-  //       method: 'GET',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'X-User-Subject': subject,
-  //       }
-  //     }).then(res => res.json())
-  //       .then(data => console.log("return data", data))
-  //       .catch(err => console.log("error", err))
-  //   }
-  // }
-
-  const [isOpen, setIsOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const avatarClick = () => {
-    setIsOpen(!isOpen);
+    setShowModal(!showModal);
   }
-  const menuRef = useRef<HTMLDivElement | null>(null);
+  const modalRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && event.target instanceof Element && !menuRef.current.contains(event.target)) {
-        setIsOpen(false);
+      if (modalRef.current && event.target instanceof Element && !modalRef.current.contains(event.target)) {
+        setShowModal(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     }
-  }, [menuRef]);
+  }, [modalRef]);
 
   return (
     <Box className={styles.accountBox}>
       <Avatar title={given_name} src={picture} onClick={avatarClick} className={`${styles.accountBox} drac-avatar`}/>
-      {isOpen && (
-        <div ref={menuRef}>
+      {showModal && (
+        <div ref={modalRef}>
           <Box color="blackSecondary" borderColor="purple" display="block" className={styles.accountMenu}>
             <List className={styles.accountMenuList}>
               {isFeatureImplemented({featureSet: "account", featureName: "update"}) && (
