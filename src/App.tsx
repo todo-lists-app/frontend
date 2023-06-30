@@ -27,9 +27,7 @@ const App: FC = () => {
 
   return (
     <BrowserRouter>
-      {subject && (
-        <ServicePing Subject={subject} />
-      )}
+      <ServicePing />
       <Layout>
         <Routes>
           {given_name ? (

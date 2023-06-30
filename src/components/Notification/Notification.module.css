@@ -17,3 +17,24 @@
   color: var(--white);
   cursor: pointer;
 }
+
+.notificationLink {
+  text-decoration: none;
+  cursor: pointer;
+}
+.NotificationTitleBox {
+  display: flex;
+  align-items: center;
+}
+
+.notificationTitle {
+  font-weight: bold;
+}
+
+.priority {
+  display: inline-block;
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin-left: auto;
+}
