@@ -23,11 +23,11 @@ export const TodoPage: FC = () => {
   function prioritySort(priority: string) {
     switch (priority) {
       case "high":
-        return 1;
+        return 3;
       case "medium":
         return 2;
       case "low":
-        return 3;
+        return 1;
       default:
         return 4; //urgent
     }
@@ -37,7 +37,7 @@ export const TodoPage: FC = () => {
 
     switch (sortOrder) {
       case "priority":
-        sortedTodos.sort((a, b) => prioritySort(a.priority) - prioritySort(b.priority));
+        sortedTodos.sort((a, b) =>  prioritySort(b.priority) - prioritySort(a.priority));
         break;
       case "dueDate":
         sortedTodos.sort((a, b) => {
