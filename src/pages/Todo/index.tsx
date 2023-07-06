@@ -113,6 +113,20 @@ export const TodoPage: FC = () => {
     }
   }
 
+  const handleSubTaskCallback = (item: TodoItem) => {
+    let subtask : TodoItem = {
+      id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+      title: "subtask",
+      content: "sub task desc",
+      completed: false,
+      archived: false,
+      priority: "low",
+      createdAt: new Date().toISOString(),
+    }
+    item.subTasks = item.subTasks ? [...item.subTasks, subtask] : [subtask]
+    setTodos({...todos, items: todos.items.map(i => i.id === item.id ? item : i)})
+  }
+
   const completedItems = useMemo(() => {
     let filteredItems = todos.items.filter(i => i.completed)
     if (filteredItems.length > 0) {
@@ -173,6 +187,7 @@ export const TodoPage: FC = () => {
                             doneCallback={handleCompleteItem}
                             editCallback={handleEditCallback}
                             archiveCallback={handleArchiveCallback}
+                            subtaskCallback={handleSubTaskCallback}
                           />
                         </>
                       )}

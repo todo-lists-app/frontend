@@ -8,6 +8,7 @@ import DeleteForeverIcon from "mdi-react/DeleteForeverIcon";
 import PencilOutlineIcon from "mdi-react/PencilOutlineIcon";
 import PackageVariantIcon from "mdi-react/PackageVariantIcon";
 import PackageVariantClosedIcon from "mdi-react/PackageVariantClosedIcon";
+import PlusIcon from "mdi-react/PlusIcon";
 import {TodoForm} from "../TodoForm";
 import remarkGfm from "remark-gfm";
 
@@ -17,6 +18,7 @@ interface TodoListItemProps {
   editCallback?: (formData: any, todoItem: TodoItem) => void;
   deleteCallback?: (item: TodoItem) => void;
   archiveCallback?: (item: TodoItem) => void;
+  subTaskCallback?: (item: TodoItem) => void;
 }
 interface TodoListItemsProps {
   items: TodoItem[];
@@ -24,6 +26,7 @@ interface TodoListItemsProps {
   editCallback?: (formData: any, todoItem: TodoItem) => void;
   deleteCallback?: (item: TodoItem) => void;
   archiveCallback?: (item: TodoItem) => void;
+  subtaskCallback?: (item: TodoItem) => void;
 }
 
 export const TodoListItems: FC<TodoListItemsProps> = ({
@@ -31,19 +34,37 @@ export const TodoListItems: FC<TodoListItemsProps> = ({
                                                         doneCallback,
                                                         editCallback,
                                                         deleteCallback,
-                                                        archiveCallback
+                                                        archiveCallback,
+                                                        subtaskCallback
 }) => {
   return(
     <>
       {items.map((item) => (
-        <TodoListItem
-          key={item.id}
-          item={item}
-          doneCallback={doneCallback}
-          editCallback={editCallback}
-          deleteCallback={deleteCallback}
-          archiveCallback={archiveCallback}
-        />
+        <Box key={item.id}>
+          <TodoListItem
+            key={item.id}
+            item={item}
+            doneCallback={doneCallback}
+            editCallback={editCallback}
+            deleteCallback={deleteCallback}
+            archiveCallback={archiveCallback}
+            subTaskCallback={subtaskCallback}
+          />
+          {item.subTasks && item.subTasks.length > 0 && (
+            <Box className={styles.subtasks}>
+              {item.subTasks.map((subTask) => (
+                <TodoListItem
+                  key={subTask.id}
+                  item={subTask}
+                  doneCallback={doneCallback}
+                  editCallback={editCallback}
+                  deleteCallback={deleteCallback}
+                  archiveCallback={archiveCallback}
+                />
+              ))}
+            </Box>
+          )}
+        </Box>
       ))}
     </>
   )
@@ -54,7 +75,8 @@ export const TodoListItem: FC<TodoListItemProps> = ({
                                                       doneCallback,
                                                       editCallback,
                                                       deleteCallback,
-                                                      archiveCallback
+                                                      archiveCallback,
+                                                      subTaskCallback
 }) => {
   const priorityColor = item.priority === "urgent" ? "red" : item.priority === "high" ? "purple" : item.priority === "medium" ? "orange" : "blackSecondary";
   if (item.priority === null || item.priority === undefined) {
@@ -145,6 +167,17 @@ export const TodoListItem: FC<TodoListItemProps> = ({
                       deleteCallback(item)
                     }
                   }}><DeleteForeverIcon color={"#ff80bf"} /></Button>
+                )
+              )}
+
+              {isFeatureImplemented({featureSet: "todo", featureName: "subTasks"}) && (
+                !item.archived && !item.completed && (
+                  <Button className={styles.itemButtons} as="button" m={"sm"} onClick={(e) => {
+                    e.preventDefault()
+                    if (subTaskCallback) {
+                      subTaskCallback(item)
+                    }
+                  }}><PlusIcon color={"#80ffea"} /></Button>
                 )
               )}
             </Card>

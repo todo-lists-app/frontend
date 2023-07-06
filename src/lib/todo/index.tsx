@@ -14,6 +14,8 @@ export interface TodoItem {
   dueTime?: string;
   content?: string;
   updatedAt?: string;
+
+  subTasks?: TodoItem[];
 }
 
 export interface TodoList {
