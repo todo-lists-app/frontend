@@ -93,16 +93,24 @@ export const TodoListItem: FC<TodoListItemProps> = ({
   }
 
   const [editFormOpen, setEditFormOpen] = React.useState(false);
+  const [subTaskFormOpen, setSubTaskFormOpen] = React.useState(false);
 
   return (
     <>
-    {editFormOpen ? (
+    {editFormOpen && (
       editCallback && <TodoForm
         editProcessor={editCallback}
         openCallback={setEditFormOpen}
         todoItem={item}
       />
-    ) : (
+    )}
+    {subTaskFormOpen && (
+      subTaskCallback && <TodoForm
+        addProcessor={subTaskCallback}
+        openCallback={setSubTaskFormOpen}
+        parentItem={item}
+      />
+    )}
     <Box p="sm" color={"black"} borderColor={"purple"} rounded={"lg"} key={item.id} className={styles.itemBox} m={"sm"} alt={item.id}>
       <Box className={styles.doneButton}>
         {doneCallback ? (
@@ -171,11 +179,11 @@ export const TodoListItem: FC<TodoListItemProps> = ({
               )}
 
               {isFeatureImplemented({featureSet: "todo", featureName: "subTasks"}) && (
-                !item.archived && !item.completed && (
+                !item.archived && !item.completed && !item.parentId && (
                   <Button className={styles.itemButtons} as="button" m={"sm"} onClick={(e) => {
                     e.preventDefault()
                     if (subTaskCallback) {
-                      subTaskCallback(item)
+                      setSubTaskFormOpen(true)
                     }
                   }}><PlusIcon color={"#80ffea"} /></Button>
                 )
@@ -185,7 +193,6 @@ export const TodoListItem: FC<TodoListItemProps> = ({
         </Box>
       </Box>
     </Box>
-    )}
     </>
   );
 }

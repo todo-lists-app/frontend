@@ -16,6 +16,7 @@ export interface TodoItem {
   updatedAt?: string;
 
   subTasks?: TodoItem[];
+  parentId?: string;
 }
 
 export interface TodoList {
@@ -28,6 +29,7 @@ export type TodoFormData = {
   content?: string;
   dueDate?: string;
   dueTime?: string;
+  parentId?: string;
   priority?: keyof typeof priorities;
 }
 

@@ -14,6 +14,7 @@ interface TodoFormProps {
   completeCallback?: (todoItem: TodoItem) => void;
 
   todoItem?: TodoItem;
+  parentItem?: TodoItem;
 }
 
 export const TodoForm: FC<TodoFormProps> = ({
@@ -21,6 +22,7 @@ export const TodoForm: FC<TodoFormProps> = ({
                                               editProcessor,
                                               openCallback,
                                               todoItem,
+                                              parentItem,
                                               cancelCallback,
                                               completeCallback,
                                               }) => {
@@ -40,6 +42,7 @@ export const TodoForm: FC<TodoFormProps> = ({
       dueDate: dueDateRef.current?.value,
       priority: priorityRef.current?.value,
       dueTime: dueTimeRef.current?.value,
+      parentId: parentItem?.id,
     } as TodoFormData;
     if (openCallback) {
       openCallback(false);
@@ -91,6 +94,9 @@ export const TodoForm: FC<TodoFormProps> = ({
       dueTimeValue = todoItem.dueTime;
     }
     pageTitle = "Edit Item";
+  }
+  if (parentItem) {
+    pageTitle = "Add Subtask";
   }
 
   return (

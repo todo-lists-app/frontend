@@ -7,6 +7,7 @@ import {faGears, faRightFromBracket, faUserPen} from "@fortawesome/free-solid-sv
 
 import styles from "./AccountMenu.module.css";
 import {isFeatureImplemented} from "../../app.config";
+import {useStorePersist} from "../../lib/storage";
 
 export const AccountMenu: FC = () => {
   const auth = useAuth();
@@ -20,6 +21,7 @@ export const AccountMenu: FC = () => {
   }
 
   const [showModal, setShowModal] = useState(false);
+  const {setSalt} = useStorePersist();
   const avatarClick = () => {
     setShowModal(!showModal);
   }
@@ -58,7 +60,10 @@ export const AccountMenu: FC = () => {
                 </li>
               )}
               <li className={styles.accountItems}>
-                <Button color="pink" size="sm" onClick={() => auth.signoutSilent()}>
+                <Button color="pink" size="sm" onClick={() => {
+                  setSalt("");
+                  auth.signoutSilent()
+                }}>
                   <FontAwesomeIcon icon={faRightFromBracket} />&nbsp;Logout
                 </Button>
               </li>

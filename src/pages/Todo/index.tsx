@@ -84,24 +84,45 @@ export const TodoPage: FC = () => {
   }
 
   const handleCompleteItem = (item: TodoItem) => {
-    if (Salt) {
-      item.completed = !item.completed
-      setTodos({...todos, items: todos.items.map(i => i.id === item.id ? item : i)})
-      UpdateList(UserSubject, Salt, todos)
+    if (!Salt) {
+      return
     }
+    item.completed = !item.completed
+    setTodos({...todos, items: todos.items.map(i => i.id === item.id ? item : i)})
+    UpdateList(UserSubject, Salt, todos)
   }
 
   const handleArchiveCallback = (item: TodoItem) => {
-    if (Salt) {
-      item.archived = !item.archived
-      setTodos({...todos, items: todos.items.map(i => i.id === item.id ? item : i)})
-      UpdateList(UserSubject, Salt, todos)
+    if (!Salt) {
+      return
     }
+
+    item.archived = !item.archived
+    setTodos({...todos, items: todos.items.map(i => i.id === item.id ? item : i)})
+    UpdateList(UserSubject, Salt, todos)
   }
 
   const handleDeleteCallback = (item: TodoItem) => {
-    if (Salt) {
+    if (!Salt) {
+      return
+    }
+    if (!item.parentId) {
       const newTodos = todos.items.filter(i => i.id !== item.id)
+      setTodos({items: newTodos})
+      UpdateList(UserSubject, Salt, {items: newTodos})
+    } else {
+      let todoItem = todos.items.find(i => i.id === item.parentId);
+      if (!todoItem) {
+        return;
+      }
+
+      todoItem.subTasks = todoItem.subTasks?.filter(i => i.id !== item.id);
+      let newTodos = todos.items.map(i => {
+        if (i.id === todoItem!.id) {
+          return todoItem;
+        }
+        return i;
+      }) as TodoItem[];
       setTodos({items: newTodos})
       UpdateList(UserSubject, Salt, {items: newTodos})
     }
@@ -114,18 +135,41 @@ export const TodoPage: FC = () => {
   }
 
   const handleSubTaskCallback = (item: TodoItem) => {
+    if (!item.parentId) {
+      return;
+    }
+
+    let todoItem = todos.items.find(i => i.id === item.parentId);
+    if (!todoItem) {
+      return;
+    }
+
     let subtask : TodoItem = {
       id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
-      title: "subtask",
-      content: "sub task desc",
+      title: item.title,
+      content: item.content,
       completed: false,
-      archived: false,
-      priority: "low",
+      priority: item.priority,
       createdAt: new Date().toISOString(),
+      dueDate: item.dueDate,
+      parentId: item.parentId,
     }
-    item.subTasks = item.subTasks ? [...item.subTasks, subtask] : [subtask]
-    setTodos({...todos, items: todos.items.map(i => i.id === item.id ? item : i)})
+
+    todoItem.subTasks = todoItem.subTasks ? [...todoItem.subTasks, subtask] : [subtask];
+    let newTodos = todos.items.map(i => {
+      // Map function's scope will now get an 'undefined' safe `todoItem.id`
+      if (i.id === todoItem!.id) {
+        return todoItem;
+      }
+      return i;
+    }) as TodoItem[];
+    setTodos({
+      ...todos,
+      items: newTodos
+    });
+    UpdateList(UserSubject, Salt, todos);
   }
+
 
   const completedItems = useMemo(() => {
     let filteredItems = todos.items.filter(i => i.completed)
@@ -188,6 +232,7 @@ export const TodoPage: FC = () => {
                             editCallback={handleEditCallback}
                             archiveCallback={handleArchiveCallback}
                             subtaskCallback={handleSubTaskCallback}
+                            deleteCallback={handleDeleteCallback}
                           />
                         </>
                       )}
