@@ -1,10 +1,11 @@
 import React, {FC, FormEvent, useState} from "react";
-import {Box, Button, Heading, Text, Input, Select, Textarea} from "dracula-ui";
+import {Box, Button, Heading, Text, Input, Select, Textarea, Divider} from "dracula-ui";
 import {Container} from "react-bootstrap";
 
 import styles from "./TodoForm.module.css";
 import {TodoFormData, TodoItem} from "../../lib/todo";
 import {DividerLine} from "../DividerLine";
+import {Tooltip} from "../Tooltip";
 
 interface TodoFormProps {
   editProcessor?: (formData: any, todoItem: TodoItem) => void;
@@ -112,6 +113,8 @@ export const TodoForm: FC<TodoFormProps> = ({
           <Container>
             <Input placeholder={"Title"} name={"title"} m={"xs"} ref={titleRef} defaultValue={titleValue} />
             <Textarea placeholder={"Content"} name={"content"} m={"xs"} ref={contentRef} defaultValue={contentValue} />
+
+            <Divider />
             <Select defaultValue={priorityValue} name={"priority"} m={"xs"} title={"Priority"} ref={priorityRef}>
               <option value={"low"} disabled={true}>Optional Priority</option>
               <option value={"low"}>Low</option>
@@ -119,9 +122,11 @@ export const TodoForm: FC<TodoFormProps> = ({
               <option value={"high"}>High</option>
               <option value={"urgent"}>Urgent</option>
             </Select>
+
             <DividerLine title={"Due Date"} />
             <Input type={"date"} name={"dueDate"} m={"xs"} title={"Due Date"} ref={dueDateRef} defaultValue={dueDateValue} />
             <Input type={"time"} name={"dueTime"} m={"xs"} title={"dueTime"} ref={dueTimeRef} defaultValue={dueTimeValue} />
+
             <Box className={styles.formButtons}>
               <Button type="submit" m={"sm"} color={"purple"}>Submit</Button>
               {completeCallback && todoItem && (
