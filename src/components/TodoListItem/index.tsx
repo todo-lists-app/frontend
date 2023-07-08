@@ -84,9 +84,11 @@ export const TodoListItem: FC<TodoListItemProps> = ({
     item.priority = "low";
   }
 
-  let archiveTitle = <PackageVariantClosedIcon color={"#9580ff"} />;
+  let archiveImage = <PackageVariantClosedIcon color={"#9580ff"} />;
+  let archiveTitle = "Archive";
   if (item.archived) {
-    archiveTitle = <PackageVariantIcon color={"#9580ff"} />;
+    archiveImage = <PackageVariantIcon color={"#9580ff"} />;
+    archiveTitle = "Un-Archive";
   }
   let completedStyle = ''
   if (item.completed) {
@@ -151,13 +153,13 @@ export const TodoListItem: FC<TodoListItemProps> = ({
           <Box className={styles.buttonWrapper}>
             <Card color={"blackSecondary"} rounded={"lg"} p={"xs"} m={"xs"} className={styles.priorityTag}>
               {isFeatureImplemented({featureSet: "todo", featureName: "archive"}) && (
-                <Tooltip text={"Archive"}>
+                <Tooltip text={archiveTitle}>
                   <Button className={styles.itemButtons} as={"button"} m={"sm"} onClick={(e) => {
                     e.preventDefault()
                     if (archiveCallback) {
                       archiveCallback(item)
                     }
-                  }}>{archiveTitle}</Button>
+                  }}>{archiveImage}</Button>
                 </Tooltip>
               )}
               {isFeatureImplemented({featureSet: "todo", featureName: "edit"}) && (
