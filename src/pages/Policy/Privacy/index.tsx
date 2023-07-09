@@ -72,7 +72,7 @@ export const Privacy: FC = () => {
       <Box>
         <Heading size="md">8. Contact Us</Heading>
         <Paragraph>
-          If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us at [contact email]. We will respond to your inquiry as soon as possible.
+          If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us at policies-a.t-chewedfeed.com. We will respond to your inquiry as soon as possible.
         </Paragraph>
       </Box>
     </Box>

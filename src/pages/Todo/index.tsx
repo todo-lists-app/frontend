@@ -110,6 +110,8 @@ export const TodoPage: FC = () => {
       ...todos,
       items: newTodos
     });
+
+    console.info("todos", todos, "newTodos", newTodos);
     UpdateList(UserSubject, Salt, todos);
   }
 
@@ -173,7 +175,6 @@ export const TodoPage: FC = () => {
                             items={activeItems}
                             todoSetter={setTodos}
                             todos={todos}
-                            subtaskCallback={handleSubTaskCallback}
                           />
                         </>
                       )}

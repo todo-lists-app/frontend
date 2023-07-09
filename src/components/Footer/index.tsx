@@ -10,7 +10,6 @@ export const Footer: FC = () => {
         <Heading size="md">Company</Heading>
         <List>
           <li><Anchor href="/company/about">About</Anchor></li>
-          <li><Anchor href="/company/contact">Contact</Anchor></li>
           <li><Anchor href="/company/careers">Careers</Anchor></li>
         </List>
       </Box>

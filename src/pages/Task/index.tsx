@@ -4,7 +4,7 @@ import {getEncryptedData} from "../../lib/cryption";
 import {TodoForm} from "../../components/TodoForm";
 import {useStorePersist} from "../../lib/storage";
 import {useNavigate} from "react-router-dom";
-import {HandleComplete} from "../../components/ActionHandlers";
+import {HandleComplete} from "../../lib/ActionHandlers";
 
 export const TaskPage: FC = () => {
   const [tasks, setTasks] = useState<TodoList>({items: []});

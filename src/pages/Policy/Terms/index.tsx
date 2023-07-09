@@ -49,7 +49,7 @@ export const Terms: FC = () => {
       <Box>
         <Heading size="md">Governing Law and Jurisdiction</Heading>
         <Paragraph>
-          These Terms shall be governed by and construed in accordance with the laws of [Jurisdiction]. Any disputes arising out of or in connection with these Terms shall be subject to the exclusive jurisdiction of the courts of [Jurisdiction].
+          These Terms shall be governed by and construed in accordance with the laws of the UK. Any disputes arising out of or in connection with these Terms shall be subject to the exclusive jurisdiction of the courts of the UK.
         </Paragraph>
       </Box>
       <Box>

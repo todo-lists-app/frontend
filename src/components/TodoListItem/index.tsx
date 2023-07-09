@@ -11,27 +11,24 @@ import PlusIcon from "mdi-react/PlusIcon";
 import {TodoForm} from "../TodoForm";
 import remarkGfm from "remark-gfm";
 import {Tooltip} from "../Tooltip";
-import {HandleArchive, HandleComplete, HandleDelete} from "../ActionHandlers";
+import {HandleArchive, HandleComplete, HandleDelete} from "../../lib/ActionHandlers";
 import {useStorePersist} from "../../lib/storage";
 
 interface TodoListItemProps {
   item: TodoItem;
   todos: TodoList;
   todoSetter: React.Dispatch<React.SetStateAction<TodoList>>
-  subTaskCallback?: (item: TodoItem) => void;
 }
 interface TodoListItemsProps {
   items: TodoItem[];
   todos: TodoList;
   todoSetter: React.Dispatch<React.SetStateAction<TodoList>>
-  subtaskCallback?: (item: TodoItem) => void;
 }
 
 export const TodoListItems: FC<TodoListItemsProps> = ({
                                                         items,
                                                         todos,
-                                                        todoSetter,
-                                                        subtaskCallback
+                                                        todoSetter
 }) => {
   return(
     <>
@@ -42,7 +39,6 @@ export const TodoListItems: FC<TodoListItemsProps> = ({
             item={item}
             todos={todos}
             todoSetter={todoSetter}
-            subTaskCallback={subtaskCallback}
           />
           {item.subTasks && item.subTasks.length > 0 && (
             <Box className={styles.subtasks}>
@@ -65,8 +61,7 @@ export const TodoListItems: FC<TodoListItemsProps> = ({
 export const TodoListItem: FC<TodoListItemProps> = ({
                                                       item,
                                                       todos,
-                                                      todoSetter,
-                                                      subTaskCallback
+                                                      todoSetter
 }) => {
   const priorityColor = item.priority === "urgent" ? "red" : item.priority === "high" ? "purple" : item.priority === "medium" ? "orange" : "blackSecondary";
   if (item.priority === null || item.priority === undefined) {
@@ -100,7 +95,7 @@ export const TodoListItem: FC<TodoListItemProps> = ({
       />
     )}
     {subTaskFormOpen && (
-      subTaskCallback && <TodoForm
+      <TodoForm
         openCallback={setSubTaskFormOpen}
         todos={todos}
         todoSetter={todoSetter}
@@ -175,9 +170,7 @@ export const TodoListItem: FC<TodoListItemProps> = ({
                 <Tooltip text={"Add Subtask"}>
                   <Button className={styles.itemButtons} as="button" m={"sm"} onClick={(e) => {
                     e.preventDefault()
-                    if (subTaskCallback) {
-                      setSubTaskFormOpen(true)
-                    }
+                    setSubTaskFormOpen(true)
                   }}><PlusIcon color={"#80ffea"} /></Button>
                 </Tooltip>
               )}

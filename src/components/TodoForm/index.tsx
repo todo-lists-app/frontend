@@ -6,7 +6,7 @@ import styles from "./TodoForm.module.css";
 import {TodoFormData, TodoItem, TodoList} from "../../lib/todo";
 import {DividerLine} from "../DividerLine";
 import {Tooltip} from "../Tooltip";
-import {HandleAdd, HandleEdit} from "../ActionHandlers";
+import {HandleAdd, HandleEdit} from "../../lib/ActionHandlers";
 import {useStorePersist} from "../../lib/storage";
 
 interface TodoFormProps {
