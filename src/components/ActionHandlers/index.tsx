@@ -27,22 +27,6 @@ export function HandleArchive(item: TodoItem, todos: TodoList, UserSubject: stri
 
   return updatedTodos
 }
-// interface ArchiveProps {
-//   item: TodoItem;
-//   todos: TodoList;
-//   todoSetter: React.Dispatch<React.SetStateAction<TodoList>>
-// }
-// export const HandleArchive: FC<ArchiveProps> = ({item, todos, todoSetter}) => {
-//   const {UserSubject, Salt} = useStorePersist();
-//
-//   if (Salt && UserSubject) {
-//     item.archived = !item.archived
-//     todoSetter({...todos, items: todos.items.map(i => i.id === item.id ? item : i)})
-//     UpdateList(UserSubject, Salt, todos)
-//   }
-//
-//   return null;
-// }
 
 // Delete
 interface DeleteProps {
