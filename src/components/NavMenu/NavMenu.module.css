@@ -15,7 +15,7 @@
 .navItems {
   display: flex;
   gap: 15px;
-  color: #21222c;
+  color: var(--black);
 }
 .navItems a {
   color: var(--black);

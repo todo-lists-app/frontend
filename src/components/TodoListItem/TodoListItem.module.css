@@ -1,6 +1,6 @@
 .completed {
-    text-decoration: line-through;
-    color: #ccc;
+  text-decoration: line-through;
+  color: var(--cyan);
 }
 
 .itemBox {
@@ -97,7 +97,7 @@
   bottom: 0;
   left: -10px;
   width: 1px;
-  background: gray;
+  background: var(--blackSecondary)
 }
 
 .subtasks > div {
@@ -109,7 +109,7 @@
   position: absolute;
   top: 50%;
   left: -10px;
-  border: solid gray;
+  border: solid var(--blackSecondary);
   border-width: 0 2px 2px 0;
   display: inline-block;
   padding: 3px;

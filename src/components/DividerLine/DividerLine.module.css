@@ -8,13 +8,13 @@
 
 .dividerLine {
   height: 1px;
-  background-color: var(--bs-body-color);
+  background-color: var(--blackSecondary);
   opacity: 0.15;
   flex-grow: 1;
 }
 
 .dividerTitle {
   text-transform: uppercase;
-  color: var(--bs-gray);
+  color: var(--blackSecondary);
   margin: 0 10px;
 }
