@@ -162,52 +162,44 @@ export const TodoListItem: FC<TodoListItemProps> = ({
           </Box>
           <Box className={styles.buttonWrapper}>
             <Card color={"blackSecondary"} rounded={"lg"} p={"xs"} m={"xs"} className={styles.priorityTag}>
-              {isFeatureImplemented({featureSet: "todo", featureName: "archive"}) && (
-                <Tooltip text={archiveTitle}>
+              <Tooltip text={archiveTitle}>
+                <Button className={styles.itemButtons} as={"button"} m={"sm"} onClick={(e) => {
+                  e.preventDefault()
+                  if (archiveCallback) {
+                    archiveCallback(item)
+                  }
+                }}>{archiveImage}</Button>
+              </Tooltip>
+              {!item.archived && !item.completed && (
+                <Tooltip text={"Edit"}>
                   <Button className={styles.itemButtons} as={"button"} m={"sm"} onClick={(e) => {
                     e.preventDefault()
-                    if (archiveCallback) {
-                      archiveCallback(item)
+                    if (editCallback) {
+                      setEditFormOpen(true)
                     }
-                  }}>{archiveImage}</Button>
+                  }}><PencilOutlineIcon color={"#80ffea"} /></Button>
                 </Tooltip>
               )}
-              {isFeatureImplemented({featureSet: "todo", featureName: "edit"}) && (
-                !item.archived && !item.completed && (
-                  <Tooltip text={"Edit"}>
-                    <Button className={styles.itemButtons} as={"button"} m={"sm"} onClick={(e) => {
-                      e.preventDefault()
-                      if (editCallback) {
-                        setEditFormOpen(true)
-                      }
-                    }}><PencilOutlineIcon color={"#80ffea"} /></Button>
-                  </Tooltip>
-                )
-              )}
-              {isFeatureImplemented({featureSet: "todo", featureName: "delete"}) && (
-                item.archived && (
-                  <Tooltip text={"Delete"}>
-                    <Button className={styles.itemButtons} as="button" m={"sm"} onClick={(e) => {
-                      e.preventDefault()
-                      if (deleteCallback) {
-                        deleteCallback(item)
-                      }
-                    }}><DeleteForeverIcon color={"#ff80bf"} /></Button>
-                  </Tooltip>
-                )
+              {item.archived && (
+                <Tooltip text={"Delete"}>
+                  <Button className={styles.itemButtons} as="button" m={"sm"} onClick={(e) => {
+                    e.preventDefault()
+                    if (deleteCallback) {
+                      deleteCallback(item)
+                    }
+                  }}><DeleteForeverIcon color={"#ff80bf"} /></Button>
+                </Tooltip>
               )}
 
-              {isFeatureImplemented({featureSet: "todo", featureName: "subTasks"}) && (
-                !item.archived && !item.completed && !item.parentId && (
-                  <Tooltip text={"Add Subtask"}>
-                    <Button className={styles.itemButtons} as="button" m={"sm"} onClick={(e) => {
-                      e.preventDefault()
-                      if (subTaskCallback) {
-                        setSubTaskFormOpen(true)
-                      }
-                    }}><PlusIcon color={"#80ffea"} /></Button>
-                  </Tooltip>
-                )
+              {!item.archived && !item.completed && !item.parentId && (
+                <Tooltip text={"Add Subtask"}>
+                  <Button className={styles.itemButtons} as="button" m={"sm"} onClick={(e) => {
+                    e.preventDefault()
+                    if (subTaskCallback) {
+                      setSubTaskFormOpen(true)
+                    }
+                  }}><PlusIcon color={"#80ffea"} /></Button>
+                </Tooltip>
               )}
             </Card>
           </Box>
