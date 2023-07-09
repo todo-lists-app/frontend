@@ -20,22 +20,29 @@ export const HandleAddItem: FC<AddItemProps> = ({formData, todos, todoSetter}) =
 }
 
 // Archive
-interface ArchiveProps {
-  item: TodoItem;
-  todos: TodoList;
-  todoSetter: React.Dispatch<React.SetStateAction<TodoList>>
-}
-export const HandleArchive: FC<ArchiveProps> = ({item, todos, todoSetter}) => {
-  const {UserSubject, Salt} = useStorePersist();
+export function HandleArchive(item: TodoItem, todos: TodoList, UserSubject: string, Salt: string) {
+  const updatedItem = {...item, archived: !item.archived}
+  const updatedTodos = {...todos, items: todos.items.map(i => i.id === item.id ? updatedItem : i) }
+  UpdateList(UserSubject, Salt, updatedTodos)
 
-  if (Salt && UserSubject) {
-    item.archived = !item.archived
-    todoSetter({...todos, items: todos.items.map(i => i.id === item.id ? item : i)})
-    UpdateList(UserSubject, Salt, todos)
-  }
-
-  return null;
+  return updatedTodos
 }
+// interface ArchiveProps {
+//   item: TodoItem;
+//   todos: TodoList;
+//   todoSetter: React.Dispatch<React.SetStateAction<TodoList>>
+// }
+// export const HandleArchive: FC<ArchiveProps> = ({item, todos, todoSetter}) => {
+//   const {UserSubject, Salt} = useStorePersist();
+//
+//   if (Salt && UserSubject) {
+//     item.archived = !item.archived
+//     todoSetter({...todos, items: todos.items.map(i => i.id === item.id ? item : i)})
+//     UpdateList(UserSubject, Salt, todos)
+//   }
+//
+//   return null;
+// }
 
 // Delete
 interface DeleteProps {
@@ -85,24 +92,6 @@ export function HandleEdit(formData: TodoFormData, item: TodoItem, UserSubject: 
   UpdateItemInList(formData, UserSubject, Salt, item, todos, todoSetter);
 }
 
-// interface EditProps {
-//   formData: TodoFormData;
-//   item: TodoItem;
-//   todos: TodoList;
-//   todoSetter: React.Dispatch<React.SetStateAction<TodoList>>
-// }
-// export const HandleEdit: FC<EditProps> = ({formData, item, todos, todoSetter}) => {
-//   const {UserSubject, Salt} = useStorePersist();
-//
-//   if (!Salt && !UserSubject) {
-//     return null
-//   }
-//
-//   UpdateItemInList(formData, UserSubject, Salt, item, todos, todoSetter);
-//
-//   return null
-// }
-
 // SubTask
 interface SubTaskProps {
   formData: TodoFormData;
@@ -148,10 +137,6 @@ export const HandleSubTask: FC<SubTaskProps> = ({formData, item, todos, todoSett
 
 // Complete
 export function HandleComplete(item: TodoItem, todos: TodoList, UserSubject: string, Salt: string) {
-  if (!Salt && !UserSubject) {
-    return todos
-  }
-
   const updatedItem = {...item, completed: !item.completed}
   const updatedTodos = {...todos, items: todos.items.map(i => i.id === item.id ? updatedItem : i) }
   UpdateList(UserSubject, Salt, todos)

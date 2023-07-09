@@ -12,7 +12,7 @@ import PlusIcon from "mdi-react/PlusIcon";
 import {TodoForm} from "../TodoForm";
 import remarkGfm from "remark-gfm";
 import {Tooltip} from "../Tooltip";
-import {HandleComplete} from "../ActionHandlers";
+import {HandleArchive, HandleComplete} from "../ActionHandlers";
 import {useStorePersist} from "../../lib/storage";
 
 interface TodoListItemProps {
@@ -20,7 +20,6 @@ interface TodoListItemProps {
   todos: TodoList;
   todoSetter: React.Dispatch<React.SetStateAction<TodoList>>
   deleteCallback?: (item: TodoItem) => void;
-  archiveCallback?: (item: TodoItem) => void;
   subTaskCallback?: (item: TodoItem) => void;
 }
 interface TodoListItemsProps {
@@ -28,7 +27,6 @@ interface TodoListItemsProps {
   todos: TodoList;
   todoSetter: React.Dispatch<React.SetStateAction<TodoList>>
   deleteCallback?: (item: TodoItem) => void;
-  archiveCallback?: (item: TodoItem) => void;
   subtaskCallback?: (item: TodoItem) => void;
 }
 
@@ -37,7 +35,6 @@ export const TodoListItems: FC<TodoListItemsProps> = ({
                                                         todos,
                                                         todoSetter,
                                                         deleteCallback,
-                                                        archiveCallback,
                                                         subtaskCallback
 }) => {
   return(
@@ -50,7 +47,6 @@ export const TodoListItems: FC<TodoListItemsProps> = ({
             todos={todos}
             todoSetter={todoSetter}
             deleteCallback={deleteCallback}
-            archiveCallback={archiveCallback}
             subTaskCallback={subtaskCallback}
           />
           {item.subTasks && item.subTasks.length > 0 && (
@@ -62,7 +58,6 @@ export const TodoListItems: FC<TodoListItemsProps> = ({
                   todos={todos}
                   todoSetter={todoSetter}
                   deleteCallback={deleteCallback}
-                  archiveCallback={archiveCallback}
                 />
               ))}
             </Box>
@@ -78,7 +73,6 @@ export const TodoListItem: FC<TodoListItemProps> = ({
                                                       todos,
                                                       todoSetter,
                                                       deleteCallback,
-                                                      archiveCallback,
                                                       subTaskCallback
 }) => {
   const priorityColor = item.priority === "urgent" ? "red" : item.priority === "high" ? "purple" : item.priority === "medium" ? "orange" : "blackSecondary";
@@ -121,7 +115,7 @@ export const TodoListItem: FC<TodoListItemProps> = ({
     <Box p="sm" color={"black"} borderColor={"purple"} rounded={"lg"} key={item.id} className={styles.itemBox} m={"sm"} alt={item.id}>
       <Box className={styles.doneButton}>
         {!item.archived ? (
-          <Checkbox checked={item.completed} color={item.completed ? "cyan" : "green"}  onChange={(e) => {
+          <Checkbox checked={item.completed} color={item.completed ? "cyan" : "green"} onChange={(e) => {
             const updateTodos = HandleComplete(item, todos, UserSubject, Salt)
             todoSetter(updateTodos)
           }} />
@@ -160,9 +154,8 @@ export const TodoListItem: FC<TodoListItemProps> = ({
               <Tooltip text={archiveTitle}>
                 <Button className={styles.itemButtons} as={"button"} m={"sm"} onClick={(e) => {
                   e.preventDefault()
-                  if (archiveCallback) {
-                    archiveCallback(item)
-                  }
+                  let newTodos = HandleArchive(item, todos, UserSubject, Salt)
+                  todoSetter(newTodos)
                 }}>{archiveImage}</Button>
               </Tooltip>
               {!item.archived && !item.completed && (

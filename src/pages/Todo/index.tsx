@@ -83,16 +83,6 @@ export const TodoPage: FC = () => {
     }
   }
 
-  const handleArchiveCallback = (item: TodoItem) => {
-    if (!Salt) {
-      return
-    }
-
-    item.archived = !item.archived
-    setTodos({...todos, items: todos.items.map(i => i.id === item.id ? item : i)})
-    UpdateList(UserSubject, Salt, todos)
-  }
-
   const handleDeleteCallback = (item: TodoItem) => {
     if (!Salt) {
       return
@@ -116,12 +106,6 @@ export const TodoPage: FC = () => {
       }) as TodoItem[];
       setTodos({items: newTodos})
       UpdateList(UserSubject, Salt, {items: newTodos})
-    }
-  }
-
-  const handleEditCallback = (formData: TodoFormData, item: TodoItem) => {
-    if (Salt && UserSubject) {
-      UpdateItemInList(formData, UserSubject, Salt, item, todos, setTodos);
     }
   }
 
@@ -221,7 +205,6 @@ export const TodoPage: FC = () => {
                             items={activeItems}
                             todoSetter={setTodos}
                             todos={todos}
-                            archiveCallback={handleArchiveCallback}
                             subtaskCallback={handleSubTaskCallback}
                             deleteCallback={handleDeleteCallback}
                           />
@@ -234,7 +217,6 @@ export const TodoPage: FC = () => {
                             items={completedItems}
                             todos={todos}
                             todoSetter={setTodos}
-                            archiveCallback={handleArchiveCallback}
                           />
                         </>
                       )}
@@ -245,7 +227,6 @@ export const TodoPage: FC = () => {
                             items={archivedItems}
                             todos={todos}
                             todoSetter={setTodos}
-                            archiveCallback={handleArchiveCallback}
                             deleteCallback={handleDeleteCallback}
                           />
                         </>

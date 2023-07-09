@@ -4,6 +4,7 @@ import {getEncryptedData} from "../../lib/cryption";
 import {TodoForm} from "../../components/TodoForm";
 import {useStorePersist} from "../../lib/storage";
 import {useNavigate} from "react-router-dom";
+import {HandleComplete} from "../../components/ActionHandlers";
 
 export const TaskPage: FC = () => {
   const [tasks, setTasks] = useState<TodoList>({items: []});
@@ -34,9 +35,7 @@ export const TaskPage: FC = () => {
   }
 
   function handleComplete(todoItem: TodoItem) {
-    todoItem.completed = !todoItem.completed
-    setTasks({...tasks, items: tasks.items.map(i => i.id === todoItem.id ? todoItem : i)})
-    UpdateList(UserSubject, Salt, tasks)
+    HandleComplete(todoItem, tasks, UserSubject, Salt);
     navigate("/");
   }
 
