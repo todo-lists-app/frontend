@@ -103,11 +103,11 @@ export const TodoListItem: FC<TodoListItemProps> = ({
         todoSetter={todoSetter}
         openCallback={setEditFormOpen}
         todoItem={item}
+        editMode={true}
       />
     )}
     {subTaskFormOpen && (
       subTaskCallback && <TodoForm
-        addProcessor={subTaskCallback}
         openCallback={setSubTaskFormOpen}
         todos={todos}
         todoSetter={todoSetter}

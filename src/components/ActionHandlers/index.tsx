@@ -1,9 +1,37 @@
 import React, {FC, useState, useEffect, Fragment, useMemo} from "react";
-import {useAuth} from "react-oidc-context";
-import {AddItemToList, TodoFormData, TodoItem, TodoList, UpdateItemInList, UpdateList} from "../../lib/todo";
+import {
+  AddItemToList,
+  CreateList,
+  TodoFormData,
+  TodoItem,
+  TodoList,
+  UpdateItemInList,
+  UpdateList
+} from "../../lib/todo";
 import {useStorePersist} from "../../lib/storage";
 
 // Add Item
+export function HandleAdd(formData: TodoFormData, todos: TodoList, UserSubject: string, Salt: string) {
+  let newTodo: TodoItem = {
+    id: Math.random().toString(36).substring(2, 15),
+    title: formData.title,
+    content: formData.content,
+    dueDate: formData.dueDate,
+    dueTime: formData.dueTime,
+    priority: formData.priority || "low",
+    completed: false,
+    createdAt: new Date().toISOString(),
+  };
+  const addedTodos: {items: TodoItem[]} = {...todos, items: todos.items.concat(newTodo)}
+
+  if (todos.items.length === 0) {
+    CreateList(UserSubject, Salt, todos, newTodo);
+  } else {
+    UpdateList(UserSubject, Salt, addedTodos)
+  }
+
+  return addedTodos
+}
 interface AddItemProps {
   formData: TodoFormData;
   todos: TodoList;

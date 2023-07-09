@@ -2,12 +2,14 @@ import React, {FC, useEffect, useState} from "react";
 import {Button} from "dracula-ui";
 
 import {TodoForm} from "../TodoForm";
+import {TodoList} from "../../lib/todo";
 
 interface AddItemProps {
-  processor: (formData: any) => void;
+  todos?: TodoList;
+  todoSetter?: React.Dispatch<React.SetStateAction<TodoList>>
 }
 
-export const AddItem: FC<AddItemProps> = ({processor}) => {
+export const AddItem: FC<AddItemProps> = ({todos, todoSetter}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleNewItem = () => {
@@ -31,8 +33,10 @@ export const AddItem: FC<AddItemProps> = ({processor}) => {
     <>
       {isOpen && (
         <TodoForm
-          addProcessor={processor}
+          modalRef={addItemRef}
           openCallback={setIsOpen}
+          todoSetter={todoSetter}
+          todos={todos}
         />
       )}
       <Button onClick={handleNewItem} m={"xs"}>New Item</Button>

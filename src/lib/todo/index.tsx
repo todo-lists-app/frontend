@@ -103,7 +103,7 @@ export const UpdateItemInList = (
   return UpdateList(subject, salt, todos)
 }
 
-const CreateList = (subject: string, salt: string, todos: TodoList, newTodo: TodoItem) => {
+export const CreateList = (subject: string, salt: string, todos: TodoList, newTodo: TodoItem) => {
   encryptData(subject, salt, {items: [...todos.items, newTodo]}).then((data) => {
       fetch(appConfig.services.api + `/list`, {
         method: 'POST',

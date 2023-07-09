@@ -6,11 +6,11 @@ import styles from "./TodoForm.module.css";
 import {TodoFormData, TodoItem, TodoList} from "../../lib/todo";
 import {DividerLine} from "../DividerLine";
 import {Tooltip} from "../Tooltip";
-import {HandleEdit} from "../ActionHandlers";
+import {HandleAdd, HandleEdit} from "../ActionHandlers";
 import {useStorePersist} from "../../lib/storage";
 
 interface TodoFormProps {
-  addProcessor?: (formData: any) => void;
+  modalRef?: React.RefObject<HTMLDivElement>;
   cancelCallback?: () => void;
   openCallback?: (isOpen: boolean) => void;
   completeCallback?: (todoItem: TodoItem) => void;
@@ -20,18 +20,20 @@ interface TodoFormProps {
 
   todoSetter?: React.Dispatch<React.SetStateAction<TodoList>>
   todos?: TodoList;
+  editMode?: boolean;
 }
 
 export const TodoForm: FC<TodoFormProps> = ({
-                                              addProcessor,
                                               openCallback,
                                               todoItem,
                                               parentItem,
                                               cancelCallback,
                                               completeCallback,
                                               todoSetter,
-                                              todos
-                                              }) => {
+                                              todos,
+                                              editMode,
+                                              modalRef
+}) => {
   const [formError, setFormError] = useState<string | null>(null);
   const {UserSubject, Salt} = useStorePersist();
   const handleSubmit = (event: FormEvent) => {
@@ -54,13 +56,18 @@ export const TodoForm: FC<TodoFormProps> = ({
     if (openCallback) {
       openCallback(false);
     }
-    if (addProcessor) {
-      addProcessor(formData);
-      return;
-    }
-    if (todoItem && todos && todoSetter) {
-      HandleEdit(formData, todoItem, UserSubject, Salt, todos, todoSetter);
-      return;
+
+    if (editMode) {
+      if (todoItem && todos && todoSetter) {
+        HandleEdit(formData, todoItem, UserSubject, Salt, todos, todoSetter);
+        return;
+      }
+    } else {
+      if (todos && todoSetter) {
+        const newTodos = HandleAdd(formData, todos, UserSubject, Salt);
+        todoSetter(newTodos)
+        return;
+      }
     }
   }
   const handleCancel = () => {
@@ -107,7 +114,7 @@ export const TodoForm: FC<TodoFormProps> = ({
   }
 
   return (
-    <Container>
+    <Container ref={modalRef}>
       <Box className={styles.formBox} p="sm" color="purpleCyan" rounded="lg">
         <Heading>{pageTitle}</Heading>
         {formError && (

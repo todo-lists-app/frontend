@@ -238,7 +238,8 @@ export const TodoPage: FC = () => {
               <Col md={2} xl={2} sm={1}>
                 <Box color="black" borderColor="purple" className={styles.sideBar} rounded={"lg"}>
                   <AddItem
-                    processor={handleAddItem}
+                    todoSetter={setTodos}
+                    todos={todos}
                   />
                   <SortItems sortCallback={setSortOrder} />
                   <FilterItems filterCallback={setPriorityFilter} />
