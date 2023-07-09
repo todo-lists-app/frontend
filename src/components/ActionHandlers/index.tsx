@@ -77,23 +77,31 @@ export const HandleDelete: FC<DeleteProps> = ({item, todos, todoSetter}) => {
 }
 
 // Edit
-interface EditProps {
-  formData: TodoFormData;
-  item: TodoItem;
-  todos: TodoList;
-  todoSetter: React.Dispatch<React.SetStateAction<TodoList>>
-}
-export const HandleEdit: FC<EditProps> = ({formData, item, todos, todoSetter}) => {
-  const {UserSubject, Salt} = useStorePersist();
-
+export function HandleEdit(formData: TodoFormData, item: TodoItem, UserSubject: string, Salt: string, todos: TodoList, todoSetter: React.Dispatch<React.SetStateAction<TodoList>>) {
   if (!Salt && !UserSubject) {
     return null
   }
 
   UpdateItemInList(formData, UserSubject, Salt, item, todos, todoSetter);
-
-  return null
 }
+
+// interface EditProps {
+//   formData: TodoFormData;
+//   item: TodoItem;
+//   todos: TodoList;
+//   todoSetter: React.Dispatch<React.SetStateAction<TodoList>>
+// }
+// export const HandleEdit: FC<EditProps> = ({formData, item, todos, todoSetter}) => {
+//   const {UserSubject, Salt} = useStorePersist();
+//
+//   if (!Salt && !UserSubject) {
+//     return null
+//   }
+//
+//   UpdateItemInList(formData, UserSubject, Salt, item, todos, todoSetter);
+//
+//   return null
+// }
 
 // SubTask
 interface SubTaskProps {

@@ -221,7 +221,6 @@ export const TodoPage: FC = () => {
                             items={activeItems}
                             todoSetter={setTodos}
                             todos={todos}
-                            editCallback={handleEditCallback}
                             archiveCallback={handleArchiveCallback}
                             subtaskCallback={handleSubTaskCallback}
                             deleteCallback={handleDeleteCallback}
@@ -235,7 +234,6 @@ export const TodoPage: FC = () => {
                             items={completedItems}
                             todos={todos}
                             todoSetter={setTodos}
-                            editCallback={handleEditCallback}
                             archiveCallback={handleArchiveCallback}
                           />
                         </>
@@ -247,7 +245,6 @@ export const TodoPage: FC = () => {
                             items={archivedItems}
                             todos={todos}
                             todoSetter={setTodos}
-                            editCallback={handleEditCallback}
                             archiveCallback={handleArchiveCallback}
                             deleteCallback={handleDeleteCallback}
                           />

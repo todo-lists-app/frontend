@@ -69,7 +69,8 @@ export const TaskPage: FC = () => {
       )}
       {(filteredTask && filteredTask.id !== "") && (
         <TodoForm
-          editProcessor={handleEditCallback}
+          todos={tasks}
+          todoSetter={setTasks}
           todoItem={filteredTask}
           cancelCallback={handleCallback}
           completeCallback={handleComplete}

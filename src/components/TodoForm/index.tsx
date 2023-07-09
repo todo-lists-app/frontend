@@ -3,12 +3,13 @@ import {Box, Button, Heading, Text, Input, Select, Textarea, Divider} from "drac
 import {Container} from "react-bootstrap";
 
 import styles from "./TodoForm.module.css";
-import {TodoFormData, TodoItem} from "../../lib/todo";
+import {TodoFormData, TodoItem, TodoList} from "../../lib/todo";
 import {DividerLine} from "../DividerLine";
 import {Tooltip} from "../Tooltip";
+import {HandleEdit} from "../ActionHandlers";
+import {useStorePersist} from "../../lib/storage";
 
 interface TodoFormProps {
-  editProcessor?: (formData: any, todoItem: TodoItem) => void;
   addProcessor?: (formData: any) => void;
   cancelCallback?: () => void;
   openCallback?: (isOpen: boolean) => void;
@@ -16,18 +17,23 @@ interface TodoFormProps {
 
   todoItem?: TodoItem;
   parentItem?: TodoItem;
+
+  todoSetter?: React.Dispatch<React.SetStateAction<TodoList>>
+  todos?: TodoList;
 }
 
 export const TodoForm: FC<TodoFormProps> = ({
                                               addProcessor,
-                                              editProcessor,
                                               openCallback,
                                               todoItem,
                                               parentItem,
                                               cancelCallback,
                                               completeCallback,
+                                              todoSetter,
+                                              todos
                                               }) => {
   const [formError, setFormError] = useState<string | null>(null);
+  const {UserSubject, Salt} = useStorePersist();
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     setFormError(null)
@@ -52,8 +58,8 @@ export const TodoForm: FC<TodoFormProps> = ({
       addProcessor(formData);
       return;
     }
-    if (editProcessor && todoItem) {
-      editProcessor(formData, todoItem);
+    if (todoItem && todos && todoSetter) {
+      HandleEdit(formData, todoItem, UserSubject, Salt, todos, todoSetter);
       return;
     }
   }

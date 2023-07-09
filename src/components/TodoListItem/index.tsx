@@ -19,7 +19,6 @@ interface TodoListItemProps {
   item: TodoItem;
   todos: TodoList;
   todoSetter: React.Dispatch<React.SetStateAction<TodoList>>
-  editCallback?: (formData: any, todoItem: TodoItem) => void;
   deleteCallback?: (item: TodoItem) => void;
   archiveCallback?: (item: TodoItem) => void;
   subTaskCallback?: (item: TodoItem) => void;
@@ -28,7 +27,6 @@ interface TodoListItemsProps {
   items: TodoItem[];
   todos: TodoList;
   todoSetter: React.Dispatch<React.SetStateAction<TodoList>>
-  editCallback?: (formData: any, todoItem: TodoItem) => void;
   deleteCallback?: (item: TodoItem) => void;
   archiveCallback?: (item: TodoItem) => void;
   subtaskCallback?: (item: TodoItem) => void;
@@ -38,7 +36,6 @@ export const TodoListItems: FC<TodoListItemsProps> = ({
                                                         items,
                                                         todos,
                                                         todoSetter,
-                                                        editCallback,
                                                         deleteCallback,
                                                         archiveCallback,
                                                         subtaskCallback
@@ -52,7 +49,6 @@ export const TodoListItems: FC<TodoListItemsProps> = ({
             item={item}
             todos={todos}
             todoSetter={todoSetter}
-            editCallback={editCallback}
             deleteCallback={deleteCallback}
             archiveCallback={archiveCallback}
             subTaskCallback={subtaskCallback}
@@ -65,7 +61,6 @@ export const TodoListItems: FC<TodoListItemsProps> = ({
                   item={subTask}
                   todos={todos}
                   todoSetter={todoSetter}
-                  editCallback={editCallback}
                   deleteCallback={deleteCallback}
                   archiveCallback={archiveCallback}
                 />
@@ -82,7 +77,6 @@ export const TodoListItem: FC<TodoListItemProps> = ({
                                                       item,
                                                       todos,
                                                       todoSetter,
-                                                      editCallback,
                                                       deleteCallback,
                                                       archiveCallback,
                                                       subTaskCallback
@@ -110,8 +104,9 @@ export const TodoListItem: FC<TodoListItemProps> = ({
   return (
     <>
     {editFormOpen && (
-      editCallback && <TodoForm
-        editProcessor={editCallback}
+      <TodoForm
+        todos={todos}
+        todoSetter={todoSetter}
         openCallback={setEditFormOpen}
         todoItem={item}
       />
@@ -174,9 +169,7 @@ export const TodoListItem: FC<TodoListItemProps> = ({
                 <Tooltip text={"Edit"}>
                   <Button className={styles.itemButtons} as={"button"} m={"sm"} onClick={(e) => {
                     e.preventDefault()
-                    if (editCallback) {
-                      setEditFormOpen(true)
-                    }
+                    setEditFormOpen(true)
                   }}><PencilOutlineIcon color={"#80ffea"} /></Button>
                 </Tooltip>
               )}
