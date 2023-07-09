@@ -83,15 +83,6 @@ export const TodoPage: FC = () => {
     }
   }
 
-  const handleCompleteItem = (item: TodoItem) => {
-    if (!Salt) {
-      return
-    }
-    item.completed = !item.completed
-    setTodos({...todos, items: todos.items.map(i => i.id === item.id ? item : i)})
-    UpdateList(UserSubject, Salt, todos)
-  }
-
   const handleArchiveCallback = (item: TodoItem) => {
     if (!Salt) {
       return
@@ -228,7 +219,8 @@ export const TodoPage: FC = () => {
                           <DividerLine title={"Active"} />
                           <TodoListItems
                             items={activeItems}
-                            doneCallback={handleCompleteItem}
+                            todoSetter={setTodos}
+                            todos={todos}
                             editCallback={handleEditCallback}
                             archiveCallback={handleArchiveCallback}
                             subtaskCallback={handleSubTaskCallback}
@@ -241,7 +233,8 @@ export const TodoPage: FC = () => {
                           <DividerLine title={"Completed"} />
                           <TodoListItems
                             items={completedItems}
-                            doneCallback={handleCompleteItem}
+                            todos={todos}
+                            todoSetter={setTodos}
                             editCallback={handleEditCallback}
                             archiveCallback={handleArchiveCallback}
                           />
@@ -252,7 +245,8 @@ export const TodoPage: FC = () => {
                           <DividerLine title={"Archived"} />
                           <TodoListItems
                             items={archivedItems}
-                            doneCallback={handleCompleteItem}
+                            todos={todos}
+                            todoSetter={setTodos}
                             editCallback={handleEditCallback}
                             archiveCallback={handleArchiveCallback}
                             deleteCallback={handleDeleteCallback}

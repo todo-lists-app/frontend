@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 import {Box, Checkbox, Heading, Text, Card, Button} from "dracula-ui";
-import {TodoItem} from "../../lib/todo";
+import {TodoItem, TodoList} from "../../lib/todo";
 import styles from "./TodoListItem.module.css";
 import {isFeatureImplemented} from "../../app.config";
 import ReactMarkdown from "react-markdown";
@@ -12,10 +12,13 @@ import PlusIcon from "mdi-react/PlusIcon";
 import {TodoForm} from "../TodoForm";
 import remarkGfm from "remark-gfm";
 import {Tooltip} from "../Tooltip";
+import {HandleComplete} from "../ActionHandlers";
+import {useStorePersist} from "../../lib/storage";
 
 interface TodoListItemProps {
   item: TodoItem;
-  doneCallback?: (item: TodoItem) => void;
+  todos: TodoList;
+  todoSetter: React.Dispatch<React.SetStateAction<TodoList>>
   editCallback?: (formData: any, todoItem: TodoItem) => void;
   deleteCallback?: (item: TodoItem) => void;
   archiveCallback?: (item: TodoItem) => void;
@@ -23,7 +26,8 @@ interface TodoListItemProps {
 }
 interface TodoListItemsProps {
   items: TodoItem[];
-  doneCallback?: (item: TodoItem) => void;
+  todos: TodoList;
+  todoSetter: React.Dispatch<React.SetStateAction<TodoList>>
   editCallback?: (formData: any, todoItem: TodoItem) => void;
   deleteCallback?: (item: TodoItem) => void;
   archiveCallback?: (item: TodoItem) => void;
@@ -32,7 +36,8 @@ interface TodoListItemsProps {
 
 export const TodoListItems: FC<TodoListItemsProps> = ({
                                                         items,
-                                                        doneCallback,
+                                                        todos,
+                                                        todoSetter,
                                                         editCallback,
                                                         deleteCallback,
                                                         archiveCallback,
@@ -45,7 +50,8 @@ export const TodoListItems: FC<TodoListItemsProps> = ({
           <TodoListItem
             key={item.id}
             item={item}
-            doneCallback={doneCallback}
+            todos={todos}
+            todoSetter={todoSetter}
             editCallback={editCallback}
             deleteCallback={deleteCallback}
             archiveCallback={archiveCallback}
@@ -57,7 +63,8 @@ export const TodoListItems: FC<TodoListItemsProps> = ({
                 <TodoListItem
                   key={subTask.id}
                   item={subTask}
-                  doneCallback={doneCallback}
+                  todos={todos}
+                  todoSetter={todoSetter}
                   editCallback={editCallback}
                   deleteCallback={deleteCallback}
                   archiveCallback={archiveCallback}
@@ -73,7 +80,8 @@ export const TodoListItems: FC<TodoListItemsProps> = ({
 
 export const TodoListItem: FC<TodoListItemProps> = ({
                                                       item,
-                                                      doneCallback,
+                                                      todos,
+                                                      todoSetter,
                                                       editCallback,
                                                       deleteCallback,
                                                       archiveCallback,
@@ -97,6 +105,7 @@ export const TodoListItem: FC<TodoListItemProps> = ({
 
   const [editFormOpen, setEditFormOpen] = React.useState(false);
   const [subTaskFormOpen, setSubTaskFormOpen] = React.useState(false);
+  const {UserSubject, Salt} = useStorePersist();
 
   return (
     <>
@@ -116,12 +125,13 @@ export const TodoListItem: FC<TodoListItemProps> = ({
     )}
     <Box p="sm" color={"black"} borderColor={"purple"} rounded={"lg"} key={item.id} className={styles.itemBox} m={"sm"} alt={item.id}>
       <Box className={styles.doneButton}>
-        {doneCallback ? (
+        {!item.archived ? (
           <Checkbox checked={item.completed} color={item.completed ? "cyan" : "green"}  onChange={(e) => {
-            doneCallback(item);
+            const updateTodos = HandleComplete(item, todos, UserSubject, Salt)
+            todoSetter(updateTodos)
           }} />
         ) : (
-          <Checkbox checked={item.completed} color={"red"} />
+          <Checkbox checked={item.completed} color={"red"} disabled={true} />
         )}
       </Box>
       <Box className={styles.info}>
