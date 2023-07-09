@@ -12,21 +12,19 @@ import PlusIcon from "mdi-react/PlusIcon";
 import {TodoForm} from "../TodoForm";
 import remarkGfm from "remark-gfm";
 import {Tooltip} from "../Tooltip";
-import {HandleArchive, HandleComplete} from "../ActionHandlers";
+import {HandleArchive, HandleComplete, HandleDelete} from "../ActionHandlers";
 import {useStorePersist} from "../../lib/storage";
 
 interface TodoListItemProps {
   item: TodoItem;
   todos: TodoList;
   todoSetter: React.Dispatch<React.SetStateAction<TodoList>>
-  deleteCallback?: (item: TodoItem) => void;
   subTaskCallback?: (item: TodoItem) => void;
 }
 interface TodoListItemsProps {
   items: TodoItem[];
   todos: TodoList;
   todoSetter: React.Dispatch<React.SetStateAction<TodoList>>
-  deleteCallback?: (item: TodoItem) => void;
   subtaskCallback?: (item: TodoItem) => void;
 }
 
@@ -34,7 +32,6 @@ export const TodoListItems: FC<TodoListItemsProps> = ({
                                                         items,
                                                         todos,
                                                         todoSetter,
-                                                        deleteCallback,
                                                         subtaskCallback
 }) => {
   return(
@@ -46,7 +43,6 @@ export const TodoListItems: FC<TodoListItemsProps> = ({
             item={item}
             todos={todos}
             todoSetter={todoSetter}
-            deleteCallback={deleteCallback}
             subTaskCallback={subtaskCallback}
           />
           {item.subTasks && item.subTasks.length > 0 && (
@@ -57,7 +53,6 @@ export const TodoListItems: FC<TodoListItemsProps> = ({
                   item={subTask}
                   todos={todos}
                   todoSetter={todoSetter}
-                  deleteCallback={deleteCallback}
                 />
               ))}
             </Box>
@@ -72,7 +67,6 @@ export const TodoListItem: FC<TodoListItemProps> = ({
                                                       item,
                                                       todos,
                                                       todoSetter,
-                                                      deleteCallback,
                                                       subTaskCallback
 }) => {
   const priorityColor = item.priority === "urgent" ? "red" : item.priority === "high" ? "purple" : item.priority === "medium" ? "orange" : "blackSecondary";
@@ -172,9 +166,8 @@ export const TodoListItem: FC<TodoListItemProps> = ({
                 <Tooltip text={"Delete"}>
                   <Button className={styles.itemButtons} as="button" m={"sm"} onClick={(e) => {
                     e.preventDefault()
-                    if (deleteCallback) {
-                      deleteCallback(item)
-                    }
+                    let newTodos = HandleDelete(item, todos, UserSubject, Salt)
+                    todoSetter(newTodos)
                   }}><DeleteForeverIcon color={"#ff80bf"} /></Button>
                 </Tooltip>
               )}

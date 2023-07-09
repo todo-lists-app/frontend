@@ -1,6 +1,5 @@
 import React, {FC, useState, useEffect, Fragment, useMemo} from "react";
 import {
-  AddItemToList,
   CreateList,
   TodoFormData,
   TodoItem,
@@ -32,20 +31,6 @@ export function HandleAdd(formData: TodoFormData, todos: TodoList, UserSubject: 
 
   return addedTodos
 }
-interface AddItemProps {
-  formData: TodoFormData;
-  todos: TodoList;
-  todoSetter: React.Dispatch<React.SetStateAction<TodoList>>
-}
-export const HandleAddItem: FC<AddItemProps> = ({formData, todos, todoSetter}) => {
-  const {UserSubject, Salt} = useStorePersist();
-
-  if (Salt && UserSubject) {
-    AddItemToList(formData, UserSubject, Salt, todos, todoSetter);
-  }
-
-  return null;
-}
 
 // Archive
 export function HandleArchive(item: TodoItem, todos: TodoList, UserSubject: string, Salt: string) {
@@ -57,22 +42,11 @@ export function HandleArchive(item: TodoItem, todos: TodoList, UserSubject: stri
 }
 
 // Delete
-interface DeleteProps {
-  item: TodoItem;
-  todos: TodoList;
-  todoSetter: React.Dispatch<React.SetStateAction<TodoList>>
-}
-export const HandleDelete: FC<DeleteProps> = ({item, todos, todoSetter}) => {
-  const {UserSubject, Salt} = useStorePersist();
-
-  if (!Salt && !UserSubject) {
-    return null
-  }
-
+export function HandleDelete(item: TodoItem, todos: TodoList, UserSubject: string, Salt: string) {
   if (item.parentId) {
     let todoItem = todos.items.find(i => i.id === item.parentId);
     if (!todoItem) {
-      return null;
+      return todos;
     }
 
     todoItem.subTasks = todoItem.subTasks?.filter(i => i.id !== item.id);
@@ -82,17 +56,15 @@ export const HandleDelete: FC<DeleteProps> = ({item, todos, todoSetter}) => {
       }
       return i;
     }) as TodoItem[];
-    todoSetter({items: newTodos})
     UpdateList(UserSubject, Salt, {items: newTodos})
 
-    return null
+    return {items: newTodos}
   }
 
   const newTodos = todos.items.filter(i => i.id !== item.id)
-  todoSetter({items: newTodos})
   UpdateList(UserSubject, Salt, {items: newTodos})
 
-  return null;
+  return {items: newTodos};
 }
 
 // Edit

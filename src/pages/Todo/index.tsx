@@ -77,38 +77,6 @@ export const TodoPage: FC = () => {
     }
   };
 
-  const handleAddItem = (formData: TodoFormData) => {
-    if (Salt && UserSubject) {
-      AddItemToList(formData, UserSubject, Salt, todos, setTodos);
-    }
-  }
-
-  const handleDeleteCallback = (item: TodoItem) => {
-    if (!Salt) {
-      return
-    }
-    if (!item.parentId) {
-      const newTodos = todos.items.filter(i => i.id !== item.id)
-      setTodos({items: newTodos})
-      UpdateList(UserSubject, Salt, {items: newTodos})
-    } else {
-      let todoItem = todos.items.find(i => i.id === item.parentId);
-      if (!todoItem) {
-        return;
-      }
-
-      todoItem.subTasks = todoItem.subTasks?.filter(i => i.id !== item.id);
-      let newTodos = todos.items.map(i => {
-        if (i.id === todoItem!.id) {
-          return todoItem;
-        }
-        return i;
-      }) as TodoItem[];
-      setTodos({items: newTodos})
-      UpdateList(UserSubject, Salt, {items: newTodos})
-    }
-  }
-
   const handleSubTaskCallback = (item: TodoItem) => {
     if (!item.parentId) {
       return;
@@ -206,7 +174,6 @@ export const TodoPage: FC = () => {
                             todoSetter={setTodos}
                             todos={todos}
                             subtaskCallback={handleSubTaskCallback}
-                            deleteCallback={handleDeleteCallback}
                           />
                         </>
                       )}
@@ -227,7 +194,6 @@ export const TodoPage: FC = () => {
                             items={archivedItems}
                             todos={todos}
                             todoSetter={setTodos}
-                            deleteCallback={handleDeleteCallback}
                           />
                         </>
                       )}
