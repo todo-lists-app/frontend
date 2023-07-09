@@ -1,6 +1,5 @@
 import React, {FC} from "react";
 import {Box, Divider, Heading, Text, Radio} from "dracula-ui";
-import {isFeatureImplemented} from "../../app.config";
 import styles from "./SortItems.module.css";
 
 interface SortItemsProps {

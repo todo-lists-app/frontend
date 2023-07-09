@@ -52,13 +52,6 @@ export const AccountMenu: FC = () => {
                   </Button>
                 </li>
               )}
-              {isFeatureImplemented({featureSet: "notifications", featureName: "update"}) && (
-                <li className={styles.accountItems}>
-                  <Button color="purple" size="sm" as="a" href="/settings">
-                    <FontAwesomeIcon icon={faGears} />&nbsp;Notfications
-                  </Button>
-                </li>
-              )}
               <li className={styles.accountItems}>
                 <Button color="pink" size="sm" onClick={() => {
                   setSalt("");

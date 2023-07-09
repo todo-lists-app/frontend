@@ -2,7 +2,6 @@ import React, {FC} from "react";
 import {Box, Checkbox, Heading, Text, Card, Button} from "dracula-ui";
 import {TodoItem, TodoList} from "../../lib/todo";
 import styles from "./TodoListItem.module.css";
-import {isFeatureImplemented} from "../../app.config";
 import ReactMarkdown from "react-markdown";
 import DeleteForeverIcon from "mdi-react/DeleteForeverIcon";
 import PencilOutlineIcon from "mdi-react/PencilOutlineIcon";

@@ -1,6 +1,5 @@
 import React, {FC} from "react";
 import {Box, Divider, Heading, Radio, Text} from "dracula-ui";
-import {isFeatureImplemented} from "../../app.config";
 
 interface FilterItemsProps {
   filterCallback?: (filter: string) => void;
