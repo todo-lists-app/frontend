@@ -10,7 +10,7 @@ import {
 import {useStorePersist} from "../storage";
 
 // Add Item
-export function HandleAdd(formData: TodoFormData, todos: TodoList, UserSubject: string, Salt: string) {
+export function HandleAdd(formData: TodoFormData, todos: TodoList, accessToken: string, UserSubject: string, Salt: string) {
   let newTodo: TodoItem = {
     id: Math.random().toString(36).substring(2, 15),
     title: formData.title,
@@ -38,15 +38,15 @@ export function HandleAdd(formData: TodoFormData, todos: TodoList, UserSubject: 
   }
 
   if (todos.items.length === 0) {
-    CreateList(UserSubject, Salt, todos, newTodo);
+    CreateList(accessToken, UserSubject, Salt, todos, newTodo);
   } else {
-    UpdateList(UserSubject, Salt, addedTodos)
+    UpdateList(accessToken, UserSubject, Salt, addedTodos)
   }
 
   return addedTodos
 }
 
-export function HandleArchive(item: TodoItem, todos: TodoList, UserSubject: string, Salt: string) {
+export function HandleArchive(item: TodoItem, todos: TodoList, accessToken: string, UserSubject: string, Salt: string) {
   function archiveItemAndSubtasks(i: TodoItem): TodoItem {
     if (i.id === item.id) {
       // If this is the item to be archived, archive it and all its subtasks
@@ -69,14 +69,14 @@ export function HandleArchive(item: TodoItem, todos: TodoList, UserSubject: stri
     items: todos.items.map(archiveItemAndSubtasks),
   };
 
-  UpdateList(UserSubject, Salt, updatedTodos);
+  UpdateList(accessToken, UserSubject, Salt, updatedTodos);
 
   return updatedTodos;
 }
 
 
 // Delete
-export function HandleDelete(item: TodoItem, todos: TodoList, UserSubject: string, Salt: string) {
+export function HandleDelete(item: TodoItem, todos: TodoList, accessToken: string, UserSubject: string, Salt: string) {
   if (item.parentId) {
     let todoItem = todos.items.find(i => i.id === item.parentId);
     if (!todoItem) {
@@ -90,28 +90,28 @@ export function HandleDelete(item: TodoItem, todos: TodoList, UserSubject: strin
       }
       return i;
     }) as TodoItem[];
-    UpdateList(UserSubject, Salt, {items: newTodos})
+    UpdateList(accessToken, UserSubject, Salt, {items: newTodos})
 
     return {items: newTodos}
   }
 
   const newTodos = todos.items.filter(i => i.id !== item.id)
-  UpdateList(UserSubject, Salt, {items: newTodos})
+  UpdateList(accessToken, UserSubject, Salt, {items: newTodos})
 
   return {items: newTodos};
 }
 
 // Edit
-export function HandleEdit(formData: TodoFormData, item: TodoItem, UserSubject: string, Salt: string, todos: TodoList, todoSetter: React.Dispatch<React.SetStateAction<TodoList>>) {
+export function HandleEdit(formData: TodoFormData, item: TodoItem, accessToken: string, UserSubject: string, Salt: string, todos: TodoList, todoSetter: React.Dispatch<React.SetStateAction<TodoList>>) {
   if (!Salt && !UserSubject) {
     return null
   }
 
-  UpdateItemInList(formData, UserSubject, Salt, item, todos, todoSetter);
+  UpdateItemInList(formData, accessToken, UserSubject, Salt, item, todos, todoSetter);
 }
 
 // Complete
-export function HandleComplete(item: TodoItem, todos: TodoList, UserSubject: string, Salt: string) {
+export function HandleComplete(item: TodoItem, todos: TodoList, accessToken: string, UserSubject: string, Salt: string) {
   function completeItemAndSubtasks(i: TodoItem): TodoItem {
     if (i.id === item.id) {
       // If this is the item to be archived, archive it and all its subtasks
@@ -134,7 +134,7 @@ export function HandleComplete(item: TodoItem, todos: TodoList, UserSubject: str
     items: todos.items.map(completeItemAndSubtasks),
   };
 
-  UpdateList(UserSubject, Salt, updatedTodos);
+  UpdateList(accessToken, UserSubject, Salt, updatedTodos);
 
   return updatedTodos;
 }

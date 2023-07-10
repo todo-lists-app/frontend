@@ -42,6 +42,7 @@ export declare const priorities: {
 
 export const AddItemToList = (
   formData: TodoFormData,
+  accessToken: string,
   subject: string,
   salt: string,
   todos: TodoList,
@@ -70,14 +71,15 @@ export const AddItemToList = (
   };
   setTodos({items: [...todos.items, newTodo]});
   if (todoCount === 0) {
-    return CreateList(subject, salt, todos, newTodo);
+    return CreateList(accessToken, subject, salt, todos, newTodo);
   }
 
-  return AddToUpdateList(subject, salt, todos, newTodo);
+  return AddToUpdateList(accessToken, subject, salt, todos, newTodo);
 }
 
 export const UpdateItemInList = (
   formData: TodoFormData,
+  accessToken: string,
   subject: string,
   salt: string,
   item: TodoItem,
@@ -100,16 +102,17 @@ export const UpdateItemInList = (
   }
   item.updatedAt = new Date().toISOString()
   setTodos({...todos, items: todos.items.map(i => i.id === item.id ? item : i)})
-  return UpdateList(subject, salt, todos)
+  return UpdateList(accessToken, subject, salt, todos)
 }
 
-export const CreateList = (subject: string, salt: string, todos: TodoList, newTodo: TodoItem) => {
+export const CreateList = (accessToken: string, subject: string, salt: string, todos: TodoList, newTodo: TodoItem) => {
   encryptData(subject, salt, {items: [...todos.items, newTodo]}).then((data) => {
       fetch(appConfig.services.api + `/list`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'X-User-Subject': subject,
+          'X-User-Access-Token': accessToken,
         },
         body: JSON.stringify({
           data: arrayBufferToBase64(data.data),
@@ -124,17 +127,18 @@ export const CreateList = (subject: string, salt: string, todos: TodoList, newTo
   return;
 }
 
-const AddToUpdateList = (subject: string, salt: string, todos: TodoList, newTodo: TodoItem) => {
-  return UpdateList(subject, salt, {items: [...todos.items, newTodo]});
+const AddToUpdateList = (accessToken: string, subject: string, salt: string, todos: TodoList, newTodo: TodoItem) => {
+  return UpdateList(accessToken, subject, salt, {items: [...todos.items, newTodo]});
 }
 
-export const UpdateList = (subject: string, salt: string, todos: TodoList) => {
+export const UpdateList = (accessToken: string, subject: string, salt: string, todos: TodoList) => {
   encryptData(subject, salt, todos).then((data) => {
     fetch(appConfig.services.api + `/list`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
         'X-User-Subject': subject,
+        'X-User-Access-Token': accessToken,
       },
       body: JSON.stringify({
         data: arrayBufferToBase64(data.data),

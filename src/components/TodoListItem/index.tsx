@@ -13,6 +13,7 @@ import remarkGfm from "remark-gfm";
 import {Tooltip} from "../Tooltip";
 import {HandleArchive, HandleComplete, HandleDelete} from "../../lib/ActionHandlers";
 import {useStorePersist} from "../../lib/storage";
+import {useAuth} from "react-oidc-context";
 
 interface TodoListItemProps {
   item: TodoItem;
@@ -82,6 +83,8 @@ export const TodoListItem: FC<TodoListItemProps> = ({
   const [editFormOpen, setEditFormOpen] = React.useState(false);
   const [subTaskFormOpen, setSubTaskFormOpen] = React.useState(false);
   const {UserSubject, Salt} = useStorePersist();
+  const auth = useAuth();
+  const accessToken = auth.user?.access_token || "";
 
   return (
     <>
@@ -106,7 +109,7 @@ export const TodoListItem: FC<TodoListItemProps> = ({
       <Box className={styles.doneButton}>
         {!item.archived ? (
           <Checkbox checked={item.completed} color={item.completed ? "cyan" : "green"} onChange={(e) => {
-            const updateTodos = HandleComplete(item, todos, UserSubject, Salt)
+            const updateTodos = HandleComplete(item, todos, accessToken, UserSubject, Salt)
             todoSetter(updateTodos)
           }} />
         ) : (
@@ -144,7 +147,7 @@ export const TodoListItem: FC<TodoListItemProps> = ({
               <Tooltip text={archiveTitle}>
                 <Button className={styles.itemButtons} as={"button"} m={"sm"} onClick={(e) => {
                   e.preventDefault()
-                  let newTodos = HandleArchive(item, todos, UserSubject, Salt)
+                  let newTodos = HandleArchive(item, todos, accessToken, UserSubject, Salt)
                   todoSetter(newTodos)
                 }}>{archiveImage}</Button>
               </Tooltip>
@@ -160,7 +163,7 @@ export const TodoListItem: FC<TodoListItemProps> = ({
                 <Tooltip text={"Delete"}>
                   <Button className={styles.itemButtons} as="button" m={"sm"} onClick={(e) => {
                     e.preventDefault()
-                    let newTodos = HandleDelete(item, todos, UserSubject, Salt)
+                    let newTodos = HandleDelete(item, todos, accessToken, UserSubject, Salt)
                     todoSetter(newTodos)
                   }}><DeleteForeverIcon color={"#ff80bf"} /></Button>
                 </Tooltip>

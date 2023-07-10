@@ -8,6 +8,7 @@ import {DividerLine} from "../DividerLine";
 import {Tooltip} from "../Tooltip";
 import {HandleAdd, HandleEdit} from "../../lib/ActionHandlers";
 import {useStorePersist} from "../../lib/storage";
+import {useAuth} from "react-oidc-context";
 
 interface TodoFormProps {
   modalRef?: React.RefObject<HTMLDivElement>;
@@ -36,6 +37,8 @@ export const TodoForm: FC<TodoFormProps> = ({
 }) => {
   const [formError, setFormError] = useState<string | null>(null);
   const {UserSubject, Salt} = useStorePersist();
+  const auth = useAuth();
+  const accessToken = auth?.user?.access_token || "";
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     setFormError(null)
@@ -59,12 +62,12 @@ export const TodoForm: FC<TodoFormProps> = ({
 
     if (editMode) {
       if (todoItem && todos && todoSetter) {
-        HandleEdit(formData, todoItem, UserSubject, Salt, todos, todoSetter);
+        HandleEdit(formData, todoItem, accessToken, UserSubject, Salt, todos, todoSetter);
         return;
       }
     } else {
       if (todos && todoSetter) {
-        const newTodos = HandleAdd(formData, todos, UserSubject, Salt);
+        const newTodos = HandleAdd(formData, todos, accessToken, UserSubject, Salt);
         todoSetter(newTodos)
         return;
       }
@@ -115,7 +118,7 @@ export const TodoForm: FC<TodoFormProps> = ({
 
   return (
     <Container ref={modalRef}>
-      <Box className={styles.formBox} p="sm" color="purpleCyan" rounded="lg">
+      <Box className={styles.formBox} p="sm" color="black" rounded="lg" borderColor={"purple"}>
         <Heading>{pageTitle}</Heading>
         {formError && (
           <Box color="red" borderColor="red" rounded="sm" p="sm" m="sm">
@@ -124,10 +127,10 @@ export const TodoForm: FC<TodoFormProps> = ({
         )}
         <form onSubmit={handleSubmit}>
           <Container>
-            <Input placeholder={"Title"} name={"title"} m={"xs"} ref={titleRef} defaultValue={titleValue} />
-            <Textarea placeholder={"Content"} name={"content"} m={"xs"} ref={contentRef} defaultValue={contentValue} />
+            <Input placeholder={"Title"} name={"title"} m={"xs"} ref={titleRef} defaultValue={titleValue} color={"white"} />
+            <Textarea placeholder={"Content"} name={"content"} m={"xs"} ref={contentRef} defaultValue={contentValue} color={"white"} />
 
-            <Divider />
+            <Divider/>
             <Select defaultValue={priorityValue} name={"priority"} m={"xs"} title={"Priority"} ref={priorityRef}>
               <option value={"low"} disabled={true}>Optional Priority</option>
               <option value={"low"}>Low</option>
@@ -136,9 +139,9 @@ export const TodoForm: FC<TodoFormProps> = ({
               <option value={"urgent"}>Urgent</option>
             </Select>
 
-            <DividerLine title={"Due Date"} />
-            <Input type={"date"} name={"dueDate"} m={"xs"} title={"Due Date"} ref={dueDateRef} defaultValue={dueDateValue} />
-            <Input type={"time"} name={"dueTime"} m={"xs"} title={"dueTime"} ref={dueTimeRef} defaultValue={dueTimeValue} />
+            <DividerLine title={"Due Date (optional)"} />
+            <Input type={"date"} name={"dueDate"} m={"xs"} title={"Due Date"} ref={dueDateRef} defaultValue={dueDateValue} color={"white"} />
+            <Input type={"time"} name={"dueTime"} m={"xs"} title={"dueTime"} ref={dueTimeRef} defaultValue={dueTimeValue} color={"white"} />
 
             <Box className={styles.formButtons}>
               <Button type="submit" m={"sm"} color={"purple"}>Submit</Button>

@@ -99,6 +99,7 @@ function base64ToUint8Array(base64: string) {
 }
 
 function getEncryptedData(
+                            accessToken: string,
                             subject: string,
                             salt: string,
                             dataLocation: (data: TodoList) => void,
@@ -115,6 +116,7 @@ function getEncryptedData(
     headers: {
       'Content-Type': 'application/json',
       'X-User-Subject': subject,
+      'X-User-Access-Token': accessToken,
     }
   }).then(res => res.json())
     .then(data => {

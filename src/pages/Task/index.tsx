@@ -5,11 +5,15 @@ import {TodoForm} from "../../components/TodoForm";
 import {useStorePersist} from "../../lib/storage";
 import {useNavigate} from "react-router-dom";
 import {HandleComplete} from "../../lib/ActionHandlers";
+import {useAuth} from "react-oidc-context";
 
 export const TaskPage: FC = () => {
   const [tasks, setTasks] = useState<TodoList>({items: []});
   const {UserSubject, Salt, setSalt} = useStorePersist();
   const navigate = useNavigate();
+
+  const auth = useAuth();
+  const accessToken = auth.user?.access_token || "";
 
   // are we in open mode?
   let url = new URL(window.location.href);
@@ -17,8 +21,8 @@ export const TaskPage: FC = () => {
   const taskId = url.searchParams.get("task") || "";
 
   useEffect(() => {
-    getEncryptedData(UserSubject, Salt, setTasks, setSalt);
-  }, [UserSubject, Salt, setSalt]);
+    getEncryptedData(accessToken, UserSubject, Salt, setTasks, setSalt);
+  }, [accessToken, UserSubject, Salt, setSalt]);
   const filteredTask = useMemo(() => {
     for (let i = 0; i < tasks.items.length; i++) {
       if (tasks.items[i].id === taskId) {
@@ -29,13 +33,13 @@ export const TaskPage: FC = () => {
 
   const handleEditCallback = (formData: TodoFormData, item: TodoItem) => {
     if (Salt && UserSubject) {
-      UpdateItemInList(formData, UserSubject, Salt, item, tasks, setTasks);
+      UpdateItemInList(formData, accessToken, UserSubject, Salt, item, tasks, setTasks);
       navigate("/");
     }
   }
 
   function handleComplete(todoItem: TodoItem) {
-    HandleComplete(todoItem, tasks, UserSubject, Salt);
+    HandleComplete(todoItem, tasks, accessToken, UserSubject, Salt);
     navigate("/");
   }
 
@@ -47,7 +51,7 @@ export const TaskPage: FC = () => {
     if (completeMode && filteredTask && taskId !== "") {
       filteredTask.completed = true;
       setTasks({...tasks, items: tasks.items.map(i => i.id === filteredTask.id ? filteredTask : i)})
-      UpdateList(UserSubject, Salt, tasks)
+      UpdateList(accessToken, UserSubject, Salt, tasks)
       navigate("/");
     }
   }, [completeMode, filteredTask, taskId, navigate, UserSubject, Salt, tasks])

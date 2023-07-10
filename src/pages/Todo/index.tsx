@@ -2,7 +2,7 @@ import React, {FC, useState, useEffect, Fragment, useMemo} from "react";
 import {useAuth} from "react-oidc-context";
 import {Box, Heading, Text, Button, Input} from "dracula-ui";
 
-import {AddItemToList, TodoFormData, TodoItem, TodoList, UpdateList, UpdateItemInList} from "../../lib/todo";
+import {TodoItem, TodoList, UpdateList} from "../../lib/todo";
 import {TodoListItems} from "../../components/TodoListItem";
 import {AddItem} from "../../components/AddItem";
 import {Col, Row} from "react-bootstrap";
@@ -19,6 +19,8 @@ export const TodoPage: FC = () => {
   const [todos, setTodos] = useState<TodoList>({items: []});
   const [priorityFilter, setPriorityFilter] = useState<string>("all");
   const [sortOrder, setSortOrder] = useState<string>("updatedDate");
+
+  const accessToken = auth.user?.access_token || "";
 
   function prioritySort(priority: string) {
     switch (priority) {
@@ -67,7 +69,8 @@ export const TodoPage: FC = () => {
 
   useEffect(() => {
     setUserSubject(auth?.user?.profile.sub || "");
-    getEncryptedData(UserSubject, Salt, setTodos, setSalt);
+    let accessToken = auth.user?.access_token || "";
+    getEncryptedData(accessToken, UserSubject, Salt, setTodos, setSalt);
   }, [auth, Salt, UserSubject, setSalt, setUserSubject]);
 
   const handleSaltFormSubmit = () => {
@@ -112,7 +115,7 @@ export const TodoPage: FC = () => {
     });
 
     console.info("todos", todos, "newTodos", newTodos);
-    UpdateList(UserSubject, Salt, todos);
+    UpdateList(accessToken, UserSubject, Salt, todos);
   }
 
 

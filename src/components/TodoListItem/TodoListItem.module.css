@@ -97,7 +97,7 @@
   bottom: 0;
   left: -10px;
   width: 1px;
-  background: var(--blackSecondary)
+  background: var(--black)
 }
 
 .subtasks > div {
@@ -109,7 +109,7 @@
   position: absolute;
   top: 50%;
   left: -10px;
-  border: solid var(--blackSecondary);
+  border: solid var(--black);
   border-width: 0 2px 2px 0;
   display: inline-block;
   padding: 3px;
