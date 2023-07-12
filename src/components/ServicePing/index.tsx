@@ -12,6 +12,8 @@ const ServicePing: FC = () => {
   const auth = useAuth();
   const accessToken = auth?.user?.access_token || "";
 
+  console.log("ServicePing: auth: ", auth.user);
+
   useEffect(() => {
     // Function to ping the server
     const pingServer = () => {
