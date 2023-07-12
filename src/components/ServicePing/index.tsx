@@ -2,12 +2,15 @@
 import React, { FC, useEffect, useRef } from "react";
 import {appConfig} from "../../app.config";
 import {useStorePersist} from "../../lib/storage";
+import {useAuth} from "react-oidc-context";
 
 const PING_INTERVAL = 300000; // Ping every 5 minutes (300000ms)
 
 const ServicePing: FC = () => {
   const idleTimer = useRef<NodeJS.Timeout | null>(null);
   const {UserSubject} = useStorePersist();
+  const auth = useAuth();
+  const accessToken = auth?.user?.access_token || "";
 
   useEffect(() => {
     // Function to ping the server
@@ -17,6 +20,7 @@ const ServicePing: FC = () => {
         headers: {
           "Content-Type": "application/json",
           "X-User-Subject": UserSubject,
+          'X-User-Access-Token': accessToken,
         },
       })
       .catch(error => console.error("Error:", error));

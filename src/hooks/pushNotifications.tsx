@@ -1,7 +1,11 @@
 import { useEffect } from "react";
 import {appConfig} from "../app.config";
+import {useAuth} from "react-oidc-context";
 
 const usePushNotifications = (subject: string) => {
+  const auth = useAuth();
+  const accessToken = auth?.user?.access_token || "";
+
   useEffect(() => {
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", function () {
@@ -39,6 +43,7 @@ const usePushNotifications = (subject: string) => {
                 headers: {
                   'Content-Type': 'application/json',
                   'X-User-Subject': subject,
+                  'X-User-Access-Token': accessToken,
                 },
                 body: JSON.stringify(newSubscription),
               });

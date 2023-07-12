@@ -6,6 +6,7 @@ import {useStorePersist} from "../../lib/storage"; // Import the bell icon compo
 import styles from "./Notification.module.css";
 import {Box, Heading, List, Text, Divider, backgroundColors} from "dracula-ui";
 import {useNavigate} from "react-router-dom";
+import {useAuth} from "react-oidc-context";
 
 interface NotificationItem {
   id: string;
@@ -27,6 +28,8 @@ const Notification: FC<NotificationProps> = ({Subject}) => {
   const [showModal, setShowModal] = useState(false);
   const {UserSubject} = useStorePersist();
   const navigate = useNavigate()
+  const auth = useAuth();
+  const accessToken = auth?.user?.access_token || "";
 
   const modalRef = useRef<HTMLDivElement | null>(null)
   useEffect(() => {
@@ -48,6 +51,7 @@ const Notification: FC<NotificationProps> = ({Subject}) => {
         headers: {
           'Content-Type': 'application/json',
           'X-User-Subject': UserSubject,
+          'X-User-Access-Token': accessToken,
         }
       });
       const data = await response.json();
