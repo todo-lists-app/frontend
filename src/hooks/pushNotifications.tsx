@@ -65,7 +65,7 @@ const usePushNotifications = (subject: string) => {
     };
 
     subscribeUser(subject);
-  }, [subject]);
+  }, [subject, accessToken]);
 };
 
 export default usePushNotifications;

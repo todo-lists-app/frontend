@@ -80,7 +80,7 @@ const Notification: FC<NotificationProps> = ({Subject}) => {
     fetchNotifications().catch((error) => {
       console.error(error);
     });
-  }, [UserSubject]);
+  }, [UserSubject, accessToken]);
 
   const handleIconClick = () => {
     // setSelectedNotification();

@@ -1,8 +1,8 @@
-import React, {FC, useState, useEffect, Fragment, useMemo} from "react";
+import React, {FC, useState, useEffect, Fragment, useMemo, useCallback} from "react";
 import {useAuth} from "react-oidc-context";
 import {Box, Heading, Text, Button, Input} from "dracula-ui";
 
-import {TodoItem, TodoList, UpdateList} from "../../lib/todo";
+import {TodoItem, TodoList} from "../../lib/todo";
 import {TodoListItems} from "../../components/TodoListItem";
 import {AddItem} from "../../components/AddItem";
 import {Col, Row} from "react-bootstrap";
@@ -22,8 +22,6 @@ export const TodoPage: FC = () => {
   const [showCompleted, setShowCompleted] = useState<boolean>(false);
   const [showArchived, setShowArchived] = useState<boolean>(false);
 
-  const accessToken = auth.user?.access_token || "";
-
   function prioritySort(priority: string) {
     switch (priority) {
       case "high":
@@ -36,7 +34,8 @@ export const TodoPage: FC = () => {
         return 4; //urgent
     }
   }
-  function sortTodos(todos: TodoItem[], sortOrder: string): TodoItem[] {
+
+  const sortTodos = useCallback((todos: TodoItem[], sortOrder: string): TodoItem[] => {
     let sortedTodos = [...todos];
 
     switch (sortOrder) {
@@ -67,7 +66,7 @@ export const TodoPage: FC = () => {
     }
 
     return sortedTodos;
-  }
+  }, []);
 
   useEffect(() => {
     setUserSubject(auth?.user?.profile.sub || "");
@@ -81,45 +80,6 @@ export const TodoPage: FC = () => {
       setSalt(saltElem.value);
     }
   };
-
-  // const handleSubTaskCallback = (item: TodoItem) => {
-  //   if (!item.parentId) {
-  //     return;
-  //   }
-  //
-  //   let todoItem = todos.items.find(i => i.id === item.parentId);
-  //   if (!todoItem) {
-  //     return;
-  //   }
-  //
-  //   let subtask : TodoItem = {
-  //     id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
-  //     title: item.title,
-  //     content: item.content,
-  //     completed: false,
-  //     priority: item.priority,
-  //     createdAt: new Date().toISOString(),
-  //     dueDate: item.dueDate,
-  //     parentId: item.parentId,
-  //   }
-  //
-  //   todoItem.subTasks = todoItem.subTasks ? [...todoItem.subTasks, subtask] : [subtask];
-  //   let newTodos = todos.items.map(i => {
-  //     // Map function's scope will now get an 'undefined' safe `todoItem.id`
-  //     if (i.id === todoItem!.id) {
-  //       return todoItem;
-  //     }
-  //     return i;
-  //   }) as TodoItem[];
-  //   setTodos({
-  //     ...todos,
-  //     items: newTodos
-  //   });
-  //
-  //   console.info("todos", todos, "newTodos", newTodos);
-  //   UpdateList(accessToken, UserSubject, Salt, todos);
-  // }
-
 
   const completedItems = useMemo(() => {
     let filteredItems = todos.items.filter(i => i.completed)
@@ -138,7 +98,7 @@ export const TodoPage: FC = () => {
     }
     filteredItems = sortTodos(filteredItems, sortOrder)
     return filteredItems
-  }, [todos.items, priorityFilter, sortOrder])
+  }, [todos.items, priorityFilter, sortOrder, sortTodos])
   const archivedItems = useMemo(() => {
     let filteredItems = todos.items.filter(i => i.archived)
     if (priorityFilter !== "all") {

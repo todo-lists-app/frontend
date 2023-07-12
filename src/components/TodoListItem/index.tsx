@@ -53,7 +53,7 @@ export const TodoListItems: FC<TodoListItemsProps> = ({
       }
     })
     setVisibility(newVisibility);
-  }, [items, currentPage])
+  }, [currentPage, itemsForPage, visibility])
   const toggleVisibility = (id: string) => {
     setVisibility((prevVisibility) => ({
       ...prevVisibility,
