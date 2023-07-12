@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, {FC, useState} from "react";
 import {Box, Checkbox, Heading, Text, Card, Button} from "dracula-ui";
 import {TodoItem, TodoList} from "../../lib/todo";
 import styles from "./TodoListItem.module.css";
@@ -24,16 +24,29 @@ interface TodoListItemsProps {
   items: TodoItem[];
   todos: TodoList;
   todoSetter: React.Dispatch<React.SetStateAction<TodoList>>
+  pagination?: boolean;
 }
 
 export const TodoListItems: FC<TodoListItemsProps> = ({
                                                         items,
                                                         todos,
-                                                        todoSetter
+                                                        todoSetter,
+                                                        pagination,
 }) => {
+  let itemsPerPage = 9999;
+  if (pagination) {
+    itemsPerPage = 5;
+  }
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const pages = Math.ceil(items.length / itemsPerPage);
+  const start = currentPage * itemsPerPage;
+  const end = start + itemsPerPage;
+  const itemsForPage = items.slice(start, end);
+
   return(
     <>
-      {items.map((item) => (
+      {itemsForPage.map((item) => (
         <Box key={item.id}>
           <TodoListItem
             key={item.id}
@@ -55,6 +68,11 @@ export const TodoListItems: FC<TodoListItemsProps> = ({
           )}
         </Box>
       ))}
+      <div className={styles.pagination}>
+        {[...Array(pages)].map((_, i) => (
+          <div key={i} onClick={() => setCurrentPage(i)} className={currentPage === i ? styles.activeDot : styles.dot}></div>
+        ))}
+      </div>
     </>
   )
 }

@@ -19,6 +19,8 @@ export const TodoPage: FC = () => {
   const [todos, setTodos] = useState<TodoList>({items: []});
   const [priorityFilter, setPriorityFilter] = useState<string>("all");
   const [sortOrder, setSortOrder] = useState<string>("updatedDate");
+  const [showCompleted, setShowCompleted] = useState<boolean>(false);
+  const [showArchived, setShowArchived] = useState<boolean>(false);
 
   const accessToken = auth.user?.access_token || "";
 
@@ -80,43 +82,43 @@ export const TodoPage: FC = () => {
     }
   };
 
-  const handleSubTaskCallback = (item: TodoItem) => {
-    if (!item.parentId) {
-      return;
-    }
-
-    let todoItem = todos.items.find(i => i.id === item.parentId);
-    if (!todoItem) {
-      return;
-    }
-
-    let subtask : TodoItem = {
-      id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
-      title: item.title,
-      content: item.content,
-      completed: false,
-      priority: item.priority,
-      createdAt: new Date().toISOString(),
-      dueDate: item.dueDate,
-      parentId: item.parentId,
-    }
-
-    todoItem.subTasks = todoItem.subTasks ? [...todoItem.subTasks, subtask] : [subtask];
-    let newTodos = todos.items.map(i => {
-      // Map function's scope will now get an 'undefined' safe `todoItem.id`
-      if (i.id === todoItem!.id) {
-        return todoItem;
-      }
-      return i;
-    }) as TodoItem[];
-    setTodos({
-      ...todos,
-      items: newTodos
-    });
-
-    console.info("todos", todos, "newTodos", newTodos);
-    UpdateList(accessToken, UserSubject, Salt, todos);
-  }
+  // const handleSubTaskCallback = (item: TodoItem) => {
+  //   if (!item.parentId) {
+  //     return;
+  //   }
+  //
+  //   let todoItem = todos.items.find(i => i.id === item.parentId);
+  //   if (!todoItem) {
+  //     return;
+  //   }
+  //
+  //   let subtask : TodoItem = {
+  //     id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+  //     title: item.title,
+  //     content: item.content,
+  //     completed: false,
+  //     priority: item.priority,
+  //     createdAt: new Date().toISOString(),
+  //     dueDate: item.dueDate,
+  //     parentId: item.parentId,
+  //   }
+  //
+  //   todoItem.subTasks = todoItem.subTasks ? [...todoItem.subTasks, subtask] : [subtask];
+  //   let newTodos = todos.items.map(i => {
+  //     // Map function's scope will now get an 'undefined' safe `todoItem.id`
+  //     if (i.id === todoItem!.id) {
+  //       return todoItem;
+  //     }
+  //     return i;
+  //   }) as TodoItem[];
+  //   setTodos({
+  //     ...todos,
+  //     items: newTodos
+  //   });
+  //
+  //   console.info("todos", todos, "newTodos", newTodos);
+  //   UpdateList(accessToken, UserSubject, Salt, todos);
+  // }
 
 
   const completedItems = useMemo(() => {
@@ -178,27 +180,32 @@ export const TodoPage: FC = () => {
                             items={activeItems}
                             todoSetter={setTodos}
                             todos={todos}
+                            pagination={true}
                           />
                         </>
                       )}
                       {completedItems.length > 0 && (
                         <>
-                          <DividerLine title={"Completed"} />
-                          <TodoListItems
-                            items={completedItems}
-                            todos={todos}
-                            todoSetter={setTodos}
-                          />
+                          <DividerLine title={"Completed"} hideCallback={setShowCompleted} />
+                          {showCompleted && (
+                            <TodoListItems
+                              items={completedItems}
+                              todos={todos}
+                              todoSetter={setTodos}
+                            />
+                          )}
                         </>
                       )}
                       {archivedItems.length > 0 && (
                         <>
-                          <DividerLine title={"Archived"} />
-                          <TodoListItems
-                            items={archivedItems}
-                            todos={todos}
-                            todoSetter={setTodos}
-                          />
+                          <DividerLine title={"Archived"} hideCallback={setShowArchived} />
+                          {showArchived && (
+                            <TodoListItems
+                              items={archivedItems}
+                              todos={todos}
+                              todoSetter={setTodos}
+                            />
+                          )}
                         </>
                       )}
                     </>

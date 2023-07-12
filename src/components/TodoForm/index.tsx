@@ -5,7 +5,6 @@ import {Container} from "react-bootstrap";
 import styles from "./TodoForm.module.css";
 import {TodoFormData, TodoItem, TodoList} from "../../lib/todo";
 import {DividerLine} from "../DividerLine";
-import {Tooltip} from "../Tooltip";
 import {HandleAdd, HandleEdit} from "../../lib/ActionHandlers";
 import {useStorePersist} from "../../lib/storage";
 import {useAuth} from "react-oidc-context";
