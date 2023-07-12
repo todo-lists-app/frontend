@@ -1,4 +1,4 @@
-import React, {FC, useState} from "react";
+import React, {FC, useEffect, useState} from "react";
 import {Box, Checkbox, Heading, Text, Card, Button} from "dracula-ui";
 import {TodoItem, TodoList} from "../../lib/todo";
 import styles from "./TodoListItem.module.css";
@@ -14,6 +14,7 @@ import {Tooltip} from "../Tooltip";
 import {HandleArchive, HandleComplete, HandleDelete} from "../../lib/ActionHandlers";
 import {useStorePersist} from "../../lib/storage";
 import {useAuth} from "react-oidc-context";
+import {DividerLine} from "../DividerLine";
 
 interface TodoListItemProps {
   item: TodoItem;
@@ -31,8 +32,7 @@ export const TodoListItems: FC<TodoListItemsProps> = ({
                                                         items,
                                                         todos,
                                                         todoSetter,
-                                                        pagination,
-}) => {
+                                                        pagination}) => {
   let itemsPerPage = 9999;
   if (pagination) {
     itemsPerPage = 5;
@@ -44,30 +44,50 @@ export const TodoListItems: FC<TodoListItemsProps> = ({
   const end = start + itemsPerPage;
   const itemsForPage = items.slice(start, end);
 
+  const [visibility, setVisibility] = useState<Record<string, boolean>>({});
+  useEffect(() => {
+    const newVisibility: Record<string, boolean> = {...visibility};
+    itemsForPage.forEach((item) => {
+      if (!newVisibility.hasOwnProperty(item.id)) {
+        newVisibility[item.id] = true;
+      }
+    })
+    setVisibility(newVisibility);
+  }, [items, currentPage])
+  const toggleVisibility = (id: string) => {
+    setVisibility((prevVisibility) => ({
+      ...prevVisibility,
+        [id]: !prevVisibility[id]
+    }))
+  }
+
   return(
     <>
-      {itemsForPage.map((item) => (
-        <Box key={item.id}>
-          <TodoListItem
-            key={item.id}
-            item={item}
-            todos={todos}
-            todoSetter={todoSetter}
-          />
-          {item.subTasks && item.subTasks.length > 0 && (
-            <Box className={styles.subtasks}>
-              {item.subTasks.map((subTask) => (
-                <TodoListItem
-                  key={subTask.id}
-                  item={subTask}
-                  todos={todos}
-                  todoSetter={todoSetter}
-                />
-              ))}
-            </Box>
-          )}
-        </Box>
-      ))}
+      {itemsForPage.map((item) => {
+        return (
+          <Box key={item.id}>
+            <TodoListItem
+              key={item.id}
+              item={item}
+              todos={todos}
+              todoSetter={todoSetter}
+            />
+            {item.subTasks && item.subTasks.length > 0 && (
+              <Box className={styles.subtasks} key={"subtasks" + item.parentId}>
+                <DividerLine title={"[" + item.title + "] Sub-Tasks"} key={"subtasks_divider" + item.parentId} hideCallback={() => toggleVisibility(item.id)} initialShow={visibility[item.id]} />
+                {visibility[item.id] && item.subTasks.map((subTask) => (
+                  <TodoListItem
+                    key={subTask.id}
+                    item={subTask}
+                    todos={todos}
+                    todoSetter={todoSetter}
+                  />
+                ))}
+              </Box>
+            )}
+          </Box>
+        )
+      })}
       <div className={styles.pagination}>
         {[...Array(pages)].map((_, i) => (
           <div key={i} onClick={() => setCurrentPage(i)} className={currentPage === i ? styles.activeDot : styles.dot}></div>

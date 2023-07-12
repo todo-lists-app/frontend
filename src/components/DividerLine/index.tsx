@@ -8,10 +8,15 @@ interface DividerLineProps {
   color?: string;
   title?: string;
   hideCallback?: React.Dispatch<React.SetStateAction<boolean>>;
+  initialShow?: boolean;
 }
 
-export const DividerLine: FC<DividerLineProps> = ({color, title, hideCallback}) => {
-  const [show, setShow] = React.useState(true);
+export const DividerLine: FC<DividerLineProps> = ({
+                                                    color,
+                                                    title,
+                                                    hideCallback,
+                                                    initialShow}) => {
+  const [show, setShow] = React.useState(initialShow);
 
   return (
     <Col md={12}>
@@ -24,7 +29,7 @@ export const DividerLine: FC<DividerLineProps> = ({color, title, hideCallback}) 
         {hideCallback && (
           <div className={styles.hideOption} onClick={() => {
             setShow(!show)
-            hideCallback(show)
+            hideCallback(!show)
           }}>
             {show ? <ExpandMoreIcon/> : <ExpandLessIcon/>}
         </div>
