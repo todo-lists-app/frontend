@@ -83,61 +83,6 @@
   text-transform: capitalize;
 }
 
-.subtasks {
-  position: relative;
-  margin-left: 5em;
-  list-style-type: none;
-  width: calc(100% - 6em);
-}
-
-/*.subtasks::before {*/
-/*  content: '';*/
-/*  position: absolute;*/
-/*  top: 0;*/
-/*  bottom: 0;*/
-/*  left: -10px;*/
-/*  width: 1px;*/
-/*  background: var(--black)*/
-/*}*/
-
-/*.subtasks > div {*/
-/*  margin: 0.5em 0;*/
-/*}*/
-
-/*.subtasks > div::before {*/
-/*  content: '';*/
-/*  position: absolute;*/
-/*  top: 50%;*/
-/*  left: -10px;*/
-/*  border: solid var(--black);*/
-/*  border-width: 0 2px 2px 0;*/
-/*  display: inline-block;*/
-/*  padding: 3px;*/
-/*  transform: rotate(-45deg);*/
-/*  -webkit-transform: rotate(-45deg);*/
-/*}*/
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1em;
-  flex-direction: row;
-}
-
-.dot, .activeDot {
-  height: 10px;
-  width: 10px;
-  margin: 0 5px;
-  border-radius: 50%;
-  background: var(--white);
-  cursor: pointer;
-}
-
-.activeDot {
-  background: var(--purple);
-}
-
 @media screen and (min-width: 400px) {
   .additionalWrapper {
     flex-flow: row;

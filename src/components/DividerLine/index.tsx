@@ -31,7 +31,7 @@ export const DividerLine: FC<DividerLineProps> = ({
             setShow(!show)
             hideCallback(!show)
           }}>
-            {show ? <ExpandMoreIcon/> : <ExpandLessIcon/>}
+            {show ? <ExpandLessIcon/> : <ExpandMoreIcon/>}
         </div>
         )}
       </div>

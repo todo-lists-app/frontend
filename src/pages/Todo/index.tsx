@@ -3,7 +3,7 @@ import {useAuth} from "react-oidc-context";
 import {Box, Heading, Text, Button, Input} from "dracula-ui";
 
 import {TodoItem, TodoList} from "../../lib/todo";
-import {TodoListItems} from "../../components/TodoListItem";
+import {TodoListItems} from "../../components/TodoListItems";
 import {AddItem} from "../../components/AddItem";
 import {Col, Row} from "react-bootstrap";
 import {DividerLine} from "../../components/DividerLine";

@@ -10,21 +10,21 @@
 
 .dividerLine {
   height: 1px;
-  background-color: var(--white);
+  background-color: var(--purple);
   opacity: 0.15;
   flex-grow: 1;
 }
 
 .dividerTitle {
   text-transform: uppercase;
-  color: var(--white);
+  color: var(--purple);
   margin: 0 10px;
 }
 
 .hideOption {
-  font-size: 24px;
-  color: var(--white);
-  border: thin solid var(--white);
+  color: var(--purple);
+  border: thin solid var(--purple);
+  border-radius: 15%;
   cursor: pointer;
 }
 

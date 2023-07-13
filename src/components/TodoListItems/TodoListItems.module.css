@@ -1,0 +1,27 @@
+.subtasks {
+  position: relative;
+  margin-left: 5em;
+  list-style-type: none;
+  width: calc(100% - 6em);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+  flex-direction: row;
+}
+
+.dot, .activeDot {
+  height: 10px;
+  width: 10px;
+  margin: 0 5px;
+  border-radius: 50%;
+  background: var(--white);
+  cursor: pointer;
+}
+
+.activeDot {
+  background: var(--purple);
+}
