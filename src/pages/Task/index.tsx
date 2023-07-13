@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useMemo, useState} from "react";
-import {TodoFormData, TodoItem, TodoList, UpdateItemInList, UpdateList} from "../../lib/todo";
+import {TodoItem, TodoList, UpdateList} from "../../lib/todo";
 import {getEncryptedData} from "../../lib/cryption";
 import {TodoForm} from "../../components/TodoForm";
 import {useStorePersist} from "../../lib/storage";
@@ -31,13 +31,6 @@ export const TaskPage: FC = () => {
     }
   }, [tasks, taskId])
 
-  const handleEditCallback = (formData: TodoFormData, item: TodoItem) => {
-    if (Salt && UserSubject) {
-      UpdateItemInList(formData, accessToken, UserSubject, Salt, item, tasks, setTasks);
-      navigate("/");
-    }
-  }
-
   function handleComplete(todoItem: TodoItem) {
     HandleComplete(todoItem, tasks, accessToken, UserSubject, Salt);
     navigate("/");
@@ -54,7 +47,7 @@ export const TaskPage: FC = () => {
       UpdateList(accessToken, UserSubject, Salt, tasks)
       navigate("/");
     }
-  }, [completeMode, filteredTask, taskId, navigate, UserSubject, Salt, tasks])
+  }, [completeMode, filteredTask, taskId, navigate, UserSubject, Salt, tasks, accessToken])
 
   return (
     <>

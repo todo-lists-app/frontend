@@ -3,7 +3,7 @@ import {Avatar, Box, Button, List} from "dracula-ui";
 import {useAuth} from "react-oidc-context";
 import gravatarUrl from "gravatar-url";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faGears, faRightFromBracket, faUserPen} from "@fortawesome/free-solid-svg-icons";
+import {faRightFromBracket, faUserPen} from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./AccountMenu.module.css";
 import {isFeatureImplemented} from "../../app.config";
