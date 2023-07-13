@@ -103,7 +103,8 @@ function getEncryptedData(
                             subject: string,
                             salt: string,
                             dataLocation: (data: TodoList) => void,
-                            saltDeclare: (saltValue: string) => void) {
+                            saltDeclare: (saltValue: string) => void,
+                            passwordAttempted: (attempted: boolean) => void) {
   if (subject === "" || subject === undefined) {
     return;
   }
@@ -135,6 +136,7 @@ function getEncryptedData(
           console.log("decrypt error", err)
         }
         saltDeclare('')
+        passwordAttempted(true)
       })
   })
   .catch(err => console.log("fetch list error", err));

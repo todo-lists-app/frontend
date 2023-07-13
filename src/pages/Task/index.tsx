@@ -19,9 +19,10 @@ export const TaskPage: FC = () => {
   let url = new URL(window.location.href);
   let completeMode = url.searchParams.get("complete") === "true";
   const taskId = url.searchParams.get("task") || "";
+  const [passwordAttempted, setPasswordAttempted] = useState<boolean>(false);
 
   useEffect(() => {
-    getEncryptedData(accessToken, UserSubject, Salt, setTasks, setSalt);
+    getEncryptedData(accessToken, UserSubject, Salt, setTasks, setSalt, setPasswordAttempted);
   }, [accessToken, UserSubject, Salt, setSalt]);
   const filteredTask = useMemo(() => {
     for (let i = 0; i < tasks.items.length; i++) {

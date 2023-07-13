@@ -21,6 +21,7 @@ export const TodoPage: FC = () => {
   const [sortOrder, setSortOrder] = useState<string>("updatedDate");
   const [showCompleted, setShowCompleted] = useState<boolean>(false);
   const [showArchived, setShowArchived] = useState<boolean>(false);
+  const [passwordAttempted, setPasswordAttempted] = useState<boolean>(false);
 
   function prioritySort(priority: string) {
     switch (priority) {
@@ -71,8 +72,8 @@ export const TodoPage: FC = () => {
   useEffect(() => {
     setUserSubject(auth?.user?.profile.sub || "");
     let accessToken = auth.user?.access_token || "";
-    getEncryptedData(accessToken, UserSubject, Salt, setTodos, setSalt);
-  }, [auth, Salt, UserSubject, setSalt, setUserSubject]);
+    getEncryptedData(accessToken, UserSubject, Salt, setTodos, setSalt, setPasswordAttempted);
+  }, [auth, Salt, UserSubject, setSalt, setUserSubject, setPasswordAttempted]);
 
   const handleSaltFormSubmit = () => {
     let saltElem = document.getElementById("salt") as HTMLInputElement;
@@ -113,8 +114,16 @@ export const TodoPage: FC = () => {
       <Box>
         {!Salt || Salt === '' ? (
           <Box p="lg" borderColor="purple" color={"black"} rounded={"lg"}>
-            <Heading size="sm">Enter your list password</Heading>
-            <Text>Enter your password to encrypt/decrypt your todo list</Text>
+            <Heading size="lg">Enter your list password</Heading>
+            {passwordAttempted ? (
+              <Text color="red">Incorrect password</Text>
+            ) : (
+              <>
+                <Text>Enter your password to encrypt/decrypt your todo list</Text>
+                <br />
+                <Text>You need to create a password the first time you create an account</Text>
+              </>
+            )}
             <Box display="flex">
               <form onSubmit={handleSaltFormSubmit}>
                 <Input type="password" id="salt" variant="outline" borderSize="md" color="purple" m="sm"/>
