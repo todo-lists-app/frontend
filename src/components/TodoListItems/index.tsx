@@ -56,7 +56,6 @@ export const TodoListItems: FC<TodoListItemsProps> = ({
     }))
   }
 
-
   return(
     <>
       {itemsForPage.map((item) => {
@@ -69,17 +68,29 @@ export const TodoListItems: FC<TodoListItemsProps> = ({
               todoSetter={todoSetter}
             />
             {item.subTasks && item.subTasks.length > 0 && (
-              <Box className={styles.subtasks} key={"subtasks" + item.parentId}>
-                <DividerLine title={"[" + item.title + "] Sub-Tasks"} key={"subtasks_divider" + item.parentId} hideCallback={() => toggleVisibility(item.id)} initialShow={visibility[item.id]} />
-                {visibility[item.id] && item.subTasks.map((subTask) => (
-                  <TodoListItem
-                    key={subTask.id}
-                    item={subTask}
-                    todos={todos}
-                    todoSetter={todoSetter}
-                  />
-                ))}
-              </Box>
+              (() => {
+                let totalItems = item.subTasks.length;
+                let completedItems = item.subTasks.reduce((count, subTask) => subTask.completed ? count + 1 : count, 0);
+
+                return (
+                  <Box className={styles.subtasks} key={"subtasks" + item.parentId}>
+                    <DividerLine
+                      title={`[${item.title}] Sub-Tasks (${completedItems}/${totalItems})`}
+                      key={"subtasks_divider" + item.parentId}
+                      hideCallback={() => toggleVisibility(item.id)}
+                      initialShow={visibility[item.id]}
+                    />
+                    {visibility[item.id] && item.subTasks.map((subTask) => (
+                      <TodoListItem
+                        key={subTask.id}
+                        item={subTask}
+                        todos={todos}
+                        todoSetter={todoSetter}
+                      />
+                    ))}
+                  </Box>
+                )
+              })()
             )}
           </Box>
         )
