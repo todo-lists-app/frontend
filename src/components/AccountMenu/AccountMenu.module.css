@@ -1,7 +1,7 @@
 .accountMenu {
   position: fixed;
   top: 5.2em;
-  right: 0;
+  right: 1em;
   border-radius: 4px;
   z-index: 1000;
   border-style: solid;
