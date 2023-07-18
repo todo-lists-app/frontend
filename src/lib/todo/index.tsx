@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction, useState} from "react";
+import React, {Dispatch, SetStateAction} from "react";
 import {arrayBufferToBase64, encryptData, uint8ArrayToBase64} from "../cryption";
 import {appConfig} from "../../app.config";
 
