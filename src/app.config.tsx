@@ -60,7 +60,7 @@ export const appConfig: AppConfig = {
       "logout": true,
       "register": true,
       "delete": false,
-      "update": false,
+      "update": true,
     },
     "notifications": {
       "email": false,
@@ -70,6 +70,13 @@ export const appConfig: AppConfig = {
       "slack": false,
       "alert": false,
       "list": false,
+    },
+    "profile": {
+      "activity": false,
+      "settings": true,
+      "todos": false,
+      "tasks": false,
+      "reports": false,
     }
   },
 }
@@ -83,7 +90,6 @@ export const isFeatureImplemented = ({ featureSet, featureName }: ShowFeaturePro
   if (!appConfig.implementedFeatures[featureSet]) {
     return false;
   }
-
 
   if (appConfig.implementedFeatures[featureSet][featureName]) {
     return true;
