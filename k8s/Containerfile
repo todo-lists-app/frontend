@@ -22,9 +22,6 @@ FROM containers.chewed-k8s.net/docker_hub_cache/library/nginx:1.25-alpine AS run
 COPY --from=builder /frontend/build /usr/share/nginx/html
 COPY ./k8s/nginx.conf /etc/nginx/conf.d/default.conf
 
-# env debug
-COPY --from=builder /frontend/.env /home/env
-
 RUN apk update
 RUN apk upgrade
 
