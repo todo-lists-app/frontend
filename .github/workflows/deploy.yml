@@ -47,7 +47,7 @@ jobs:
           echo "REACT_APP_KEYCLOAK_CLIENT_ID=${{ secrets.KEYCLOAK_CLIENT_ID }}" >> .env.production
           echo "REACT_APP_KEYCLOAK_CLIENT_SECRET=${{ secrets.KEYCLOAK_CLIENT_SECRET }}" >> .env.production
           echo "REACT_APP_BACKEND_URL=${{ vars.BACKEND_URL }}" >> .env.production
-          echo "PRODUCTION=${{ vars.PRODUCTION }}" >> .env.production
+          echo "REACT_APP_PRODUCTION=${{ vars.PRODUCTION }}" >> .env.production
       - name: Build and Push
         id: docker_build
         uses: docker/build-push-action@v3
