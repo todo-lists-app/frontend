@@ -1,0 +1,175 @@
+.datePicker {
+  padding-left: .5rem;
+  width: 100%;
+}
+
+.reactDatepicker {
+  display: block !important;
+}
+
+.reactDatepicker__input-time-container {
+  background: var(--black);
+  padding: 10px 15px;
+  margin: 0;
+  color: var(--purple);
+}
+
+.datePicker > div, .reactDatepicker-wrapper, .rc-time-picker, .reactDatepicker__input-container {
+  width: 100%;
+}
+
+.reactDatepicker__time-list {
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.reactDatepicker__time-list-item {
+  width: 50px;
+}
+
+.reactDatepicker__time {
+  overflow: hidden;
+  border-radius: 0 !important;
+}
+
+.date-picker__svg {
+  width: 14px;
+  height: 14px;
+  margin: auto 10px;
+  fill: var(--purple);
+}
+
+.reactDatepicker__header {
+  background-color: var(--purple-100);
+  border-color: var(--purple-100);
+  border-radius: 0;
+}
+
+.reactDatepicker__current-month, .reactDatepicker-time__header, .reactDatepicker__day-name, .reactDatepicker__time-name {
+  color: var(--white);
+}
+
+.reactDatepicker__navigation--next {
+  border-left-color: var(--white);
+}
+
+.reactDatepicker__navigation--next:hover {
+   border-left-color: var(--white);
+}
+
+.reactDatepicker__navigation--previous {
+  border-right-color: var(--white);
+}
+
+.reactDatepicker__navigation--previous:hover {
+  border-right-color: var(--white);
+}
+
+.reactDatepicker__day--keyboard-selected {
+  background-color: var(--purple-100);
+  transition: all 0.3s;
+}
+
+.reactDatepicker__day--keyboard-selected:hover {
+  background-color: var(--purple-100);
+}
+
+.reactDatepicker-popper[data-placement^="bottom"] .reactDatepicker__triangle {
+  border-bottom-color: var(--purple-100);
+  margin-top: -7px;
+}
+
+.reactDatepicker {
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.05);
+  display: inline-flex;
+  color: var(--white);
+  background-color: var(--blackSecondary);
+  border-radius: var(--rounded-lg);
+  transition: all .3s ease-in-out;
+  border: .3rem solid var(--black);
+  width: 100%;
+  font-size: var(--font-md);
+  height: var(--spacing-10);
+  padding: 0 var(--spacing-4);
+}
+
+.reactDatepicker__time-container {
+  border-left: 1px solid var(--purple);
+  width: 85px!important;
+}
+
+.reactDatepicker__time-box {
+  width: 85px !important;
+  border-radius: 0 !important;
+}
+
+.reactDatepicker__day--selected, .reactDatepicker__day--in-range, .reactDatepicker__time-list-item--selected {
+  background-color: var(--purple-100) !important;
+}
+
+.reactDatepicker__month-container, .reactDatepicker__time-list {
+  background-color: var(--black) !important;
+}
+
+.reactDatepicker__header, .reactDatepicker__day--selected, .reactDatepicker__time-list-item--selected, .reactDatepicker__day--keyboard-selected {
+  background-color: var(--purple-100) !important;
+  color: var(--white) !important;
+}
+
+.reactDatepicker__day--weekend, .reactDatepicker__day, .reactDatepicker__time-list {
+  color: var(--purple);
+}
+
+.reactDatepicker__day:hover, .reactDatepicker__time-list-item:hover {
+  background-color: var(--purple-100) !important;
+}
+
+.reactDatepicker__day--selected, .reactDatepicker__day--keyboard-selected {
+  background-color: var(--purple-100);
+  border-radius: 50%;
+}
+.reactDatepicker__day--selected:hover {
+  border-radius: 50%;
+}
+
+.reactDatepicker__day--keyboard-selected:hover {
+  background-color: var(--purple-100) !important;
+}
+
+.reactDatepicker__time-container .reactDatepicker__time .reactDatepicker__time-box ul.reactDatepicker__time-list li.reactDatepicker__time-list-item--selected {
+  background-color: var(--purple-100);
+}
+
+.reactDatepicker__month-text {
+  color: var(--purple);
+  transition: 0.3s;
+}
+.reactDatepicker__month-text:hover {
+  background-color: var(--purple-100)
+}
+
+.reactDatepicker__month-text--keyboard-selected {
+  background-color: var(--purple-100);
+  border-radius: 0.3rem;
+  transition: 0.3s;
+}
+
+.reactDatepicker__month-text--keyboard-selected:hover {
+  background-color: var(--purple-100);
+}
+
+.reactDatepicker-time__input {
+  outline-color: var(--purple-100);
+}
+
+.reactDatepicker-time__inpu::-webkit-calendar-picker-indicator {
+  filter: 'invert(1)';
+}
+
+.reactDatepicker-popper {
+  z-index: 100;
+}
+
+.reactDatepicker__close-icon:after {
+  background-color: var(--purple-100);
+}

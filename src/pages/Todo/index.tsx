@@ -45,8 +45,8 @@ export const TodoPage: FC = () => {
         break;
       case "dueDate":
         sortedTodos.sort((a, b) => {
-          let aDate = a.dueDate && a.dueDate !== "" ? new Date(a.dueDate) : new Date(a.createdAt);
-          let bDate = b.dueDate && b.dueDate !== "" ? new Date(b.dueDate) : new Date(b.createdAt);
+          let aDate = a.dueDateTime && a.dueDateTime !== "" ? new Date(a.dueDateTime) : new Date(a.createdAt);
+          let bDate = b.dueDateTime && b.dueDateTime !== "" ? new Date(b.dueDateTime) : new Date(b.createdAt);
           return bDate.getTime() - aDate.getTime();
         });
         break;

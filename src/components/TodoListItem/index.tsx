@@ -47,6 +47,14 @@ export const TodoListItem: FC<TodoListItemProps> = ({
   const auth = useAuth();
   const accessToken = auth.user?.access_token || "";
 
+  let displayDate = ""
+  let displayTime = ""
+  if (item.dueDateTime) {
+    const dd = new Date(item.dueDateTime);
+    displayDate = dd.toLocaleDateString();
+    displayTime = dd.toLocaleTimeString();
+  }
+
   return (
     <>
     {editFormOpen && (
@@ -90,12 +98,10 @@ export const TodoListItem: FC<TodoListItemProps> = ({
         </Box>
         <Box className={styles.additionalWrapper}>
           <Box className={styles.tagWrapper}>
-            {item.dueDate && (
+            {item.dueDateTime && (
               <Card color={"blackSecondary"} rounded={"lg"} p={"xs"} m={"xs"} className={styles.dueDateTag}>
-                {item.dueTime ? (
-                  <Text>Due: {item.dueDate} {item.dueTime}</Text>
-                ) : (
-                  <Text>Due Date: {item.dueDate}</Text>
+                {item.dueDateTime && (
+                  <Text>Due: {displayDate} {displayTime}</Text>
                 )}
               </Card>
             )}
