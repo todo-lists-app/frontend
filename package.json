@@ -33,7 +33,7 @@
     "@types/node": "^20.4.4",
     "@types/react": "^18.2.16",
     "@types/react-dom": "^18.2.7",
-    "bootstrap": "^5.3.0",
+    "bootstrap": "^5.3.1",
     "dracula-ui": "file:./vendor/dracula-ui",
     "final-form": "^4.20.9",
     "gravatar-url": "^4.0.1",
