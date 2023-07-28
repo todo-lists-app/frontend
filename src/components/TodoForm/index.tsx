@@ -8,6 +8,7 @@ import {DividerLine} from "../DividerLine";
 import {HandleAdd, HandleEdit} from "../../lib/ActionHandlers";
 import {useStorePersist} from "../../lib/storage";
 import {useAuth} from "react-oidc-context";
+import {DateTimePicker} from "../shared/DateTimePicker";
 
 interface TodoFormProps {
   modalRef?: React.RefObject<HTMLDivElement>;
@@ -50,10 +51,9 @@ export const TodoForm: FC<TodoFormProps> = ({
     const formData = {
       title: titleRef.current?.value,
       content: contentRef.current?.value,
-      dueDate: dueDateRef.current?.value,
       priority: priorityRef.current?.value,
-      dueTime: dueTimeRef.current?.value,
       parentId: parentItem?.id,
+      dueDateTime: dueDateTimeRef.current?.value
     } as TodoFormData;
     if (openCallback) {
       openCallback(false);
@@ -83,15 +83,13 @@ export const TodoForm: FC<TodoFormProps> = ({
 
   const titleRef = React.useRef<HTMLInputElement | null>(null);
   const contentRef = React.useRef<HTMLTextAreaElement | null>(null);
-  const dueDateRef = React.useRef<HTMLInputElement | null>(null);
   const priorityRef = React.useRef<HTMLSelectElement | null>(null);
-  const dueTimeRef = React.useRef<HTMLInputElement | null>(null);
+  const dueDateTimeRef = React.useRef<HTMLInputElement | null>(null);
 
   let priorityValue = "low";
   let titleValue = "";
   let contentValue = "";
-  let dueDateValue = "";
-  let dueTimeValue = "";
+  let dueDateTimeValue = new Date();
   let pageTitle = "Add Item";
   if (todoItem) {
     if (todoItem.priority) {
@@ -103,11 +101,8 @@ export const TodoForm: FC<TodoFormProps> = ({
     if (todoItem.content) {
       contentValue = todoItem.content;
     }
-    if (todoItem.dueDate) {
-      dueDateValue = todoItem.dueDate;
-    }
-    if (todoItem.dueTime) {
-      dueTimeValue = todoItem.dueTime;
+    if (todoItem.dueDateTime) {
+      dueDateTimeValue = new Date(todoItem.dueDateTime);
     }
     pageTitle = "Edit Item";
   }
@@ -139,8 +134,10 @@ export const TodoForm: FC<TodoFormProps> = ({
             </Select>
 
             <DividerLine title={"Due Date (optional)"} />
-            <Input type={"date"} name={"dueDate"} m={"xs"} title={"Due Date"} ref={dueDateRef} defaultValue={dueDateValue} color={"white"} />
-            <Input type={"time"} name={"dueTime"} m={"xs"} title={"dueTime"} ref={dueTimeRef} defaultValue={dueTimeValue} color={"white"} />
+            <DateTimePicker
+              name="dueDateTime"
+              dateTime={dueDateTimeValue}
+              ref={dueDateTimeRef} />
 
             <Box className={styles.formButtons}>
               <Button type="submit" m={"sm"} color={"purple"}>Submit</Button>

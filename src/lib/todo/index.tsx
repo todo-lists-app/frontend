@@ -10,8 +10,7 @@ export interface TodoItem {
   createdAt: string;
 
   archived?: boolean;
-  dueDate?: string;
-  dueTime?: string;
+  dueDateTime?: string;
   content?: string;
   updatedAt?: string;
 
@@ -27,8 +26,7 @@ export type TodoFormData = {
   id?: string;
   title: string;
   content?: string;
-  dueDate?: string;
-  dueTime?: string;
+  dueDateTime?: string;
   parentId?: string;
   priority?: keyof typeof priorities;
 }
@@ -53,18 +51,11 @@ export const AddItemToList = (
     formData.priority = "low";
   }
 
-  if (formData.dueTime !== undefined) {
-    if (formData.dueDate === undefined) {
-      formData.dueDate = new Date().toISOString();
-    }
-  }
-
   let newTodo: TodoItem = {
     id: Math.random().toString(36).substring(2, 15),
     title: formData.title,
     content: formData.content,
-    dueDate: formData.dueDate,
-    dueTime: formData.dueTime,
+    dueDateTime: formData.dueDateTime,
     priority: formData.priority,
     completed: false,
     createdAt: new Date().toISOString(),
@@ -91,14 +82,8 @@ export const UpdateItemInList = (
   if (formData.priority !== undefined) {
     item.priority = formData.priority
   }
-  if (formData.dueDate !== undefined) {
-    item.dueDate = formData.dueDate
-  }
-  if (formData.dueTime !== undefined) {
-    item.dueTime = formData.dueTime
-    if (item.dueDate === undefined) {
-      item.dueDate = new Date().toISOString()
-    }
+  if (formData.dueDateTime !== undefined) {
+    item.dueDateTime = formData.dueDateTime
   }
   item.updatedAt = new Date().toISOString()
   setTodos({...todos, items: todos.items.map(i => i.id === item.id ? item : i)})
