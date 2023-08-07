@@ -53,7 +53,10 @@ export const appConfig: AppConfig = {
       "filterByCompleteDate": false,
       "filterByUpdatedDate": true,
 
-      "subTasks": true,
+      "subTasks": true
+    },
+    "export": {
+      "todotxt": false,
     },
     "account": {
       "login": true,
