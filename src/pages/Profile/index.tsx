@@ -7,11 +7,12 @@ import {
   arrayBufferToBase64,
   base64ToArrayBuffer,
   base64ToUint8Array, decryptData,
-  encryptData,
+  encryptData, getEncryptedData,
   uint8ArrayToBase64
 } from "../../lib/cryption";
 import {appConfig, isFeatureImplemented} from "../../app.config";
 import styles from "./profile.module.css"
+import {useStorePersist} from "../../lib/storage";
 
 export const Profile: FC = () => {
   let tabDefault: "activity" | "settings" = "activity";
@@ -23,20 +24,29 @@ export const Profile: FC = () => {
   }
   const [activeTab, setActiveTab] = useState(tabDefault);
   const [confirmOpen, setConfirmOpen] = useState(false);
+  const [confirmText, setConfirmText] = useState("");
 
   const auth = useAuth();
   const avatarName = auth?.user?.profile?.preferred_username || "Unknown Name";
   const profileEmail = auth?.user?.profile?.email || "unknown@email";
+
+  const [todos, setTodos] = useState<TodoList>({items: []});
+  const {UserSubject, setUserSubject, Salt, setSalt} = useStorePersist();
+  // useEffect(() => {
+  //   setUserSubject(auth?.user?.profile.sub || "");
+  //   let accessToken = auth.user?.access_token || "";
+  //   getEncryptedData(accessToken, UserSubject, Salt, setTodos, setSalt);
+  // }, [auth, Salt, UserSubject, setSalt, setUserSubject]);
 
   return (
     <>
       {confirmOpen && (
         <Box className={styles.confirmBox}>
           <Heading>Are you sure?</Heading>
-          <Text>Are you sure you want to delete your account? This action cannot be undone.</Text>
+          <Text>{confirmText}</Text>
           <Box className={styles.confirmButtons}>
             <Button color={"green"} onClick={() => setConfirmOpen(false)}>Cancel</Button>
-            <Button color={"red"} onClick={() => setConfirmOpen(false)}>Delete</Button>
+            <Button color={"red"} onClick={() => setConfirmOpen(false)}>Confirm</Button>
           </Box>
         </Box>
       )}
@@ -109,14 +119,28 @@ export const Profile: FC = () => {
                     <Box className={styles.profileContentBoxHeader}>
                       <Heading className={styles.profileContentBoxHeaderTitle}>Settings</Heading>
 
-                      <Box p={"md"}>
-                        <Button color={"red"} onClick={() => {
-                          setConfirmOpen(true);
-                          setTimeout(() => {
-                            setConfirmOpen(false);
-                          }, 5000);
-                        }}>Delete Account</Button>
-                      </Box>
+                      {isFeatureImplemented({featureSet: "account", featureName: "delete"}) && (
+                        <Box p={"md"}>
+                          <Button color={"red"} onClick={() => {
+                            setConfirmOpen(true);
+                            setConfirmText("Are you sure you want to delete your account? This action cannot be undone.")
+                            setTimeout(() => {
+                              setConfirmOpen(false);
+                            }, 5000);
+                          }}>Delete Account</Button>
+                        </Box>
+                      )}
+                      {isFeatureImplemented({featureSet: "export", featureName: "todotxt"}) && (
+                        <Box p={"md"}>
+                          <Button color={"purple"} onClick={() => {
+                            setConfirmOpen(true);
+                            setConfirmText("Are you sure you want to export your data?");
+                            setTimeout(() => {
+                              setConfirmOpen(false);
+                            }, 5000);
+                          }}>Export Data in todo.txt format</Button>
+                        </Box>
+                      )}
                     </Box>
                   </Box>
                 )}

@@ -1,6 +1,6 @@
 import React, {FC, useEffect, useMemo, useState} from "react";
 import {TodoItem, TodoList, UpdateList} from "../../lib/todo";
-import {getEncryptedData} from "../../lib/cryption";
+import {getEncryptedListData} from "../../lib/cryption";
 import {TodoForm} from "../../components/TodoForm";
 import {useStorePersist} from "../../lib/storage";
 import {useNavigate} from "react-router-dom";
@@ -22,7 +22,7 @@ export const TaskPage: FC = () => {
   const [passwordAttempted, setPasswordAttempted] = useState<boolean>(false);
 
   useEffect(() => {
-    getEncryptedData(accessToken, UserSubject, Salt, setTasks, setSalt, setPasswordAttempted);
+    getEncryptedListData(accessToken, UserSubject, Salt, setTasks, setSalt, setPasswordAttempted);
   }, [accessToken, UserSubject, Salt, setSalt]);
   const filteredTask = useMemo(() => {
     for (let i = 0; i < tasks.items.length; i++) {

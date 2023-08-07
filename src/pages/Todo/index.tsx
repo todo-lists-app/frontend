@@ -10,7 +10,7 @@ import {DividerLine} from "../../components/DividerLine";
 import {SortItems} from "../../components/SortItems";
 import {FilterItems} from "../../components/FilterItems";
 import styles from "./Todo.module.css";
-import {getEncryptedData} from "../../lib/cryption";
+import {getEncryptedListData} from "../../lib/cryption";
 import {useStorePersist} from "../../lib/storage";
 
 export const TodoPage: FC = () => {
@@ -72,7 +72,7 @@ export const TodoPage: FC = () => {
   useEffect(() => {
     setUserSubject(auth?.user?.profile.sub || "");
     let accessToken = auth.user?.access_token || "";
-    getEncryptedData(accessToken, UserSubject, Salt, setTodos, setSalt, setPasswordAttempted);
+    getEncryptedListData(accessToken, UserSubject, Salt, setTodos, setSalt, setPasswordAttempted);
   }, [auth, Salt, UserSubject, setSalt, setUserSubject, setPasswordAttempted]);
 
   const handleSaltFormSubmit = () => {

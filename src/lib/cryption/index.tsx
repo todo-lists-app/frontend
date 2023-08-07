@@ -98,7 +98,28 @@ function base64ToUint8Array(base64: string) {
   return bytes;
 }
 
-function getEncryptedData(
+function getEncryptedData(accessToken: string, subject: string, dataLocation: string) {
+  fetch(`${appConfig.services.api}/${dataLocation}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-User-Subject': subject,
+      'X-User-Access-Token': accessToken,
+    }
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.data === "" || data.data === undefined) {
+        return;
+      }
+      return data.data
+    })
+    .catch(err => {
+      console.error("fetch list error", err)
+    })
+}
+
+function getEncryptedListData(
                             accessToken: string,
                             subject: string,
                             salt: string,
@@ -151,5 +172,6 @@ export {
   base64ToArrayBuffer,
   uint8ArrayToBase64,
   base64ToUint8Array,
-  getEncryptedData
+  getEncryptedData,
+  getEncryptedListData,
 };
