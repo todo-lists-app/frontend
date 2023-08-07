@@ -99,7 +99,7 @@ function base64ToUint8Array(base64: string) {
 }
 
 function getEncryptedData(accessToken: string, subject: string, dataLocation: string) {
-  fetch(`${appConfig.services.api}/${dataLocation}`, {
+ return fetch(`${appConfig.services.api}/${dataLocation}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ function getEncryptedData(accessToken: string, subject: string, dataLocation: st
       if (data.data === "" || data.data === undefined) {
         return;
       }
-      return data.data
+      return data
     })
     .catch(err => {
       console.error("fetch list error", err)
@@ -133,36 +133,27 @@ function getEncryptedListData(
     return;
   }
 
-  fetch(appConfig.services.api + `/list`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-User-Subject': subject,
-      'X-User-Access-Token': accessToken,
-    }
-  }).then(res => res.json())
-    .then(data => {
-      if (data.data === "" || data.data === undefined) {
-        return;
-      }
-      // console.log("decrypting data", data);
-      decryptData(subject, salt, base64ToArrayBuffer(data.data), base64ToUint8Array(data.iv)).then((decryptedData) => {
-        dataLocation(decryptedData)
-      }).catch(err => {
-        if (err instanceof DOMException) {
-          if (err.message.includes('operation-specific reason')) {
-            console.error("data failed to decrypt")
+  getEncryptedData(accessToken, subject, "list")
+    .then((data) => {
+      decryptData(subject, salt, base64ToArrayBuffer(data.data), base64ToUint8Array(data.iv))
+        .then((decryptedData) => {
+          dataLocation(decryptedData)
+        })
+        .catch(err => {
+          if (err instanceof DOMException) {
+            if (err.message.includes('operation-specific reason')) {
+              console.error("data failed to decrypt")
+            }
+          } else {
+            console.error("decrypt error", err)
           }
-        } else {
-          console.error("decrypt error", err)
-        }
-        saltDeclare('')
-        passwordAttempted(true)
-      })
-  })
-  .catch(err => {
-    console.error("fetch list error", err)
-  });
+          saltDeclare('')
+          passwordAttempted(true)
+        })
+    })
+    .catch(err => {
+      console.error("fetch list error", err)
+    })
 }
 
 export {
