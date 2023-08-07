@@ -130,16 +130,18 @@ function getEncryptedData(
       }).catch(err => {
         if (err instanceof DOMException) {
           if (err.message.includes('operation-specific reason')) {
-            console.log("data failed to decrypt")
+            console.error("data failed to decrypt")
           }
         } else {
-          console.log("decrypt error", err)
+          console.error("decrypt error", err)
         }
         saltDeclare('')
         passwordAttempted(true)
       })
   })
-  .catch(err => console.log("fetch list error", err));
+  .catch(err => {
+    console.error("fetch list error", err)
+  });
 }
 
 export {

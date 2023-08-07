@@ -12,3 +12,41 @@ body {
   padding: 10px;
   flex-shrink: 0;
 }
+
+.react-datepicker, .react-datepicker__header {
+  background-color: var(--blackSecondary);
+  border: 1px solid var(--purple);
+}
+.react-datepicker__navigation {
+  background-color: var(--blackSecondary);
+}
+.react-datepicker__time {
+  background: var(--blackSecondary);
+}
+.react-datepicker__time-container {
+  border-left: 1px solid var(--purple);
+  background: var(--blackSecondary);
+}
+.react-datepicker__time {
+  background: var(--blackSecondary) !important;
+}
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item:hover {
+  background-color: var(--purple);
+}
+.react-datepicker__day--selected {
+  background-color: var(--green);
+  color: var(--black);
+}
+.react-datepicker__day:hover {
+  background-color: var(--purple);
+  color: var(--black);
+}
+.react-datepicker-popper[data-placement^=top] .react-datepicker__triangle::before, .react-datepicker-popper[data-placement^=top] .react-datepicker__triangle::after {
+  border-top-color: var(--purple);
+}
+.react-datepicker__navigation-icon::before {
+  border-color: var(--purple);
+}
+.react-datepicker__navigation:hover *::before {
+  border-color: var(--green);
+}
