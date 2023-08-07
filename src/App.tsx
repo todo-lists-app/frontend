@@ -13,7 +13,6 @@ import {Apps} from "./pages/Apps";
 import {About} from "./pages/Company/About";
 import {Contact} from "./pages/Company/Contact";
 import {Careers} from "./pages/Company/Careers";
-import {Settings} from "./pages/Settings";
 import {Profile} from "./pages/Profile";
 import {TaskPage} from "./pages/Task";
 import usePushNotifications from "./hooks/pushNotifications";
@@ -46,7 +45,6 @@ const App: FC = () => {
           <Route path="/policy/security" element={<Security />} />
           <Route path="/policy/terms" element={<Terms />} />
           <Route path="/apps" element={<Apps />} />
-          <Route path="/settings" element={<Settings />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/task" element={<TaskPage />} />
         </Routes>
