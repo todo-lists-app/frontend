@@ -1638,10 +1638,10 @@
   dependencies:
     "@swc/helpers" "^0.4.14"
 
-"@remix-run/router@1.7.2":
-  version "1.7.2"
-  resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.7.2.tgz#cba1cf0a04bc04cb66027c51fa600e9cbc388bc8"
-  integrity sha512-7Lcn7IqGMV+vizMPoEl5F0XDshcdDYtMI6uJLQdQz5CfZAwy3vvGKYSUk789qndt5dEC4HfSjviSYlSoHGL2+A==
+"@remix-run/router@1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.8.0.tgz#e848d2f669f601544df15ce2a313955e4bf0bafc"
+  integrity sha512-mrfKqIHnSZRyIzBcanNJmVQELTnX+qagEDlcKO90RgRBVOZGSGvZKeDihTRfWcqoDn5N/NkUcwWTccnpN18Tfg==
 
 "@restart/hooks@^0.4.9":
   version "0.4.9"
@@ -2062,10 +2062,10 @@
   resolved "https://registry.npmjs.org/@types/ms/-/ms-0.7.31.tgz"
   integrity sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==
 
-"@types/node@*", "@types/node@^20.4.7":
-  version "20.4.7"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.4.7.tgz#74d323a93f1391a63477b27b9aec56669c98b2ab"
-  integrity sha512-bUBrPjEry2QUTsnuEjzjbS7voGWCc30W0qzgMf90GPeDGFRakvrz47ju+oqDAKCXLUCe39u57/ORMl/O/04/9g==
+"@types/node@*", "@types/node@^20.4.9":
+  version "20.4.9"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.4.9.tgz#c7164e0f8d3f12dfae336af0b1f7fdec8c6b204f"
+  integrity sha512-8e2HYcg7ohnTUbHk8focoklEQYvemQmu9M/f43DZVx43kHn0tE3BY/6gSDxS7k0SprtS0NHvj+L80cGLnoOUcQ==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -2121,10 +2121,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@>=16.9.11", "@types/react@^18.2.18":
-  version "18.2.18"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.18.tgz#c8b233919eef1bdc294f6f34b37f9727ad677516"
-  integrity sha512-da4NTSeBv/P34xoZPhtcLkmZuJ+oYaCxHmyHzwaDQo9RQPBeXV+06gEk2FpqEcsX9XrnNLvRpVh6bdavDSjtiQ==
+"@types/react@*", "@types/react@>=16.9.11", "@types/react@^18.2.20":
+  version "18.2.20"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.20.tgz#1605557a83df5c8a2cc4eeb743b3dfc0eb6aaeb2"
+  integrity sha512-WKNtmsLWJM/3D5mG4U84cysVY31ivmyw85dE84fOCk5Hx78wezB/XEjVPWl2JTZ5FkEeaTJf+VgUAUn3PE7Isw==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -6080,10 +6080,10 @@ jiti@^1.18.2:
   resolved "https://registry.npmjs.org/jiti/-/jiti-1.18.2.tgz"
   integrity sha512-QAdOptna2NYiSSpv0O/BwoHBSmz4YhpzJHyi+fnMRTXFjp7B8i/YG5Z8IfusxB1ufjcD2Sre1F3R+nX3fvy7gg==
 
-jotai@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/jotai/-/jotai-2.2.3.tgz#4dd9f429e9cd23d81f08a6b1492931db05ccf79f"
-  integrity sha512-E3tTBb2CKwjAJKUJYVV6rKM8zxmpsPMedRclRnI2RgLzkvgDEH6mhtZPVesxIoixJ8p7949RWd8eo/8TqDDFDA==
+jotai@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/jotai/-/jotai-2.3.1.tgz#0bd43f4c89cf557cfea5414bf3c8b6792202c354"
+  integrity sha512-pXhx8/MeRUAHbzayerEUf9NHvP+Ba3q9WAvIMjaSwwuSCKEFhb8UW4XuZPC+Bv4u2ufvlyrxIZ+vy5UJ3f8JsQ==
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
@@ -8209,10 +8209,10 @@ react-final-form@^6.5.9:
   dependencies:
     "@babel/runtime" "^7.15.4"
 
-react-hook-form@^7.45.2:
-  version "7.45.2"
-  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.45.2.tgz#c757f3d5e633ccb186443d57c10fc511df35721a"
-  integrity sha512-9s45OdTaKN+4NSTbXVqeDITd/nwIg++nxJGL8+OD5uf1DxvhsXQ641kaYHk5K28cpIOTYm71O/fYk7rFaygb3A==
+react-hook-form@^7.45.4:
+  version "7.45.4"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.45.4.tgz#73d228b704026ae95d7e5f7b207a681b173ec62a"
+  integrity sha512-HGDV1JOOBPZj10LB3+OZgfDBTn+IeEsNOKiq/cxbQAIbKaiJUe/KV8DBUzsx0Gx/7IG/orWqRRm736JwOfUSWQ==
 
 react-is@^16.13.1, react-is@^16.3.2:
   version "16.13.1"
@@ -8278,20 +8278,20 @@ react-refresh@^0.11.0:
   resolved "https://registry.npmjs.org/react-refresh/-/react-refresh-0.11.0.tgz"
   integrity sha512-F27qZr8uUqwhWZboondsPx8tnC3Ct3SxZA3V5WyEvujRyyNv0VYPhoBg1gZ8/MV5tubQp76Trw8lTv9hzRBa+A==
 
-react-router-dom@^6.14.2:
-  version "6.14.2"
-  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.14.2.tgz#88f520118b91aa60233bd08dbd3fdcaea3a68488"
-  integrity sha512-5pWX0jdKR48XFZBuJqHosX3AAHjRAzygouMTyimnBPOLdY3WjzUSKhus2FVMihUFWzeLebDgr4r8UeQFAct7Bg==
+react-router-dom@^6.15.0:
+  version "6.15.0"
+  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.15.0.tgz#6da7db61e56797266fbbef0d5e324d6ac443ee40"
+  integrity sha512-aR42t0fs7brintwBGAv2+mGlCtgtFQeOzK0BM1/OiqEzRejOZtpMZepvgkscpMUnKb8YO84G7s3LsHnnDNonbQ==
   dependencies:
-    "@remix-run/router" "1.7.2"
-    react-router "6.14.2"
+    "@remix-run/router" "1.8.0"
+    react-router "6.15.0"
 
-react-router@6.14.2:
-  version "6.14.2"
-  resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.14.2.tgz#1f60994d8c369de7b8ba7a78d8f7ec23df76b300"
-  integrity sha512-09Zss2dE2z+T1D03IheqAFtK4UzQyX8nFPWx6jkwdYzGLXd5ie06A6ezS2fO6zJfEb/SpG6UocN2O1hfD+2urQ==
+react-router@6.15.0:
+  version "6.15.0"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.15.0.tgz#bf2cb5a4a7ed57f074d4ea88db0d95033f39cac8"
+  integrity sha512-NIytlzvzLwJkCQj2HLefmeakxxWHWAP+02EGqWEZy+DgfHHKQMUoBBjUQLOtFInBMhWtb3hiUy6MfFgwLjXhqg==
   dependencies:
-    "@remix-run/router" "1.7.2"
+    "@remix-run/router" "1.8.0"
 
 react-scripts@^5.0.1:
   version "5.0.1"
@@ -10286,10 +10286,10 @@ yocto-queue@^0.1.0:
   resolved "https://registry.npmjs.org/yocto-queue/-/yocto-queue-0.1.0.tgz"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-zustand@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/zustand/-/zustand-4.4.0.tgz#13b3e8ca959dd53d536034440aec382ff91b65c3"
-  integrity sha512-2dq6wq4dSxbiPTamGar0NlIG/av0wpyWZJGeQYtUOLegIUvhM2Bf86ekPlmgpUtS5uR7HyetSiktYrGsdsyZgQ==
+zustand@^4.4.1:
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/zustand/-/zustand-4.4.1.tgz#0cd3a3e4756f21811bd956418fdc686877e8b3b0"
+  integrity sha512-QCPfstAS4EBiTQzlaGP1gmorkh/UL1Leaj2tdj+zZCZ/9bm0WS7sI2wnfD5lpOszFqWJ1DcPnGoY8RDL61uokw==
   dependencies:
     use-sync-external-store "1.2.0"
 
