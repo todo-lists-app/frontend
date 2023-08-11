@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState} from "react";
-import {Col, Row, Container, Nav} from "react-bootstrap";
+import {Col, Row, Container} from "react-bootstrap";
 import {Box, Heading, Avatar, Text, Tabs, Button} from "dracula-ui";
-import {TodoItem, TodoList} from "../../lib/todo";
+import {TodoList} from "../../lib/todo";
 import {useAuth} from "react-oidc-context";
 import {
   arrayBufferToBase64,
@@ -10,7 +10,7 @@ import {
   encryptData, getEncryptedData,
   uint8ArrayToBase64
 } from "../../lib/cryption";
-import {appConfig, isFeatureImplemented} from "../../app.config";
+import {isFeatureImplemented} from "../../app.config";
 import styles from "./profile.module.css"
 import {useStorePersist} from "../../lib/storage";
 

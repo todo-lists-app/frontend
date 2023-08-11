@@ -1,4 +1,4 @@
-import React, {FC, useState, useImperativeHandle} from 'react';
+import React, {useState, useImperativeHandle} from 'react';
 import DatePicker from "react-datepicker";
 import {Box} from "dracula-ui";
 import "react-datepicker/dist/react-datepicker.css";

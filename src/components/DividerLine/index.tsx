@@ -18,14 +18,16 @@ export const DividerLine: FC<DividerLineProps> = ({
                                                     initialShow}) => {
   const [show, setShow] = React.useState(initialShow);
 
+  const styleColor = color ? { backgroundColor: color } : {};
+
   return (
     <Col md={12}>
       <div className={styles.divider}>
-        <div className={styles.dividerLine}></div>
+        <div className={styles.dividerLine} style={styleColor}></div>
         {title && (
           <div className={styles.dividerTitle}>{title}</div>
         )}
-        <div className={styles.dividerLine}></div>
+        <div className={styles.dividerLine} style={styleColor}></div>
         {hideCallback && (
           <div className={styles.hideOption} onClick={() => {
             setShow(!show)
