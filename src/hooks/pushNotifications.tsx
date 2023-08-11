@@ -55,7 +55,9 @@ const usePushNotifications = (subject: string) => {
               }
             });
           } else {
-            registration.update();
+            registration.update().catch(function(e) {
+                console.error('An error ocurred during the update process.', e);
+            });
           }
         });
       })

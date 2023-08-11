@@ -35,7 +35,9 @@ export async function askUserPermission() {
  */
 export function sendNotification(title: string, options: NotificationOptions) {
   navigator.serviceWorker.ready.then(function(serviceWorker) {
-    serviceWorker.showNotification(title, options);
+    serviceWorker.showNotification(title, options).catch((err) => {
+        console.error(err);
+    });
   });
 }
 

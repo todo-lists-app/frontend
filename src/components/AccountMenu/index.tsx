@@ -55,7 +55,9 @@ export const AccountMenu: FC = () => {
               <li className={styles.accountItems}>
                 <Button color="pink" size="sm" onClick={() => {
                   setSalt("");
-                  auth.signoutSilent()
+                  auth.signoutSilent().catch((err) => {
+                    console.error(err);
+                  })
                 }}>
                   <FontAwesomeIcon icon={faRightFromBracket} />&nbsp;Logout
                 </Button>
