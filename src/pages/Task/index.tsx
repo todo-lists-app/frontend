@@ -30,7 +30,7 @@ export const TaskPage: FC = () => {
         return tasks.items[i];
       }
     }
-  }, [tasks.items[i].id, tasks.items])
+  }, [taskId, tasks.items])
 
   function handleComplete(todoItem: TodoItem) {
     HandleComplete(todoItem, tasks, accessToken, UserSubject, Salt);
