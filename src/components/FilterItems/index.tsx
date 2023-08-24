@@ -9,7 +9,6 @@ export const FilterItems: FC<FilterItemsProps> = ({filterCallback}) => {
   return(
     <>
       <Box m={"sm"}>
-        <Divider color={"orange"} />
         <Heading size={"xl"} p={"xs"}>
           <Text m={"sm"} color={"white"}>Priority</Text>
         </Heading>
