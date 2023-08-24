@@ -8255,10 +8255,10 @@ react-markdown@^8.0.7:
     unist-util-visit "^4.0.0"
     vfile "^5.0.0"
 
-react-oidc-context@^2.2.2:
-  version "2.2.2"
-  resolved "https://registry.npmjs.org/react-oidc-context/-/react-oidc-context-2.2.2.tgz"
-  integrity sha512-rke8goKuxxQhSAR11h8wVn56m7kEa1mcAfYDlIycsIgmbZOFzKA0Un0y0RodHZ/M/CG6u0JD1I8RKZHqRJjWnA==
+react-oidc-context@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-oidc-context/-/react-oidc-context-2.3.0.tgz#9154d9d2532fe8838e9de1a81efb193607c51cd1"
+  integrity sha512-xT8HOliaQ3H2Q+1+nppAyOX9TlhC+ZXWkR5UDHPEfIZU+yJou1JGypUWPn1SMeFhhzovT+K7IP71/9ahVCL0+g==
 
 react-onclickoutside@^6.12.2:
   version "6.13.0"
