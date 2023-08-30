@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import {Box, Divider, Heading, Radio, Text} from "dracula-ui";
+import {Box, Heading, Radio, Text} from "dracula-ui";
 
 interface FilterItemsProps {
   filterCallback?: (filter: string) => void;
@@ -9,7 +9,6 @@ export const FilterItems: FC<FilterItemsProps> = ({filterCallback}) => {
   return(
     <>
       <Box m={"sm"}>
-        <Divider color={"orange"} />
         <Heading size={"xl"} p={"xs"}>
           <Text m={"sm"} color={"white"}>Priority</Text>
         </Heading>
