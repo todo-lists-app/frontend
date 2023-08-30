@@ -59,6 +59,10 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           push: true
+          build-args:
+            VERSION=${{ steps.meta.outputs.tags }}
+            BUILD=${{ github.sha }}
+            SERVICE_NAME=frontend
 #  deploy:
 #    runs-on: ubuntu-latest
 #    needs: build
