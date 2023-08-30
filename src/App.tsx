@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import {useAuth} from "react-oidc-context";
+import React, {FC, useEffect} from "react";
+import {hasAuthParams, useAuth} from "react-oidc-context";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import 'dracula-ui/styles/dracula-ui.css';
 

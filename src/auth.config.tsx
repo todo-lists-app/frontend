@@ -1,5 +1,5 @@
 import {AuthProviderProps} from "react-oidc-context";
-import {User} from "oidc-client-ts";
+import {User, WebStorageStateStore} from "oidc-client-ts";
 
 const signinCallback = (_user: User | void ) => {
   window.history.replaceState({}, document.title, window.location.pathname);
@@ -11,4 +11,5 @@ export const oidcConfig = {
   client_secret: process.env.REACT_APP_KEYCLOAK_CLIENT_SECRET,
   redirect_uri: window.location.origin,
   onSigninCallback: signinCallback,
+  userStore: new WebStorageStateStore({ store: window.localStorage })
 } as AuthProviderProps;
