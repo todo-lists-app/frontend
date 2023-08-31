@@ -108,6 +108,8 @@ export const TodoPage: FC = () => {
     return filteredItems
   }, [todos.items, priorityFilter])
 
+  console.log("todos", todos)
+
   return (
     <>
       <Heading m={"md"}>Todo List</Heading>

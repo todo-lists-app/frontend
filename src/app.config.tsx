@@ -56,7 +56,7 @@ export const appConfig: AppConfig = {
       "subTasks": true
     },
     "export": {
-      "todotxt": false,
+      "todotxt": true,
     },
     "account": {
       "login": true,

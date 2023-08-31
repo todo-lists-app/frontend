@@ -3,16 +3,12 @@ import {Col, Row, Container} from "react-bootstrap";
 import {Box, Heading, Avatar, Text, Tabs, Button} from "dracula-ui";
 import {TodoList} from "../../lib/todo";
 import {useAuth} from "react-oidc-context";
-import {
-  arrayBufferToBase64,
-  base64ToArrayBuffer,
-  base64ToUint8Array, decryptData,
-  encryptData, getEncryptedData,
-  uint8ArrayToBase64
-} from "../../lib/cryption";
 import {isFeatureImplemented} from "../../app.config";
 import styles from "./profile.module.css"
 import {useStorePersist} from "../../lib/storage";
+import {base64ToArrayBuffer, base64ToUint8Array, decryptData, getEncryptedData} from "../../lib/cryption";
+import {convertJsonToTodoTxt} from "../../lib/exports/todotxt";
+import * as fs from "fs";
 
 export const Profile: FC = () => {
   let tabDefault: "activity" | "settings" = "activity";
@@ -25,18 +21,67 @@ export const Profile: FC = () => {
   const [activeTab, setActiveTab] = useState(tabDefault);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [confirmText, setConfirmText] = useState("");
+  const [exportTodoTxt, setExportTodoTxt] = useState(false);
+  const [doExportTodoTxt, setDoExportTodoTxt] = useState(false);
 
   const auth = useAuth();
   const avatarName = auth?.user?.profile?.preferred_username || "Unknown Name";
   const profileEmail = auth?.user?.profile?.email || "unknown@email";
+  const accessToken = auth.user?.access_token || "";
 
   const [todos, setTodos] = useState<TodoList>({items: []});
-  const {UserSubject, setUserSubject, Salt, setSalt} = useStorePersist();
-  // useEffect(() => {
-  //   setUserSubject(auth?.user?.profile.sub || "");
-  //   let accessToken = auth.user?.access_token || "";
-  //   getEncryptedData(accessToken, UserSubject, Salt, setTodos, setSalt);
-  // }, [auth, Salt, UserSubject, setSalt, setUserSubject]);
+  const {UserSubject, Salt} = useStorePersist();
+
+  useEffect(() => {
+    if (doExportTodoTxt) {
+      getEncryptedData(accessToken, UserSubject, "list")
+        .then((data) => {
+          decryptData(UserSubject, Salt, base64ToArrayBuffer(data.data), base64ToUint8Array(data.iv))
+            .then((decryptedData) => {
+              let todoTxt: string = "";
+              for (let i = 0; i < decryptedData.items.length; i++) {
+                todoTxt += convertJsonToTodoTxt(decryptedData.items[i]) + "\n";
+              }
+              const now = new Date();
+
+              const year = now.getFullYear();
+              const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed in JavaScript
+              const day = String(now.getDate()).padStart(2, '0');
+              const hours = String(now.getHours()).padStart(2, '0');
+              const minutes = String(now.getMinutes()).padStart(2, '0');
+
+              const formattedDate = `${year}-${month}-${day}_${hours}-${minutes}`;
+              const download = new Blob([todoTxt], {type: 'text/plain'});
+              const url = window.URL.createObjectURL(download);
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = "todo_" + formattedDate + ".txt";
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+              URL.revokeObjectURL(url);
+            })
+            .catch(err => {
+              if (err instanceof DOMException) {
+                if (err.message.includes('operation-specific reason')) {
+                  console.error("data failed to decrypt")
+                  setDoExportTodoTxt(false)
+                  setExportTodoTxt(false)
+                }
+              } else {
+                console.error("decrypt error", err)
+                setDoExportTodoTxt(false)
+                setExportTodoTxt(false)
+              }
+            })
+        })
+        .catch(err => {
+          console.error("fetch list error", err)
+          setDoExportTodoTxt(false)
+          setExportTodoTxt(false)
+        })
+    }
+  }, [Salt, UserSubject, accessToken, setTodos, doExportTodoTxt])
 
   return (
     <>
@@ -45,8 +90,17 @@ export const Profile: FC = () => {
           <Heading>Are you sure?</Heading>
           <Text>{confirmText}</Text>
           <Box className={styles.confirmButtons}>
-            <Button color={"green"} onClick={() => setConfirmOpen(false)}>Cancel</Button>
-            <Button color={"red"} onClick={() => setConfirmOpen(false)}>Confirm</Button>
+            <Button color={"green"} onClick={() => {
+              setConfirmOpen(false)
+              if (exportTodoTxt) {
+                setDoExportTodoTxt(true)
+              }
+            }}>Confirm</Button>
+            <Button color={"red"} onClick={() => {
+              setConfirmOpen(false)
+              setExportTodoTxt(false)
+              setExportTodoTxt(false)
+            }}>Cancel</Button>
           </Box>
         </Box>
       )}
@@ -135,8 +189,10 @@ export const Profile: FC = () => {
                           <Button color={"purple"} onClick={() => {
                             setConfirmOpen(true);
                             setConfirmText("Are you sure you want to export your data?");
+                            setExportTodoTxt(true)
                             setTimeout(() => {
-                              setConfirmOpen(false);
+                              setConfirmOpen(false)
+                              setExportTodoTxt(false)
                             }, 5000);
                           }}>Export Data in todo.txt format</Button>
                         </Box>

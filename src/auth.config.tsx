@@ -11,5 +11,5 @@ export const oidcConfig = {
   client_secret: process.env.REACT_APP_KEYCLOAK_CLIENT_SECRET,
   redirect_uri: window.location.origin,
   onSigninCallback: signinCallback,
-  userStore: new WebStorageStateStore({ store: window.localStorage })
+  userStore: new WebStorageStateStore({ store: window.localStorage }),
 } as AuthProviderProps;
