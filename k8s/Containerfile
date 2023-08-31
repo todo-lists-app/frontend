@@ -7,7 +7,6 @@ WORKDIR /frontend
 COPY vendor ./vendor
 COPY package*.json ./
 COPY yarn.lock ./
-RUN yarn config set registry https://
 RUN yarn install
 
 # Build
