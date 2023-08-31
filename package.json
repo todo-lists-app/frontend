@@ -36,7 +36,6 @@
     "@types/react-dom": "^18.2.7",
     "bootstrap": "^5.3.1",
     "dracula-ui": "file:./vendor/dracula-ui",
-    "date-fns": "file:./vendor/date-fns-2.30.0.tgz",
     "final-form": "^4.20.10",
     "gravatar-url": "^4.0.1",
     "jotai": "^2.4.0",
