@@ -3,7 +3,7 @@ import {Col, Row, Container} from "react-bootstrap";
 import {Box, Heading, Avatar, Text, Tabs, Button} from "dracula-ui";
 import {TodoList} from "../../lib/todo";
 import {useAuth} from "react-oidc-context";
-import {isFeatureImplemented} from "../../app.config";
+import {appConfig, isFeatureImplemented} from "../../app.config";
 import styles from "./profile.module.css"
 import {useStorePersist} from "../../lib/storage";
 import {base64ToArrayBuffer, base64ToUint8Array, decryptData, getEncryptedData} from "../../lib/cryption";
@@ -23,11 +23,14 @@ export const Profile: FC = () => {
   const [confirmText, setConfirmText] = useState("");
   const [exportTodoTxt, setExportTodoTxt] = useState(false);
   const [doExportTodoTxt, setDoExportTodoTxt] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [doDeleteAccount, setDoDeleteAccount] = useState(false);
 
   const auth = useAuth();
   const avatarName = auth?.user?.profile?.preferred_username || "Unknown Name";
   const profileEmail = auth?.user?.profile?.email || "unknown@email";
   const accessToken = auth.user?.access_token || "";
+  const {setSalt} = useStorePersist();
 
   const [todos, setTodos] = useState<TodoList>({items: []});
   const {UserSubject, Salt} = useStorePersist();
@@ -81,7 +84,31 @@ export const Profile: FC = () => {
           setExportTodoTxt(false)
         })
     }
-  }, [Salt, UserSubject, accessToken, setTodos, doExportTodoTxt])
+
+    if (doDeleteAccount) {
+      fetch(`${appConfig.services.api}/account`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-User-Subject': UserSubject,
+          'X-User-Access-Token': accessToken,
+        }
+      })
+        .then(res => {
+          if (res.status === 200) {
+            setSalt("")
+            auth.signoutSilent().catch((err) => {
+              console.error(err);
+            })
+          }
+        })
+        .catch(err => {
+          console.error("delete account error", err)
+          setDoDeleteAccount(false)
+          setConfirmDelete(false)
+        })
+    }
+  }, [Salt, UserSubject, accessToken, setTodos, doExportTodoTxt, doDeleteAccount])
 
   return (
     <>
@@ -92,6 +119,10 @@ export const Profile: FC = () => {
           <Box className={styles.confirmButtons}>
             <Button color={"green"} onClick={() => {
               setConfirmOpen(false)
+              if (confirmDelete) {
+                setDoDeleteAccount(true)
+              }
+
               if (exportTodoTxt) {
                 setDoExportTodoTxt(true)
               }
@@ -100,6 +131,8 @@ export const Profile: FC = () => {
               setConfirmOpen(false)
               setExportTodoTxt(false)
               setExportTodoTxt(false)
+              setConfirmDelete(false)
+              setDoDeleteAccount(false)
             }}>Cancel</Button>
           </Box>
         </Box>
@@ -176,10 +209,12 @@ export const Profile: FC = () => {
                       {isFeatureImplemented({featureSet: "account", featureName: "delete"}) && (
                         <Box p={"md"}>
                           <Button color={"red"} onClick={() => {
+                            setConfirmDelete(true);
                             setConfirmOpen(true);
                             setConfirmText("Are you sure you want to delete your account? This action cannot be undone.")
                             setTimeout(() => {
                               setConfirmOpen(false);
+                              setConfirmDelete(false);
                             }, 5000);
                           }}>Delete Account</Button>
                         </Box>
