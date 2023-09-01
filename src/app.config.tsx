@@ -30,7 +30,7 @@ export const appConfig: AppConfig = {
       "encrypt": true,
       "decrypt": true,
       "export": true,
-      "import": false,
+      "import": true,
 
       "add": true,
       "edit": true,
@@ -61,13 +61,13 @@ export const appConfig: AppConfig = {
       "todotxt": true,
     },
     "import": {
-      "todotxt": false,
+      "todotxt": true,
     },
     "account": {
       "login": true,
       "logout": true,
       "register": true,
-      "delete": false,
+      "delete": true,
       "update": true,
     },
     "notifications": {
