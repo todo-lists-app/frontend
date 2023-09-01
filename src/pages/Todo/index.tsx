@@ -12,6 +12,8 @@ import {FilterItems} from "../../components/FilterItems";
 import styles from "./Todo.module.css";
 import {getEncryptedListData} from "../../lib/cryption";
 import {useStorePersist} from "../../lib/storage";
+import {isFeatureImplemented} from "../../app.config";
+import {importTodoTxt} from "../../lib/imports/todotxt";
 
 export const TodoPage: FC = () => {
   const auth = useAuth();
@@ -22,6 +24,8 @@ export const TodoPage: FC = () => {
   const [showCompleted, setShowCompleted] = useState<boolean>(false);
   const [showArchived, setShowArchived] = useState<boolean>(false);
   const [passwordAttempted, setPasswordAttempted] = useState<boolean>(false);
+
+  const [importTodoTxtOpen, setImportTodoTxtOpen] = useState<boolean>(false);
 
   function prioritySort(priority: string) {
     switch (priority) {
@@ -108,10 +112,22 @@ export const TodoPage: FC = () => {
     return filteredItems
   }, [todos.items, priorityFilter])
 
-  console.log("todos", todos)
-
   return (
     <>
+      {importTodoTxtOpen && (
+        <Box className={styles.importBox}>
+          <Heading>Import Todo.txt</Heading>
+          <Box className={styles.importButtons}>
+            <Input type={"file"} id={"fileImport"}></Input>
+            <Button onClick={() => {
+              let accessToken = auth.user?.access_token || "";
+              importTodoTxt(accessToken, UserSubject, Salt);
+              setImportTodoTxtOpen(false);
+            }}>Import</Button>
+          </Box>
+        </Box>
+      )}
+
       <Heading m={"md"}>Todo List</Heading>
       <Box>
         {!Salt || Salt === '' ? (
@@ -141,6 +157,17 @@ export const TodoPage: FC = () => {
                   {todos.items.length === 0 ? (
                     <Box>
                       <Text size="sm">No items in list</Text>
+
+                      {isFeatureImplemented({featureSet: "todo", featureName: "import"}) && (
+                        <>
+                        <DividerLine title={"Import"} />
+                        {isFeatureImplemented({featureSet: "export", featureName: "todotxt"}) && (
+                          <>
+                            <Button onClick={() => setImportTodoTxtOpen(true)}>Import from todo.txt</Button>
+                          </>
+                        )}
+                        </>
+                      )}
                     </Box>
                   ) : (
                     <>

@@ -29,6 +29,8 @@ export const appConfig: AppConfig = {
     "todo": {
       "encrypt": true,
       "decrypt": true,
+      "export": true,
+      "import": false,
 
       "add": true,
       "edit": true,
@@ -57,6 +59,9 @@ export const appConfig: AppConfig = {
     },
     "export": {
       "todotxt": true,
+    },
+    "import": {
+      "todotxt": false,
     },
     "account": {
       "login": true,
