@@ -5596,9 +5596,15 @@ __metadata:
   linkType: hard
 
 "dracula-ui@file:./vendor/dracula-ui::locator=todo-frontend%40workspace%3A.":
-  version: 0.0.0
-  resolution: "dracula-ui@file:./vendor/dracula-ui#./vendor/dracula-ui::hash=ee3ca2&locator=todo-frontend%40workspace%3A."
-  checksum: d2494ab18598ad8d64963f8af8e4e4e1dfacf579d35ee76fe0abc67a351870743c00152c8bb74fa1f7df36cbe9c9fa349b32067f44572892ac140a768876f822
+  version: 1.0.7
+  resolution: "dracula-ui@file:./vendor/dracula-ui#./vendor/dracula-ui::hash=59f186&locator=todo-frontend%40workspace%3A."
+  dependencies:
+    classnames: ^2.2.6
+    lodash: ^4.17.20
+    lodash-es: ^4.17.21
+  peerDependencies:
+    react: ">=16"
+  checksum: 43183e9a7e48f43a4638c9b9e4ece5ff08ef82427484702e5b1522c1a37880f0359aa23a2fa111da49880f8138a51c289dd2f5a5aaf237506e25f5859380e860
   languageName: node
   linkType: hard
 
@@ -8941,6 +8947,13 @@ __metadata:
   dependencies:
     p-locate: ^5.0.0
   checksum: 72eb661788a0368c099a184c59d2fee760b3831c9c1c33955e8a19ae4a21b4116e53fa736dc086cdeb9fce9f7cc508f2f92d2d3aae516f133e16a2bb59a39f5a
+  languageName: node
+  linkType: hard
+
+"lodash-es@npm:^4.17.21":
+  version: 4.17.21
+  resolution: "lodash-es@npm:4.17.21"
+  checksum: 05cbffad6e2adbb331a4e16fbd826e7faee403a1a04873b82b42c0f22090f280839f85b95393f487c1303c8a3d2a010048bf06151a6cbe03eee4d388fb0a12d2
   languageName: node
   linkType: hard
 
