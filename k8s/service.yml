@@ -1,0 +1,109 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: todo-list
+  labels:
+    name: frontend
+    app: frontend
+spec:
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 3
+  selector:
+    matchLabels:
+      name: frontend
+  template:
+    metadata:
+      labels:
+        name: frontend
+        app: frontend
+    spec:
+      imagePullSecrets:
+        - name: docker-registry-secret
+      containers:
+        - name: frontend
+          image: containers.chewed-k8s.net/todo-list/frontend:v0.4.1
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          env:
+            - name: REACT_APP_KEYCLOAK_URL
+              valueFrom:
+                secretKeyRef:
+                  name: frontend-secrets
+                  key: keycloak-url
+            - name: REACT_APP_KEYCLOAK_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: frontend-secrets
+                  key: keycloak-client-id
+            - name: REACT_APP_KEYCLOAK_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: frontend-secrets
+                  key: keycloak-client-secret
+            - name: REACT_APP_BACKEND_URL
+              valueFrom:
+                secretKeyRef:
+                  name: frontend-secrets
+                  key: backend-url
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  namespace: todo-list
+  labels:
+    name: frontend
+    app: frontend
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: frontend
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontend
+  namespace: todo-list
+  annotations:
+    cert-manager.io/cluster-issuer: live-issuer
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  labels:
+    app: frontend
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - todo-list.app
+        - www.todo-list.app
+      secretName: frontend-tls
+  rules:
+    - host: todo-list.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend
+                port:
+                  number: 80
+    - host: www.todo-list.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend
+                port:
+                  number: 80

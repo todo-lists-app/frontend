@@ -15,14 +15,14 @@ import {Contact} from "./pages/Company/Contact";
 import {Careers} from "./pages/Company/Careers";
 import {Profile} from "./pages/Profile";
 import {TaskPage} from "./pages/Task";
-import usePushNotifications from "./hooks/pushNotifications";
+//import usePushNotifications from "./hooks/pushNotifications";
 import ServicePing from "./components/ServicePing";
 
 const App: FC = () => {
   const auth = useAuth();
   const given_name = auth?.user?.profile.given_name;
-  const subject = auth?.user?.profile.sub || ''
-  usePushNotifications(subject)
+  // const subject = auth?.user?.profile.sub || ''
+  //usePushNotifications(subject)
 
   return (
     <BrowserRouter>
