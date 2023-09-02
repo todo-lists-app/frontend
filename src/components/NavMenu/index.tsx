@@ -6,7 +6,6 @@ import {useAuth} from "react-oidc-context";
 import styles from "./NavMenu.module.css";
 import {faClipboardList, faHouse, faUser} from "@fortawesome/free-solid-svg-icons";
 import {AccountMenu} from "../AccountMenu";
-import Notification from "../Notification";
 
 export const NavMenu: FC = () => {
   const auth = useAuth();
@@ -30,11 +29,6 @@ export const NavMenu: FC = () => {
 
         {given_name ? (
           <>
-            {subject &&
-              <>
-                <Notification Subject={subject} />
-                </>
-            }
             <AccountMenu />
           </>
         ) : (

@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, {FC, useEffect} from "react";
 import {useAuth} from "react-oidc-context";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import 'dracula-ui/styles/dracula-ui.css';
@@ -15,14 +15,18 @@ import {Contact} from "./pages/Company/Contact";
 import {Careers} from "./pages/Company/Careers";
 import {Profile} from "./pages/Profile";
 import {TaskPage} from "./pages/Task";
-//import usePushNotifications from "./hooks/pushNotifications";
 import ServicePing from "./components/ServicePing";
 
 const App: FC = () => {
   const auth = useAuth();
   const given_name = auth?.user?.profile.given_name;
-  // const subject = auth?.user?.profile.sub || ''
-  //usePushNotifications(subject)
+
+  useEffect(() => {
+    return auth.events.addAccessTokenExpired(() => {
+      console.info("Access Token Expired, Auto Signin");
+      auth.signinSilent().catch(error => console.error("Auto Signin Error:", error));
+    })
+  }, [auth.events, auth.signinSilent]);
 
   return (
     <BrowserRouter>
