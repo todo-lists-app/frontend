@@ -98,7 +98,7 @@ function base64ToUint8Array(base64: string) {
   return bytes;
 }
 
-function getEncryptedData(accessToken: string, subject: string, dataLocation: string) {
+async function getEncryptedData(accessToken: string, subject: string, dataLocation: string) {
  return fetch(`${appConfig.services.api}/${dataLocation}`, {
     method: 'GET',
     headers: {
