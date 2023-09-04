@@ -23,7 +23,15 @@ const ServicePing: FC = () => {
           'X-User-Access-Token': accessToken,
         },
       })
-      .catch(error => console.error("Error:", error));
+      .catch(error => {
+        if (error.code == 401) {
+          auth.signoutSilent().catch((err) => {
+            console.error(err);
+          })
+        } else {
+          console.error("Error:", error)
+        }
+      });
     };
 
     // Event listener for user interactions
