@@ -22,15 +22,15 @@ const ServicePing: FC = () => {
           "X-User-Subject": UserSubject,
           'X-User-Access-Token': accessToken,
         },
+      }).then(function(resp) {
+        if (resp.status === 401) {
+          auth.signoutSilent().catch((err) => {
+            console.error("signout error", err);
+          })
+        }
       })
       .catch(error => {
-        if (error.code == 401) {
-          auth.signoutSilent().catch((err) => {
-            console.error(err);
-          })
-        } else {
-          console.error("Error:", error)
-        }
+        console.error("Error:", error)
       });
     };
 
