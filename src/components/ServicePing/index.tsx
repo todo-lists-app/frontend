@@ -11,6 +11,7 @@ const ServicePing: FC = () => {
   const {UserSubject} = useStorePersist();
   const auth = useAuth();
   const accessToken = auth?.user?.access_token || "";
+  const Salt = useStorePersist();
 
   useEffect(() => {
     // Function to ping the server
@@ -24,9 +25,11 @@ const ServicePing: FC = () => {
         },
       }).then(function(resp) {
         if (resp.status === 401) {
-          auth.signoutSilent().catch((err) => {
-            console.error("signout error", err);
-          })
+          if (Salt) {
+            auth.signoutSilent().catch((err) => {
+              console.error("signout error", err);
+            })
+          }
         }
       })
       .catch(error => {
