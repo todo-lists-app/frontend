@@ -25,11 +25,14 @@ const ServicePing: FC = () => {
         },
       }).then(function(resp) {
         if (resp.status === 401) {
-          if (Salt) {
-            auth.signoutSilent().catch((err) => {
-              console.error("signout error", err);
-            })
-          }
+          // if (Salt) {
+          //   auth.signoutSilent().catch((err) => {
+          //     console.error("signout error", err);
+          //   })
+          // }
+          console.log("resp", resp);
+          console.log("subject", UserSubject);
+          console.log("token", accessToken);
         }
       })
       .catch(error => {
