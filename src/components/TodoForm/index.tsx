@@ -89,7 +89,7 @@ export const TodoForm: FC<TodoFormProps> = ({
   let priorityValue = "low";
   let titleValue = "";
   let contentValue = "";
-  let dueDateTimeValue = new Date();
+  let dueDateTimeValue = null;
   let pageTitle = "Add Item";
   if (todoItem) {
     if (todoItem.priority) {

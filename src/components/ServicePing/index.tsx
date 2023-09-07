@@ -30,9 +30,9 @@ const ServicePing: FC = () => {
           //     console.error("signout error", err);
           //   })
           // }
-          console.log("resp", resp);
-          console.log("subject", UserSubject);
-          console.log("token", accessToken);
+          // console.log("resp", resp);
+          // console.log("subject", UserSubject);
+          // console.log("token", accessToken);
         }
       })
       .catch(error => {
