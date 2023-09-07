@@ -5,26 +5,26 @@ import "react-datepicker/dist/react-datepicker.css";
 import styles from "./DateTimePicker.module.css";
 
 interface DatePickerProps {
-  dateTime: Date;
+  dateTime: Date | null;
   name: string;
 }
 
 export const DateTimePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(({dateTime, name, ...props}, ref) => {
-  let inputDate = new Date();
+  let inputDate = null
   if (dateTime) {
     inputDate = dateTime;
   }
 
-  console.log("ref", ref)
-  console.log("name", name)
+  // console.log("ref", ref)
+  // console.log("name", name)
 
   const [startDate, setStartDate] = useState(inputDate);
   const onDateChange = (date: Date) => {
     setStartDate(date);
   }
-  useImperativeHandle(ref, () => ({
-    value: startDate.toISOString()
-  } as any));
+  // useImperativeHandle(ref, () => ({
+  //   value: startDate.toISOString()
+  // } as any));
 
   return (
     <Box className={styles.datePicker}>
