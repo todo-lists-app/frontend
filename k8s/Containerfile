@@ -1,28 +1,33 @@
-# Builder
-FROM containers.chewed-k8s.net/docker_hub_cache/library/node:20-alpine AS builder
+# Base
+FROM containers.chewed-k8s.net/docker_hub_cache/library/node:20-alpine AS base
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
 
+## Copy the files
 WORKDIR /frontend
-
-# Install dependencies
 COPY vendor ./vendor
 COPY package*.json ./
-COPY yarn.lock ./
-COPY .yarnrc.yml ./
-COPY .yarnrc ./
-RUN yarn set version stable
-RUN yarn install
-
-# Build
+COPY pnpm-lock.yaml ./
 COPY public ./public
 COPY src ./src
 COPY public ./public
 COPY tsconfig.json ./
 COPY .env.production ./.env
-RUN yarn build
+
+# Install dependencies
+FROM base AS dependencies
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile --production
+
+# Build
+FROM base AS build
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+RUN pnpm build
 
 # Runner
 FROM containers.chewed-k8s.net/docker_hub_cache/library/nginx:1.25-alpine AS runner
-COPY --from=builder /frontend/build /usr/share/nginx/html
+COPY --from=dependencies /frontend/node_modules /frontend/node_modules
+COPY --from=build /frontend/build /usr/share/nginx/html
 COPY ./k8s/nginx.conf /etc/nginx/conf.d/default.conf
 
 RUN apk update
