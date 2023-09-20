@@ -27,10 +27,8 @@ deploy-beta: publish-images
 
 .PHONY: deploy-latest
 deploy-latest:
-	#kubectl set image deployment/${SERVICE_NAME} ${SERVICE_NAME}=containers.chewed-k8s.net/${NAMESPACE}/${SERVICE_NAME}:latest --namespace=${NAMESPACE}
-	#kubectl rollout restart deployment/${SERVICE_NAME} --namespace=${NAMESPACE}
-	kubectl set image deployment/${SERVICE_NAME}-beta ${SERVICE_NAME}-beta=containers.chewed-k8s.net/${NAMESPACE}/${SERVICE_NAME}:latest --namespace=${NAMESPACE}
-	kubectl rollout restart deployment/${SERVICE_NAME}-beta --namespace=${NAMESPACE}
+	kubectl set image deployment/${SERVICE_NAME} ${SERVICE_NAME}=containers.chewed-k8s.net/${NAMESPACE}/${SERVICE_NAME}:latest --namespace=${NAMESPACE}
+	kubectl rollout restart deployment/${SERVICE_NAME} --namespace=${NAMESPACE}
 
 .PHONY: build-deploy
 build-deploy: build publish-images deploy
