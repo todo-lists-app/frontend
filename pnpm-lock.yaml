@@ -54,8 +54,8 @@ dependencies:
     specifier: ^9.2.0
     version: 9.2.0(react@18.2.0)
   oidc-client-ts:
-    specifier: ^2.2.5
-    version: 2.2.5
+    specifier: ^2.3.0
+    version: 2.3.0
   prop-types:
     specifier: ^15.8.1
     version: 15.8.1
@@ -82,7 +82,7 @@ dependencies:
     version: 9.0.0(@types/react@18.2.24)(react@18.2.0)
   react-oidc-context:
     specifier: ^2.3.0
-    version: 2.3.0(oidc-client-ts@2.2.5)(react@18.2.0)
+    version: 2.3.0(oidc-client-ts@2.3.0)(react@18.2.0)
   react-router-dom:
     specifier: ^6.16.0
     version: 6.16.0(react-dom@18.2.0)(react@18.2.0)
@@ -8005,8 +8005,8 @@ packages:
     resolution: {integrity: sha512-PX1wu0AmAdPqOL1mWhqmlOd8kOIZQwGZw6rh7uby9fTc5lhaOWFLX3I6R1hrF9k3zUY40e6igsLGkDXK92LJNg==}
     dev: false
 
-  /oidc-client-ts@2.2.5:
-    resolution: {integrity: sha512-omAHoLdFcylnwZeHJahOnJBwd0r78JzhmVAmsQjLGrexAnQKiHW9Ilr9FlRD5qjMikmabvaucI4k49AbQLXhmQ==}
+  /oidc-client-ts@2.3.0:
+    resolution: {integrity: sha512-7RUKU+TJFQo+4X9R50IGJAIDF18uRBaFXyZn4VVCfwmwbSUhKcdDnw4zgeut3uEXkiD3NqURq+d88sDPxjf1FA==}
     engines: {node: '>=12.13.0'}
     dependencies:
       crypto-js: 4.1.1
@@ -9338,14 +9338,14 @@ packages:
       - supports-color
     dev: false
 
-  /react-oidc-context@2.3.0(oidc-client-ts@2.2.5)(react@18.2.0):
+  /react-oidc-context@2.3.0(oidc-client-ts@2.3.0)(react@18.2.0):
     resolution: {integrity: sha512-xT8HOliaQ3H2Q+1+nppAyOX9TlhC+ZXWkR5UDHPEfIZU+yJou1JGypUWPn1SMeFhhzovT+K7IP71/9ahVCL0+g==}
     engines: {node: '>=12.13.0'}
     peerDependencies:
       oidc-client-ts: ^2.2.1
       react: '>=16.8.0'
     dependencies:
-      oidc-client-ts: 2.2.5
+      oidc-client-ts: 2.3.0
       react: 18.2.0
     dev: false
 
