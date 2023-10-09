@@ -51,8 +51,8 @@ dependencies:
     specifier: ^2.4.3
     version: 2.4.3(@types/react@18.2.25)(react@18.2.0)
   mdi-react:
-    specifier: ^9.2.0
-    version: 9.2.0(react@18.2.0)
+    specifier: ^9.3.0
+    version: 9.3.0(react@18.2.0)
   oidc-client-ts:
     specifier: ^2.3.0
     version: 2.3.0
@@ -7447,8 +7447,8 @@ packages:
       '@types/mdast': 4.0.0
     dev: false
 
-  /mdi-react@9.2.0(react@18.2.0):
-    resolution: {integrity: sha512-NI1sIvu142SQKkOMe4bjA9KuvMXpT8PfNOkCblSEuUeakFpgciMuKV9rEyJbQkvFBppDLx1f1xmbcIc06oRyAQ==}
+  /mdi-react@9.3.0(react@18.2.0):
+    resolution: {integrity: sha512-Lsqg42oIi/dBfQJ7RckKNH44vemRoKYkz3XaTPcTs3P9FxucuFePfqSqHyZ/ZRM+gSls13KPYxmMvYgysXFUcg==}
     peerDependencies:
       react: '>=0.14.0'
     dependencies:
