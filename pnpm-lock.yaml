@@ -27,8 +27,8 @@ dependencies:
     specifier: ^20.8.6
     version: 20.8.6
   '@types/react':
-    specifier: ^18.2.28
-    version: 18.2.28
+    specifier: ^18.2.29
+    version: 18.2.29
   '@types/react-datepicker':
     specifier: ^4.19.0
     version: 4.19.0(react-dom@18.2.0)(react@18.2.0)
@@ -49,7 +49,7 @@ dependencies:
     version: 4.0.1
   jotai:
     specifier: ^2.4.3
-    version: 2.4.3(@types/react@18.2.28)(react@18.2.0)
+    version: 2.4.3(@types/react@18.2.29)(react@18.2.0)
   mdi-react:
     specifier: ^9.3.0
     version: 9.3.0(react@18.2.0)
@@ -64,7 +64,7 @@ dependencies:
     version: 18.2.0
   react-bootstrap:
     specifier: ^2.9.0
-    version: 2.9.0(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
+    version: 2.9.0(@types/react@18.2.29)(react-dom@18.2.0)(react@18.2.0)
   react-datepicker:
     specifier: ^4.21.0
     version: 4.21.0(react-dom@18.2.0)(react@18.2.0)
@@ -79,7 +79,7 @@ dependencies:
     version: 7.47.0(react@18.2.0)
   react-markdown:
     specifier: ^9.0.0
-    version: 9.0.0(@types/react@18.2.28)(react@18.2.0)
+    version: 9.0.0(@types/react@18.2.29)(react@18.2.0)
   react-oidc-context:
     specifier: ^2.3.1
     version: 2.3.1(oidc-client-ts@2.3.0)(react@18.2.0)
@@ -100,7 +100,7 @@ dependencies:
     version: 5.2.2
   zustand:
     specifier: ^4.4.3
-    version: 4.4.3(@types/react@18.2.28)(react@18.2.0)
+    version: 4.4.3(@types/react@18.2.29)(react@18.2.0)
 
 packages:
 
@@ -2683,7 +2683,7 @@ packages:
     resolution: {integrity: sha512-461OQou2oHJIfqeTPY+8lBn/V4Z7usmJhcGDWO/R8wQYm+H5/Cqsrwto89J2RTbhWdiynmvh78Beh8txN5y0mA==}
     dependencies:
       '@popperjs/core': 2.11.8
-      '@types/react': 18.2.28
+      '@types/react': 18.2.29
       date-fns: 2.30.0
       react-popper: 2.3.0(@popperjs/core@2.11.8)(react-dom@18.2.0)(react@18.2.0)
     transitivePeerDependencies:
@@ -2694,17 +2694,17 @@ packages:
   /@types/react-dom@18.2.13:
     resolution: {integrity: sha512-eJIUv7rPP+EC45uNYp/ThhSpE16k22VJUknt5OLoH9tbXoi8bMhwLf5xRuWMywamNbWzhrSmU7IBJfPup1+3fw==}
     dependencies:
-      '@types/react': 18.2.28
+      '@types/react': 18.2.29
     dev: false
 
   /@types/react-transition-group@4.4.6:
     resolution: {integrity: sha512-VnCdSxfcm08KjsJVQcfBmhEQAPnLB8G08hAxn39azX1qYBQ/5RVQuoHuKIcfKOdncuaUvEpFKFzEvbtIMsfVew==}
     dependencies:
-      '@types/react': 18.2.28
+      '@types/react': 18.2.29
     dev: false
 
-  /@types/react@18.2.28:
-    resolution: {integrity: sha512-ad4aa/RaaJS3hyGz0BGegdnSRXQBkd1CCYDCdNjBPg90UUpLgo+WlJqb9fMYUxtehmzF3PJaTWqRZjko6BRzBg==}
+  /@types/react@18.2.29:
+    resolution: {integrity: sha512-Z+ZrIRocWtdD70j45izShRwDuiB4JZqDegqMFW/I8aG5DxxLKOzVNoq62UIO82v9bdgi+DO1jvsb9sTEZUSm+Q==}
     dependencies:
       '@types/prop-types': 15.7.6
       '@types/scheduler': 0.16.3
@@ -6949,7 +6949,7 @@ packages:
     hasBin: true
     dev: false
 
-  /jotai@2.4.3(@types/react@18.2.28)(react@18.2.0):
+  /jotai@2.4.3(@types/react@18.2.29)(react@18.2.0):
     resolution: {integrity: sha512-CSAHX9LqWG5WCrU8OgBoZbBJ+Bo9rQU0mPusEF4e0CZ/SNFgurG26vb3UpgvCSJZgYVcUQNiUBM5q86PA8rstQ==}
     engines: {node: '>=12.20.0'}
     peerDependencies:
@@ -6961,7 +6961,7 @@ packages:
       react:
         optional: true
     dependencies:
-      '@types/react': 18.2.28
+      '@types/react': 18.2.29
       react: 18.2.0
     dev: false
 
@@ -9178,7 +9178,7 @@ packages:
       whatwg-fetch: 3.6.19
     dev: false
 
-  /react-bootstrap@2.9.0(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0):
+  /react-bootstrap@2.9.0(@types/react@18.2.29)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-dGh6fGjqR9MBzPOp2KbXJznt1Zy6SWepXYUdxMT18Zu/wJ73HCU8JNZe9dfzjmVssZYsJH9N3HHE4wAtQvNz7g==}
     peerDependencies:
       '@types/react': '>=16.14.8'
@@ -9191,7 +9191,7 @@ packages:
       '@babel/runtime': 7.22.15
       '@restart/hooks': 0.4.11(react@18.2.0)
       '@restart/ui': 1.6.6(react-dom@18.2.0)(react@18.2.0)
-      '@types/react': 18.2.28
+      '@types/react': 18.2.29
       '@types/react-transition-group': 4.4.6
       classnames: 2.3.2
       dom-helpers: 5.2.1
@@ -9317,14 +9317,14 @@ packages:
     resolution: {integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==}
     dev: false
 
-  /react-markdown@9.0.0(@types/react@18.2.28)(react@18.2.0):
+  /react-markdown@9.0.0(@types/react@18.2.29)(react@18.2.0):
     resolution: {integrity: sha512-v6yNf3AB8GfJ8lCpUvzxAXKxgsHpdmWPlcVRQ6Nocsezp255E/IDrF31kLQsPJeB/cKto/geUwjU36wH784FCA==}
     peerDependencies:
       '@types/react': '>=18'
       react: '>=18'
     dependencies:
       '@types/hast': 3.0.1
-      '@types/react': 18.2.28
+      '@types/react': 18.2.29
       devlop: 1.1.0
       hast-util-to-jsx-runtime: 2.2.0
       html-url-attributes: 3.0.0
@@ -10778,7 +10778,7 @@ packages:
       react: '>=15.0.0'
     dependencies:
       '@babel/runtime': 7.22.15
-      '@types/react': 18.2.28
+      '@types/react': 18.2.29
       invariant: 2.2.4
       react: 18.2.0
       react-lifecycles-compat: 3.0.4
@@ -11556,7 +11556,7 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
-  /zustand@4.4.3(@types/react@18.2.28)(react@18.2.0):
+  /zustand@4.4.3(@types/react@18.2.29)(react@18.2.0):
     resolution: {integrity: sha512-oRy+X3ZazZvLfmv6viIaQmtLOMeij1noakIsK/Y47PWYhT8glfXzQ4j0YcP5i0P0qI1A4rIB//SGROGyZhx91A==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
@@ -11571,7 +11571,7 @@ packages:
       react:
         optional: true
     dependencies:
-      '@types/react': 18.2.28
+      '@types/react': 18.2.29
       react: 18.2.0
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
