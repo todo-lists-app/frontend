@@ -54,6 +54,6 @@
     "recoil": "^0.7.7",
     "remark-gfm": "^4.0.0",
     "typescript": "^5.2.2",
-    "zustand": "^4.4.3"
+    "zustand": "^4.4.4"
   }
 }
