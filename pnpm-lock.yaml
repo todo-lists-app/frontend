@@ -12,8 +12,8 @@ dependencies:
     specifier: ^6.5.0
     version: 6.5.0
   '@fortawesome/free-regular-svg-icons':
-    specifier: ^6.4.2
-    version: 6.4.2
+    specifier: ^6.5.0
+    version: 6.5.0
   '@fortawesome/free-solid-svg-icons':
     specifier: ^6.5.0
     version: 6.5.0
@@ -1791,12 +1791,12 @@ packages:
       '@fortawesome/fontawesome-common-types': 6.5.0
     dev: false
 
-  /@fortawesome/free-regular-svg-icons@6.4.2:
-    resolution: {integrity: sha512-0+sIUWnkgTVVXVAPQmW4vxb9ZTHv0WstOa3rBx9iPxrrrDH6bNLsDYuwXF9b6fGm+iR7DKQvQshUH/FJm3ed9Q==}
+  /@fortawesome/free-regular-svg-icons@6.5.0:
+    resolution: {integrity: sha512-RaBW/y0jKcCyEPM+NYuBs3bQXuLYZHnXABQPmg6qwuRxNb2EUmyCcVUECUH2dkFmMjggh/xvl6n6y62Pl19JkA==}
     engines: {node: '>=6'}
     requiresBuild: true
     dependencies:
-      '@fortawesome/fontawesome-common-types': 6.4.2
+      '@fortawesome/fontawesome-common-types': 6.5.0
     dev: false
 
   /@fortawesome/free-solid-svg-icons@6.5.0:
