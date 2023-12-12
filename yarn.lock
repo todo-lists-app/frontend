@@ -3073,15 +3073,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-datepicker@npm:^4.19.3":
-  version: 4.19.3
-  resolution: "@types/react-datepicker@npm:4.19.3"
+"@types/react-datepicker@npm:^4.19.4":
+  version: 4.19.4
+  resolution: "@types/react-datepicker@npm:4.19.4"
   dependencies:
-    "@popperjs/core": "npm:^2.9.2"
-    "@types/react": "npm:*"
-    date-fns: "npm:^2.0.1"
-    react-popper: "npm:^2.2.5"
-  checksum: e21c57c97955b355e582d9005cb2ce21ec41afcb7c1fef781437d9be54b1528d4c7e45fc402fcc15935a4ded59d77b5e2c5a3ef720c5d3ee43671e5cda07171c
+    "@popperjs/core": ^2.9.2
+    "@types/react": "*"
+    date-fns: ^2.0.1
+    react-popper: ^2.2.5
+  checksum: f028feab743f27c8646e850d5a77e0fbc65f39d4a5d1194d70f934cebb5fbc53cf27ec03acd2ae107e0d0c79696ae4f4a565a38f6cb8dc87ce8480df05dbaf0b
   languageName: node
   linkType: hard
 
@@ -13547,7 +13547,7 @@ __metadata:
     "@types/jest": ^29.5.11
     "@types/node": ^20.10.4
     "@types/react": ^18.2.42
-    "@types/react-datepicker": ^4.19.3
+    "@types/react-datepicker": ^4.19.4
     "@types/react-dom": ^18.2.17
     bootstrap: ^5.3.2
     dracula-ui: "file:vendor/dracula-ui"
