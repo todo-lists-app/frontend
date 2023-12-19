@@ -11723,20 +11723,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-datepicker@npm:^4.24.0":
-  version: 4.24.0
-  resolution: "react-datepicker@npm:4.24.0"
+"react-datepicker@npm:^4.25.0":
+  version: 4.25.0
+  resolution: "react-datepicker@npm:4.25.0"
   dependencies:
-    "@popperjs/core": "npm:^2.11.8"
-    classnames: "npm:^2.2.6"
-    date-fns: "npm:^2.30.0"
-    prop-types: "npm:^15.7.2"
-    react-onclickoutside: "npm:^6.13.0"
-    react-popper: "npm:^2.3.0"
+    "@popperjs/core": ^2.11.8
+    classnames: ^2.2.6
+    date-fns: ^2.30.0
+    prop-types: ^15.7.2
+    react-onclickoutside: ^6.13.0
+    react-popper: ^2.3.0
   peerDependencies:
     react: ^16.9.0 || ^17 || ^18
     react-dom: ^16.9.0 || ^17 || ^18
-  checksum: 4eef934d27e2298bbeebd0d9e84d1e59bf885a927e00c72525cfee2f8cb1ba42b4691cd662a8ddabbdca36fde8a51b0efd32835ee5dc325135dc81adaad91626
+  checksum: c619dc2ed1325e455a24cfd0428edf9da3b921853e27f28141bcda705962820912dd0e7221a1d00e984a468ba70475664a5bd6cb732776a5d32eb318a710ae0c
   languageName: node
   linkType: hard
 
@@ -13559,7 +13559,7 @@ __metadata:
     prop-types: ^15.8.1
     react: ^18.2.0
     react-bootstrap: ^2.9.1
-    react-datepicker: ^4.24.0
+    react-datepicker: ^4.25.0
     react-dom: ^18.2.0
     react-final-form: ^6.5.9
     react-hook-form: ^7.49.2
