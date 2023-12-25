@@ -11696,22 +11696,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-bootstrap@npm:^2.9.1":
-  version: 2.9.1
-  resolution: "react-bootstrap@npm:2.9.1"
+"react-bootstrap@npm:^2.9.2":
+  version: 2.9.2
+  resolution: "react-bootstrap@npm:2.9.2"
   dependencies:
-    "@babel/runtime": "npm:^7.22.5"
-    "@restart/hooks": "npm:^0.4.9"
-    "@restart/ui": "npm:^1.6.6"
-    "@types/react-transition-group": "npm:^4.4.6"
-    classnames: "npm:^2.3.2"
-    dom-helpers: "npm:^5.2.1"
-    invariant: "npm:^2.2.4"
-    prop-types: "npm:^15.8.1"
-    prop-types-extra: "npm:^1.1.0"
-    react-transition-group: "npm:^4.4.5"
-    uncontrollable: "npm:^7.2.1"
-    warning: "npm:^4.0.3"
+    "@babel/runtime": ^7.22.5
+    "@restart/hooks": ^0.4.9
+    "@restart/ui": ^1.6.6
+    "@types/react-transition-group": ^4.4.6
+    classnames: ^2.3.2
+    dom-helpers: ^5.2.1
+    invariant: ^2.2.4
+    prop-types: ^15.8.1
+    prop-types-extra: ^1.1.0
+    react-transition-group: ^4.4.5
+    uncontrollable: ^7.2.1
+    warning: ^4.0.3
   peerDependencies:
     "@types/react": ">=16.14.8"
     react: ">=16.14.0"
@@ -11719,7 +11719,7 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 889de157ab782257a6496d37aebb578b13850caec41bdc068e68a2e1ff2af18740f0a388974850f59115a57fa34a2949a2803aaa79000498fef7d0b63b413706
+  checksum: ffa8e0d9e4a6414cbcbefb657f0f427302ab0c059ec618a86fffeccfe669dd3b3d9003f9e9803dc4499d4831aba44aaafd29e9c70bf850138ce5a3e4091b8fb3
   languageName: node
   linkType: hard
 
@@ -13558,7 +13558,7 @@ __metadata:
     oidc-client-ts: ^2.4.0
     prop-types: ^15.8.1
     react: ^18.2.0
-    react-bootstrap: ^2.9.1
+    react-bootstrap: ^2.9.2
     react-datepicker: ^4.25.0
     react-dom: ^18.2.0
     react-final-form: ^6.5.9
