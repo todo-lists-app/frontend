@@ -9377,12 +9377,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mdi-react@npm:^9.3.0":
-  version: 9.3.0
-  resolution: "mdi-react@npm:9.3.0"
+"mdi-react@npm:^9.4.0":
+  version: 9.4.0
+  resolution: "mdi-react@npm:9.4.0"
   peerDependencies:
     react: ">=0.14.0"
-  checksum: 615eda488276cf4a16d7d0ee3130df0b867a29a5b7cd94d65cc1fc241faaa2ab4fd7cdabb519fd04d795ae99172c2a49287e4d70cff26b6bb7db7159a71636a5
+  checksum: a041ec5bed8ebc4873745e5dfa1571332b15426bc2bba55f6575eb185318dc06552e577caca594302021edab5a83673b90dd4c53b8642333575f4a138ef6003e
   languageName: node
   linkType: hard
 
@@ -13554,7 +13554,7 @@ __metadata:
     final-form: ^4.20.10
     gravatar-url: ^4.0.1
     jotai: ^2.6.0
-    mdi-react: ^9.3.0
+    mdi-react: ^9.4.0
     oidc-client-ts: ^2.4.0
     prop-types: ^15.8.1
     react: ^18.2.0
