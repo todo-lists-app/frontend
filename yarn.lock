@@ -5314,12 +5314,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"date-fns@npm:^2.0.1, date-fns@npm:^2.30.0":
+"date-fns@npm:^2.0.1":
   version: 2.30.0
   resolution: "date-fns@npm:2.30.0"
   dependencies:
     "@babel/runtime": "npm:^7.21.0"
   checksum: f7be01523282e9bb06c0cd2693d34f245247a29098527d4420628966a2d9aad154bd0e90a6b1cf66d37adcb769cd108cf8a7bd49d76db0fb119af5cdd13644f4
+  languageName: node
+  linkType: hard
+
+"date-fns@npm:^3.3.1":
+  version: 3.3.1
+  resolution: "date-fns@npm:3.3.1"
+  checksum: 6245e93a47de28ac96dffd4d62877f86e6b64854860ae1e00a4f83174d80bc8e59bd1259cf265223fb2ddce5c8e586dc9cc210f0d052faba2f7660e265877283
   languageName: node
   linkType: hard
 
@@ -11775,19 +11782,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-datepicker@npm:^5.1.0":
-  version: 5.1.0
-  resolution: "react-datepicker@npm:5.1.0"
+"react-datepicker@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "react-datepicker@npm:6.0.0"
   dependencies:
     "@floating-ui/react": ^0.26.2
     classnames: ^2.2.6
-    date-fns: ^2.30.0
+    date-fns: ^3.3.1
     prop-types: ^15.7.2
     react-onclickoutside: ^6.13.0
   peerDependencies:
     react: ^16.9.0 || ^17 || ^18
     react-dom: ^16.9.0 || ^17 || ^18
-  checksum: a5b306ebdcbf4d5cb25826dac8952da881a9058c2b92be155907c8fc309bc27fb712648cdb8d62fcc186bd71d838895acb2f61e0dd5e2c6f05e16539e44c5f38
+  checksum: f2f13c9ea1bc2141da6ef08b099735562cb380d322576fc5e42cf7dfd0086c5e7bf56a0dcc71df2ce12e7e7f32997ee7f244c345318077341f8daf89ff90c9f1
   languageName: node
   linkType: hard
 
@@ -13617,7 +13624,7 @@ __metadata:
     prop-types: ^15.8.1
     react: ^18.2.0
     react-bootstrap: ^2.10.0
-    react-datepicker: ^5.1.0
+    react-datepicker: ^6.0.0
     react-dom: ^18.2.0
     react-final-form: ^6.5.9
     react-hook-form: ^7.50.0
