@@ -2471,7 +2471,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@popperjs/core@npm:^2.11.6, @popperjs/core@npm:^2.9.2":
+"@popperjs/core@npm:^2.11.6":
   version: 2.11.8
   resolution: "@popperjs/core@npm:2.11.8"
   checksum: e5c69fdebf52a4012f6a1f14817ca8e9599cb1be73dd1387e1785e2ed5e5f0862ff817f420a87c7fc532add1f88a12e25aeb010ffcbdc98eace3d55ce2139cf0
@@ -3125,15 +3125,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-datepicker@npm:^4.19.6":
-  version: 4.19.6
-  resolution: "@types/react-datepicker@npm:4.19.6"
+"@types/react-datepicker@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "@types/react-datepicker@npm:6.0.0"
   dependencies:
-    "@popperjs/core": ^2.9.2
+    "@floating-ui/react": ^0.26.2
     "@types/react": "*"
-    date-fns: ^2.0.1
-    react-popper: ^2.2.5
-  checksum: ee9f21bd7012c03abbcc3e6cda72aec69f4a96955d80938a8c8b23b1867bb515588ea17121d99835a9bd444774dd467f8e29e3ae36591d45e26c8ec536ba103a
+    date-fns: ^3.3.1
+  checksum: 7a941d5810a4ebf01216ecb5ee35c26b393562927899b25519f3deaa320c2f2876726123d1c7b0ffe28a25b6d65810c7d689e3ccb2ea063af2b94c7099167714
   languageName: node
   linkType: hard
 
@@ -5311,15 +5310,6 @@ __metadata:
     whatwg-mimetype: "npm:^2.3.0"
     whatwg-url: "npm:^8.0.0"
   checksum: 97caf828aac25e25e04ba6869db0f99c75e6859bb5b424ada28d3e7841941ebf08ddff3c1b1bb4585986bd507a5d54c2a716853ea6cb98af877400e637393e71
-  languageName: node
-  linkType: hard
-
-"date-fns@npm:^2.0.1":
-  version: 2.30.0
-  resolution: "date-fns@npm:2.30.0"
-  dependencies:
-    "@babel/runtime": "npm:^7.21.0"
-  checksum: f7be01523282e9bb06c0cd2693d34f245247a29098527d4420628966a2d9aad154bd0e90a6b1cf66d37adcb769cd108cf8a7bd49d76db0fb119af5cdd13644f4
   languageName: node
   linkType: hard
 
@@ -11849,13 +11839,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-fast-compare@npm:^3.0.1":
-  version: 3.2.2
-  resolution: "react-fast-compare@npm:3.2.2"
-  checksum: 2071415b4f76a3e6b55c84611c4d24dcb12ffc85811a2840b5a3f1ff2d1a99be1020d9437ee7c6e024c9f4cbb84ceb35e48cf84f28fcb00265ad2dfdd3947704
-  languageName: node
-  linkType: hard
-
 "react-final-form@npm:^6.5.9":
   version: 6.5.9
   resolution: "react-final-form@npm:6.5.9"
@@ -11943,20 +11926,6 @@ __metadata:
     react: ^15.5.x || ^16.x || ^17.x || ^18.x
     react-dom: ^15.5.x || ^16.x || ^17.x || ^18.x
   checksum: a7cfe62e91f7f92891cda7b885d6eec7b2854850f8703ccafcea5c04bb93a210a566a70b51b9fae0cc30c3485e04eb6a3f3ae58f495cac3ec2747b4fc44d1ad2
-  languageName: node
-  linkType: hard
-
-"react-popper@npm:^2.2.5":
-  version: 2.3.0
-  resolution: "react-popper@npm:2.3.0"
-  dependencies:
-    react-fast-compare: "npm:^3.0.1"
-    warning: "npm:^4.0.2"
-  peerDependencies:
-    "@popperjs/core": ^2.0.0
-    react: ^16.8.0 || ^17 || ^18
-    react-dom: ^16.8.0 || ^17 || ^18
-  checksum: 837111c98738011c69b3069a464ea5bdcbf487105b6148e8faf90cb7337e134edb1b98b8824322941c378756cca30a15c18c25f558e53b85ed5762fa0dc8e6b2
   languageName: node
   linkType: hard
 
@@ -13612,7 +13581,7 @@ __metadata:
     "@types/jest": ^29.5.11
     "@types/node": ^20.11.17
     "@types/react": ^18.2.42
-    "@types/react-datepicker": ^4.19.6
+    "@types/react-datepicker": ^6.0.0
     "@types/react-dom": ^18.2.17
     bootstrap: ^5.3.2
     dracula-ui: "file:vendor/dracula-ui"
@@ -14235,7 +14204,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"warning@npm:^4.0.0, warning@npm:^4.0.2, warning@npm:^4.0.3":
+"warning@npm:^4.0.0, warning@npm:^4.0.3":
   version: 4.0.3
   resolution: "warning@npm:4.0.3"
   dependencies:
