@@ -30,8 +30,8 @@ dependencies:
     specifier: ^18.2.42
     version: 18.2.42
   '@types/react-datepicker':
-    specifier: ^6.0.1
-    version: 6.0.1(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^6.0.2
+    version: 6.0.2(react-dom@18.2.0)(react@18.2.0)
   '@types/react-dom':
     specifier: ^18.2.17
     version: 18.2.17
@@ -2743,8 +2743,8 @@ packages:
     resolution: {integrity: sha512-hKormJbkJqzQGhziax5PItDUTMAM9uE2XXQmM37dyd4hVM+5aVl7oVxMVUiVQn2oCQFN/LKCZdvSM0pFRqbSmQ==}
     dev: false
 
-  /@types/react-datepicker@6.0.1(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-oAavACLXz+Vm6kO1XZe1/LQJClOO32UUv4xva9G16KQJ2hNROtXyeGzmRg6mktHrQ+YGLnnNlN6S/XykQE2HMA==}
+  /@types/react-datepicker@6.0.2(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-RnBAD9hO9GgSNZ2WjUZKltP3OkLxHNxmvFHyp8SC5A5qItPH20VWj/4krJ3iqGUiH1pqV/vRTOQKeJfEOqcXSw==}
     dependencies:
       '@floating-ui/react': 0.26.6(react-dom@18.2.0)(react@18.2.0)
       '@types/react': 18.2.42
