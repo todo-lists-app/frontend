@@ -3125,14 +3125,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-datepicker@npm:^6.0.2":
-  version: 6.0.2
-  resolution: "@types/react-datepicker@npm:6.0.2"
+"@types/react-datepicker@npm:^6.0.3":
+  version: 6.0.3
+  resolution: "@types/react-datepicker@npm:6.0.3"
   dependencies:
     "@floating-ui/react": ^0.26.2
     "@types/react": "*"
     date-fns: ^3.3.1
-  checksum: 1f1d7d6df7917720c8ab55bac814056d349d7b8bfec17b743a78baba09356784e27d06562280ed3e8c2e529e85651c1994003c36244fa4f7227bf591ee1f2a3e
+  checksum: d17a96d6cd76f18c34f18106d80cddaaa28ce9327fb4cdc01accef5e71c015cc9feb3c10e383ea53c776776ea5cfe63099459abba9688aed0f223ef10a3272b6
   languageName: node
   linkType: hard
 
@@ -13581,7 +13581,7 @@ __metadata:
     "@types/jest": ^29.5.11
     "@types/node": ^20.11.24
     "@types/react": ^18.2.42
-    "@types/react-datepicker": ^6.0.2
+    "@types/react-datepicker": ^6.0.3
     "@types/react-dom": ^18.2.17
     bootstrap: ^5.3.3
     dracula-ui: "file:vendor/dracula-ui"
