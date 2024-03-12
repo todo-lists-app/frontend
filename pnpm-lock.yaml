@@ -30,8 +30,8 @@ dependencies:
     specifier: ^18.2.42
     version: 18.2.42
   '@types/react-datepicker':
-    specifier: ^6.0.3
-    version: 6.0.3(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^6.2.0
+    version: 6.2.0(react-dom@18.2.0)(react@18.2.0)
   '@types/react-dom':
     specifier: ^18.2.17
     version: 18.2.17
@@ -66,8 +66,8 @@ dependencies:
     specifier: ^2.10.1
     version: 2.10.1(@types/react@18.2.42)(react-dom@18.2.0)(react@18.2.0)
   react-datepicker:
-    specifier: ^6.2.0
-    version: 6.2.0(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^6.3.0
+    version: 6.3.0(react-dom@18.2.0)(react@18.2.0)
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
@@ -2743,8 +2743,8 @@ packages:
     resolution: {integrity: sha512-hKormJbkJqzQGhziax5PItDUTMAM9uE2XXQmM37dyd4hVM+5aVl7oVxMVUiVQn2oCQFN/LKCZdvSM0pFRqbSmQ==}
     dev: false
 
-  /@types/react-datepicker@6.0.3(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-3x5flRBrEgC3fFrBryFIrxbLf8bOkte/GNryPjfnXu3my4/XZeaML/01U+XArMCLfk2d3pei6ccNIgTlpe4c5g==}
+  /@types/react-datepicker@6.2.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-+JtO4Fm97WLkJTH8j8/v3Ldh7JCNRwjMYjRaKh4KHH0M3jJoXtwiD3JBCsdlg3tsFIw9eQSqyAPeVDN2H2oM9Q==}
     dependencies:
       '@floating-ui/react': 0.26.6(react-dom@18.2.0)(react@18.2.0)
       '@types/react': 18.2.42
@@ -9383,8 +9383,8 @@ packages:
       warning: 4.0.3
     dev: false
 
-  /react-datepicker@6.2.0(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-GzEOiE6yLfp9P6XNkOhXuYtZHzoAx3tirbi7/dj2WHlGM+NGE1lefceqGR0ZrYsYaqsNJhIJFTgwUpzVzA+mjw==}
+  /react-datepicker@6.3.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-1kDbFRDxfV7IMO/m6DgCHk+mzSbFMtJC1YTwp34rcBEMd6lVTROH7IUcCgl08rwTnjqV0iG3IzGlspB8wgjaBA==}
     peerDependencies:
       react: ^16.9.0 || ^17 || ^18
       react-dom: ^16.9.0 || ^17 || ^18
