@@ -3125,14 +3125,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-datepicker@npm:^6.0.3":
-  version: 6.0.3
-  resolution: "@types/react-datepicker@npm:6.0.3"
+"@types/react-datepicker@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "@types/react-datepicker@npm:6.2.0"
   dependencies:
     "@floating-ui/react": ^0.26.2
     "@types/react": "*"
     date-fns: ^3.3.1
-  checksum: d17a96d6cd76f18c34f18106d80cddaaa28ce9327fb4cdc01accef5e71c015cc9feb3c10e383ea53c776776ea5cfe63099459abba9688aed0f223ef10a3272b6
+  checksum: 3276a99c3df11bf3ac1ced172f5fd95e03f155f7a6c56d4f0d78f9aef7fcf30211347a18f61b5847c28fec936383830d6786997a96d7f344ad48e2fee4827dc1
   languageName: node
   linkType: hard
 
@@ -11772,9 +11772,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-datepicker@npm:^6.2.0":
-  version: 6.2.0
-  resolution: "react-datepicker@npm:6.2.0"
+"react-datepicker@npm:^6.3.0":
+  version: 6.3.0
+  resolution: "react-datepicker@npm:6.3.0"
   dependencies:
     "@floating-ui/react": ^0.26.2
     classnames: ^2.2.6
@@ -11784,7 +11784,7 @@ __metadata:
   peerDependencies:
     react: ^16.9.0 || ^17 || ^18
     react-dom: ^16.9.0 || ^17 || ^18
-  checksum: 4d54cedd3abbd5ae97e9c82b09cbaad8a1184ef5392ae2915a3c8d3f78bbfa795ea7a2031613c9f7011f9657995d11f439d02849238731be9e6eb54ce3f0db20
+  checksum: 748f8f0f38aec346ee0c4ba6e6718484dc810066d4204777f895714987eb1dc434caac1b48601479bc1034f7d13a3907401ad7f99b4a11246f55b3f9d423d935
   languageName: node
   linkType: hard
 
@@ -13581,7 +13581,7 @@ __metadata:
     "@types/jest": ^29.5.11
     "@types/node": ^20.11.25
     "@types/react": ^18.2.42
-    "@types/react-datepicker": ^6.0.3
+    "@types/react-datepicker": ^6.2.0
     "@types/react-dom": ^18.2.17
     bootstrap: ^5.3.3
     dracula-ui: "file:vendor/dracula-ui"
@@ -13593,7 +13593,7 @@ __metadata:
     prop-types: ^15.8.1
     react: ^18.2.0
     react-bootstrap: ^2.10.1
-    react-datepicker: ^6.2.0
+    react-datepicker: ^6.3.0
     react-dom: ^18.2.0
     react-final-form: ^6.5.9
     react-hook-form: ^7.51.0
