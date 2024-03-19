@@ -2507,23 +2507,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@restart/ui@npm:^1.6.6":
-  version: 1.6.6
-  resolution: "@restart/ui@npm:1.6.6"
+"@restart/ui@npm:^1.6.8":
+  version: 1.6.8
+  resolution: "@restart/ui@npm:1.6.8"
   dependencies:
-    "@babel/runtime": "npm:^7.21.0"
-    "@popperjs/core": "npm:^2.11.6"
-    "@react-aria/ssr": "npm:^3.5.0"
-    "@restart/hooks": "npm:^0.4.9"
-    "@types/warning": "npm:^3.0.0"
-    dequal: "npm:^2.0.3"
-    dom-helpers: "npm:^5.2.0"
-    uncontrollable: "npm:^8.0.1"
-    warning: "npm:^4.0.3"
+    "@babel/runtime": ^7.21.0
+    "@popperjs/core": ^2.11.6
+    "@react-aria/ssr": ^3.5.0
+    "@restart/hooks": ^0.4.9
+    "@types/warning": ^3.0.0
+    dequal: ^2.0.3
+    dom-helpers: ^5.2.0
+    uncontrollable: ^8.0.1
+    warning: ^4.0.3
   peerDependencies:
     react: ">=16.14.0"
     react-dom: ">=16.14.0"
-  checksum: c2d1b56a0a6c3afadd98f1adf3cf16897b86752464d1f17f81f3611c99b2aada0c6701944807bcc997f1095dd2c3f4dac8b83ef515bac560b40a8060663871cf
+  checksum: d638c3a7204a7b559f0962a25baabe47e494d28f898a148c70cb2da45578d896d129148900b4787ed3f3fa5a3abeaed47284a52dfe4c015dece3a509e5fc9696
   languageName: node
   linkType: hard
 
@@ -11745,13 +11745,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-bootstrap@npm:^2.10.1":
-  version: 2.10.1
-  resolution: "react-bootstrap@npm:2.10.1"
+"react-bootstrap@npm:^2.10.2":
+  version: 2.10.2
+  resolution: "react-bootstrap@npm:2.10.2"
   dependencies:
     "@babel/runtime": ^7.22.5
     "@restart/hooks": ^0.4.9
-    "@restart/ui": ^1.6.6
+    "@restart/ui": ^1.6.8
     "@types/react-transition-group": ^4.4.6
     classnames: ^2.3.2
     dom-helpers: ^5.2.1
@@ -11768,7 +11768,7 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: ed330f27420a1df4fab1b4648173c49daa2d965bbf2b91994b88b5217bab357b812fff4c71ea32369b69e625eb7cb4b29ec364e5c3b8e5e2eb7e3ed365306f1d
+  checksum: 7f267b0425bf07fed4db9f70379218c4613f85880c779245c1463021ac2fd67b89cd7ad6733d3c271da532d1c35fd43f72651538df1cde23aa745b5161a33423
   languageName: node
   linkType: hard
 
@@ -13592,7 +13592,7 @@ __metadata:
     oidc-client-ts: ^2.4.0
     prop-types: ^15.8.1
     react: ^18.2.0
-    react-bootstrap: ^2.10.1
+    react-bootstrap: ^2.10.2
     react-datepicker: ^6.4.0
     react-dom: ^18.2.0
     react-final-form: ^6.5.9
