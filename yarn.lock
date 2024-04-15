@@ -11779,9 +11779,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-datepicker@npm:^6.6.0":
-  version: 6.6.0
-  resolution: "react-datepicker@npm:6.6.0"
+"react-datepicker@npm:^6.7.0":
+  version: 6.7.0
+  resolution: "react-datepicker@npm:6.7.0"
   dependencies:
     "@floating-ui/react": ^0.26.2
     clsx: ^2.1.0
@@ -11791,7 +11791,7 @@ __metadata:
   peerDependencies:
     react: ^16.9.0 || ^17 || ^18
     react-dom: ^16.9.0 || ^17 || ^18
-  checksum: 3706e3a43a92ad1ff19287f6f6c4320fe7942a637dc7d46617b60b9f120a8843d121e9e5e53379ba86bc4b4e02bf8ccdf7bee40bb4362e27f2eb2958f9d60b1e
+  checksum: f7f4417bb16e331e3c3a84d3b26b2765d808545f1272c897c915ddbcf8cf60e515d13bddfa4aaf5e1d05d9fccdf6a8bb4e5c79ac54d2c9164d94776d2b2df75a
   languageName: node
   linkType: hard
 
@@ -13600,7 +13600,7 @@ __metadata:
     prop-types: ^15.8.1
     react: ^18.2.0
     react-bootstrap: ^2.10.2
-    react-datepicker: ^6.6.0
+    react-datepicker: ^6.7.0
     react-dom: ^18.2.0
     react-final-form: ^6.5.9
     react-hook-form: ^7.51.3
