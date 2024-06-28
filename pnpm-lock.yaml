@@ -69,8 +69,8 @@ importers:
         specifier: ^2.10.3
         version: 2.10.3(@types/react@18.2.42)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-datepicker:
-        specifier: ^7.1.0
-        version: 7.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: ^7.2.0
+        version: 7.2.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
@@ -4779,8 +4779,8 @@ packages:
       '@types/react':
         optional: true
 
-  react-datepicker@7.1.0:
-    resolution: {integrity: sha512-Z91n5ybhmzI+YChj1ZG7ntPPOmHR2Dh4jbIl+mNgKXKoxyzUQBh7M3eQaFOwrBCVdKy5vsj370/ocQlGu1qsGA==}
+  react-datepicker@7.2.0:
+    resolution: {integrity: sha512-Hhs1Fk6/ZqpGGg9QX/JjzvgEJoSFKYCAvRVdBbjxvOjflsXutFprAl/E0ZOm1J+/b/jQqU03WMTTNLcw5nXcuw==}
     peerDependencies:
       react: ^16.9.0 || ^17 || ^18
       react-dom: ^16.9.0 || ^17 || ^18
@@ -11694,7 +11694,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.2.42
 
-  react-datepicker@7.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  react-datepicker@7.2.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@floating-ui/react': 0.26.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       clsx: 2.1.0
