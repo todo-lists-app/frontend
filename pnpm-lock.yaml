@@ -78,8 +78,8 @@ importers:
         specifier: ^6.5.9
         version: 6.5.9(final-form@4.20.10)(react@18.2.0)
       react-hook-form:
-        specifier: ^7.52.0
-        version: 7.52.0(react@18.2.0)
+        specifier: ^7.52.1
+        version: 7.52.1(react@18.2.0)
       react-markdown:
         specifier: ^9.0.1
         version: 9.0.1(@types/react@18.2.42)(react@18.2.0)
@@ -4809,8 +4809,8 @@ packages:
       final-form: ^4.20.4
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
 
-  react-hook-form@7.52.0:
-    resolution: {integrity: sha512-mJX506Xc6mirzLsmXUJyqlAI3Kj9Ph2RhplYhUVffeOQSnubK2uVqBFOBJmvKikvbFV91pxVXmDiR+QMF19x6A==}
+  react-hook-form@7.52.1:
+    resolution: {integrity: sha512-uNKIhaoICJ5KQALYZ4TOaOLElyM+xipord+Ha3crEFhTntdLvWZqVY49Wqd/0GiVCA/f9NjemLeiNPjG7Hpurg==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
@@ -11752,7 +11752,7 @@ snapshots:
       final-form: 4.20.10
       react: 18.2.0
 
-  react-hook-form@7.52.0(react@18.2.0):
+  react-hook-form@7.52.1(react@18.2.0):
     dependencies:
       react: 18.2.0
 

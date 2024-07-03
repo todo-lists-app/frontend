@@ -11867,12 +11867,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:^7.52.0":
-  version: 7.52.0
-  resolution: "react-hook-form@npm:7.52.0"
+"react-hook-form@npm:^7.52.1":
+  version: 7.52.1
+  resolution: "react-hook-form@npm:7.52.1"
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18 || ^19
-  checksum: 10/fc4f92008acc22bcdabf7f472529b29dd29f6305f2b66c8e993c72cbc43eb03b761dd55d5dcb339382fe4bfdd81c4521d3ddcc380d43a3c9a8501aec121e4e7d
+  checksum: 10/5d117cb767114749163f3c52cc09e6dbefca8b450c91abe9958884b4df505a44f0b088046d1c98504bfcd5d4104126cfeb8917c25cb25b0610d89f713b4b2080
   languageName: node
   linkType: hard
 
@@ -13612,7 +13612,7 @@ __metadata:
     react-datepicker: "npm:^7.2.0"
     react-dom: "npm:^18.2.0"
     react-final-form: "npm:^6.5.9"
-    react-hook-form: "npm:^7.52.0"
+    react-hook-form: "npm:^7.52.1"
     react-markdown: "npm:^9.0.1"
     react-oidc-context: "npm:^2.3.1"
     react-router-dom: "npm:^6.24.0"
