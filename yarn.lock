@@ -1944,12 +1944,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/free-brands-svg-icons@npm:^6.5.2":
-  version: 6.5.2
-  resolution: "@fortawesome/free-brands-svg-icons@npm:6.5.2"
+"@fortawesome/free-brands-svg-icons@npm:^6.6.0":
+  version: 6.6.0
+  resolution: "@fortawesome/free-brands-svg-icons@npm:6.6.0"
   dependencies:
-    "@fortawesome/fontawesome-common-types": "npm:6.5.2"
-  checksum: 10/6fbd5dfff9ceb435b60316040cb393adf3d83bd2a0d31e2cea987ad1b6d07a5f5d4bb8fb494c3863507c437df9a9159efa19e15dd648094f9d7bbb4f22e52e19
+    "@fortawesome/fontawesome-common-types": "npm:6.6.0"
+  checksum: 10/d998d8fde3f8e82a820a9d9be531f076bd5458ce370d20457f3e780c5052e6127c4343c8a99d68606fed4571397571576f06b4d623e6932eafb56d9bc15bb1f5
   languageName: node
   linkType: hard
 
@@ -13595,7 +13595,7 @@ __metadata:
   resolution: "todo-frontend@workspace:."
   dependencies:
     "@fortawesome/fontawesome-svg-core": "npm:^6.5.2"
-    "@fortawesome/free-brands-svg-icons": "npm:^6.5.2"
+    "@fortawesome/free-brands-svg-icons": "npm:^6.6.0"
     "@fortawesome/free-regular-svg-icons": "npm:^6.5.2"
     "@fortawesome/free-solid-svg-icons": "npm:^6.6.0"
     "@fortawesome/react-fontawesome": "npm:^0.2.2"
