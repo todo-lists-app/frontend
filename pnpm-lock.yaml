@@ -87,8 +87,8 @@ importers:
         specifier: ^2.3.1
         version: 2.3.1(oidc-client-ts@2.4.0)(react@18.2.0)
       react-router-dom:
-        specifier: ^6.24.1
-        version: 6.24.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: ^6.25.0
+        version: 6.25.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-scripts:
         specifier: ^5.0.1
         version: 5.0.1(@babel/plugin-syntax-flow@7.23.3(@babel/core@7.23.5))(@babel/plugin-transform-react-jsx@7.23.4(@babel/core@7.23.5))(@types/babel__core@7.20.5)(eslint@8.55.0)(react@18.2.0)(type-fest@1.4.0)(typescript@5.3.3)
@@ -1183,8 +1183,8 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
 
-  '@remix-run/router@1.17.1':
-    resolution: {integrity: sha512-mCOMec4BKd6BRGBZeSnGiIgwsbLGp3yhVqAD8H+PxiRNEHgDpZb8J1TnrSDlg97t0ySKMQJTHCWBCmBpSmkF6Q==}
+  '@remix-run/router@1.18.0':
+    resolution: {integrity: sha512-L3jkqmqoSVBVKHfpGZmLrex0lxR5SucGA0sUfFzGctehw+S/ggL9L/0NnC5mw6P8HUWpFZ3nQw3cRApjjWx9Sw==}
     engines: {node: '>=14.0.0'}
 
   '@restart/hooks@0.4.15':
@@ -4855,15 +4855,15 @@ packages:
     resolution: {integrity: sha512-F27qZr8uUqwhWZboondsPx8tnC3Ct3SxZA3V5WyEvujRyyNv0VYPhoBg1gZ8/MV5tubQp76Trw8lTv9hzRBa+A==}
     engines: {node: '>=0.10.0'}
 
-  react-router-dom@6.24.1:
-    resolution: {integrity: sha512-U19KtXqooqw967Vw0Qcn5cOvrX5Ejo9ORmOtJMzYWtCT4/WOfFLIZGGsVLxcd9UkBO0mSTZtXqhZBsWlHr7+Sg==}
+  react-router-dom@6.25.0:
+    resolution: {integrity: sha512-BhcczgDWWgvGZxjDDGuGHrA8HrsSudilqTaRSBYLWDayvo1ClchNIDVt5rldqp6e7Dro5dEFx9Mzc+r292lN0w==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: '>=16.8'
       react-dom: '>=16.8'
 
-  react-router@6.24.1:
-    resolution: {integrity: sha512-PTXFXGK2pyXpHzVo3rR9H7ip4lSPZZc0bHG5CARmj65fTT6qG7sTngmb6lcYu1gf3y/8KxORoy9yn59pGpCnpg==}
+  react-router@6.25.0:
+    resolution: {integrity: sha512-bziKjCcDbcxgWS9WlWFcQIVZ2vJHnCP6DGpQDT0l+0PFDasfJKgzf9CM22eTyhFsZkjk8ApCdKjJwKtzqH80jQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: '>=16.8'
@@ -7276,7 +7276,7 @@ snapshots:
       '@swc/helpers': 0.5.3
       react: 18.2.0
 
-  '@remix-run/router@1.17.1': {}
+  '@remix-run/router@1.18.0': {}
 
   '@restart/hooks@0.4.15(react@18.2.0)':
     dependencies:
@@ -11798,16 +11798,16 @@ snapshots:
 
   react-refresh@0.11.0: {}
 
-  react-router-dom@6.24.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  react-router-dom@6.25.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
-      '@remix-run/router': 1.17.1
+      '@remix-run/router': 1.18.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      react-router: 6.24.1(react@18.2.0)
+      react-router: 6.25.0(react@18.2.0)
 
-  react-router@6.24.1(react@18.2.0):
+  react-router@6.25.0(react@18.2.0):
     dependencies:
-      '@remix-run/router': 1.17.1
+      '@remix-run/router': 1.18.0
       react: 18.2.0
 
   react-scripts@5.0.1(@babel/plugin-syntax-flow@7.23.3(@babel/core@7.23.5))(@babel/plugin-transform-react-jsx@7.23.4(@babel/core@7.23.5))(@types/babel__core@7.20.5)(eslint@8.55.0)(react@18.2.0)(type-fest@1.4.0)(typescript@5.3.3):
