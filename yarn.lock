@@ -11923,13 +11923,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-oidc-context@npm:^2.3.1":
-  version: 2.3.1
-  resolution: "react-oidc-context@npm:2.3.1"
+"react-oidc-context@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "react-oidc-context@npm:3.1.0"
   peerDependencies:
-    oidc-client-ts: ^2.2.1
+    oidc-client-ts: ^3.0.0
     react: ">=16.8.0"
-  checksum: 10/72d9477f9fba9a9a3f4553527b8eb4c5301efc5e9ed6b162d5899bf7ac946ddcea517e0f4d774e2857e89bbd23cc85a9544391aa99041f7689b00b0b2c0d9b13
+  checksum: 10/4176993a9fc9f4ebcb70df4a9a2bdb22c937fb160172ff9d74fd103069ebf173bd9b3118f7360f2403d36cad0c6d0ae26d1ab28ebb710cacbd6bc39a20c87e3e
   languageName: node
   linkType: hard
 
@@ -13612,7 +13612,7 @@ __metadata:
     react-final-form: "npm:^6.5.9"
     react-hook-form: "npm:^7.52.1"
     react-markdown: "npm:^9.0.1"
-    react-oidc-context: "npm:^2.3.1"
+    react-oidc-context: "npm:^3.1.0"
     react-router-dom: "npm:^6.25.1"
     react-scripts: "npm:^5.0.1"
     recoil: "npm:^0.7.7"
