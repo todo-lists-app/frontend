@@ -84,8 +84,8 @@ importers:
         specifier: ^9.0.1
         version: 9.0.1(@types/react@18.2.42)(react@18.2.0)
       react-oidc-context:
-        specifier: ^3.1.0
-        version: 3.1.0(oidc-client-ts@3.0.1)(react@18.2.0)
+        specifier: ^3.1.1
+        version: 3.1.1(oidc-client-ts@3.0.1)(react@18.2.0)
       react-router-dom:
         specifier: ^6.26.2
         version: 6.26.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -4832,8 +4832,8 @@ packages:
       '@types/react': '>=18'
       react: '>=18'
 
-  react-oidc-context@3.1.0:
-    resolution: {integrity: sha512-ceQztvDfdl28mbr0So31XF/tCJamyF1+nm4AQNIE/nub+Xs9PLtDqLy/+75Yx1ahI0/n3nsq0R2qcP0R2Laa3Q==}
+  react-oidc-context@3.1.1:
+    resolution: {integrity: sha512-pXZYVUVOU+wnLFZVh5HFGiAyAHpy0mm7mZBVp5oNuCln/7yd+Uhb7KfYI2QN+LLQI0kIv6FHIcqeUFjMIsM5gA==}
     engines: {node: '>=18'}
     peerDependencies:
       oidc-client-ts: ^3.0.0
@@ -11775,7 +11775,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  react-oidc-context@3.1.0(oidc-client-ts@3.0.1)(react@18.2.0):
+  react-oidc-context@3.1.1(oidc-client-ts@3.0.1)(react@18.2.0):
     dependencies:
       oidc-client-ts: 3.0.1
       react: 18.2.0
