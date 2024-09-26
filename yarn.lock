@@ -11817,9 +11817,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-bootstrap@npm:^2.10.4":
-  version: 2.10.4
-  resolution: "react-bootstrap@npm:2.10.4"
+"react-bootstrap@npm:^2.10.5":
+  version: 2.10.5
+  resolution: "react-bootstrap@npm:2.10.5"
   dependencies:
     "@babel/runtime": "npm:^7.24.7"
     "@restart/hooks": "npm:^0.4.9"
@@ -11840,7 +11840,7 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 10/859795e7a6a8c992cc87673365bf4b9a590d044a667b307c2fbc82d88a7f1e6de83ff137ba0ef7f2f31a80a4b0306129c1fc5ae74ff7368b4a4ae240056224a4
+  checksum: 10/00678acd12a8d3aa75451bb9e8402c9042ffa0077240aa2797ba6ed0b1dd8c53c0a4dca4ddadfed256baab49609edd9790d18f4c43674f3a516cfd45ffd7924e
   languageName: node
   linkType: hard
 
@@ -13679,7 +13679,7 @@ __metadata:
     oidc-client-ts: "npm:^3.0.1"
     prop-types: "npm:^15.8.1"
     react: "npm:^18.2.0"
-    react-bootstrap: "npm:^2.10.4"
+    react-bootstrap: "npm:^2.10.5"
     react-datepicker: "npm:^7.4.0"
     react-dom: "npm:^18.2.0"
     react-final-form: "npm:^6.5.9"
