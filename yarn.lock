@@ -10406,12 +10406,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"oidc-client-ts@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "oidc-client-ts@npm:3.0.1"
+"oidc-client-ts@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "oidc-client-ts@npm:3.1.0"
   dependencies:
     jwt-decode: "npm:^4.0.0"
-  checksum: 10/3069ce525ec374b165ae231e69dd6979565d81b04c56220b0708270e5b8f134a8f63ad6130419bfb79321df298a33bd4dea2e7ad6c10e3cd6d4caa72ffdfee6e
+  checksum: 10/3083df9d85ee3782c9c1e93f3874a21556db5777d2e4d15825e95efa9c6924c0dc36fa298a7913141ce42caba6557adc7b00616869b34ad3777dd82c7a133515
   languageName: node
   linkType: hard
 
@@ -13676,7 +13676,7 @@ __metadata:
     gravatar-url: "npm:^4.0.1"
     jotai: "npm:^2.10.0"
     mdi-react: "npm:^9.4.0"
-    oidc-client-ts: "npm:^3.0.1"
+    oidc-client-ts: "npm:^3.1.0"
     prop-types: "npm:^15.8.1"
     react: "npm:^18.2.0"
     react-bootstrap: "npm:^2.10.5"
