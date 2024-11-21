@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@fortawesome/fontawesome-svg-core':
-        specifier: ^6.7.0
-        version: 6.7.0
+        specifier: ^6.7.1
+        version: 6.7.1
       '@fortawesome/free-brands-svg-icons':
         specifier: ^6.7.1
         version: 6.7.1
@@ -22,7 +22,7 @@ importers:
         version: 6.7.1
       '@fortawesome/react-fontawesome':
         specifier: ^0.2.2
-        version: 0.2.2(@fortawesome/fontawesome-svg-core@6.7.0)(react@18.2.0)
+        version: 0.2.2(@fortawesome/fontawesome-svg-core@6.7.1)(react@18.2.0)
       '@types/jest':
         specifier: ^29.5.11
         version: 29.5.11
@@ -986,8 +986,8 @@ packages:
     resolution: {integrity: sha512-gbDz3TwRrIPT3i0cDfujhshnXO9z03IT1UKRIVi/VEjpNHtSBIP2o5XSm+e816FzzCFEzAxPw09Z13n20PaQJQ==}
     engines: {node: '>=6'}
 
-  '@fortawesome/fontawesome-svg-core@6.7.0':
-    resolution: {integrity: sha512-v6YZjSPuxriC7lYxCzKFbgZ1iaf60AVX2CsfZXSc0U9+mqVd8VGVtMEqDqz5GxDpNUQ8bMDfW+gspVMYGlRpUA==}
+  '@fortawesome/fontawesome-svg-core@6.7.1':
+    resolution: {integrity: sha512-8dBIHbfsKlCk2jHQ9PoRBg2Z+4TwyE3vZICSnoDlnsHA6SiMlTwfmW6yX0lHsRmWJugkeb92sA0hZdkXJhuz+g==}
     engines: {node: '>=6'}
 
   '@fortawesome/free-brands-svg-icons@6.7.1':
@@ -6969,9 +6969,9 @@ snapshots:
 
   '@fortawesome/fontawesome-common-types@6.7.1': {}
 
-  '@fortawesome/fontawesome-svg-core@6.7.0':
+  '@fortawesome/fontawesome-svg-core@6.7.1':
     dependencies:
-      '@fortawesome/fontawesome-common-types': 6.7.0
+      '@fortawesome/fontawesome-common-types': 6.7.1
 
   '@fortawesome/free-brands-svg-icons@6.7.1':
     dependencies:
@@ -6985,9 +6985,9 @@ snapshots:
     dependencies:
       '@fortawesome/fontawesome-common-types': 6.7.1
 
-  '@fortawesome/react-fontawesome@0.2.2(@fortawesome/fontawesome-svg-core@6.7.0)(react@18.2.0)':
+  '@fortawesome/react-fontawesome@0.2.2(@fortawesome/fontawesome-svg-core@6.7.1)(react@18.2.0)':
     dependencies:
-      '@fortawesome/fontawesome-svg-core': 6.7.0
+      '@fortawesome/fontawesome-svg-core': 6.7.1
       prop-types: 15.8.1
       react: 18.2.0
 
