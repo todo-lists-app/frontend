@@ -8795,9 +8795,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jotai@npm:^2.10.2":
-  version: 2.10.2
-  resolution: "jotai@npm:2.10.2"
+"jotai@npm:^2.10.3":
+  version: 2.10.3
+  resolution: "jotai@npm:2.10.3"
   peerDependencies:
     "@types/react": ">=17.0.0"
     react: ">=17.0.0"
@@ -8806,7 +8806,7 @@ __metadata:
       optional: true
     react:
       optional: true
-  checksum: c7a7e0854d5699210dfb13bf1511917bae89277f84182d4fc94867eed73b5e81a728d77357568d6afa5d5eb2a39b52307b9490f4c4aba3c5bcc985b87be65d18
+  checksum: 8193527ed37ed348ca85708f26363705b8945834e260ba1e752f9741719c3c5e5529926c3b571cabd90b2ef44880aa46bf92a07d2463cda9b69168640cc6448e
   languageName: node
   linkType: hard
 
@@ -13674,7 +13674,7 @@ __metadata:
     dracula-ui: "file:vendor/dracula-ui"
     final-form: ^4.20.10
     gravatar-url: ^4.0.1
-    jotai: ^2.10.2
+    jotai: ^2.10.3
     mdi-react: ^9.4.0
     oidc-client-ts: ^3.1.0
     prop-types: ^15.8.1
