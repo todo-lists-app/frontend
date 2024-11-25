@@ -66,8 +66,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
       react-bootstrap:
-        specifier: ^2.10.5
-        version: 2.10.5(@types/react@18.2.42)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: ^2.10.6
+        version: 2.10.6(@types/react@18.2.42)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-datepicker:
         specifier: ^7.5.0
         version: 7.5.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -1184,8 +1184,8 @@ packages:
     peerDependencies:
       react: '>=16.8.0'
 
-  '@restart/ui@1.6.9':
-    resolution: {integrity: sha512-mUbygUsJcRurjZCt1f77gg4DpheD1D+Sc7J3JjAkysUj7t8m4EBJVOqWC9788Qtbc69cJ+HlJc6jBguKwS8Mcw==}
+  '@restart/ui@1.9.0':
+    resolution: {integrity: sha512-M/k/ILBXbEIFn0wSGuJYqscih7gwMcnVwv44kgHZ344sjLoO2vFK8AtkMGXx2sEANDwxEPoDhjhfIDDvrvCBCA==}
     peerDependencies:
       react: '>=16.14.0'
       react-dom: '>=16.14.0'
@@ -4771,8 +4771,8 @@ packages:
     resolution: {integrity: sha512-sZ41cxiU5llIB003yxxQBYrARBqe0repqPTTYBTmMqTz9szeBbE37BehCE891NZsmdZqqP+xWKdT3eo3vOzN8w==}
     engines: {node: '>=14'}
 
-  react-bootstrap@2.10.5:
-    resolution: {integrity: sha512-XueAOEn64RRkZ0s6yzUTdpFtdUXs5L5491QU//8ZcODKJNDLt/r01tNyriZccjgRImH1REynUc9pqjiRMpDLWQ==}
+  react-bootstrap@2.10.6:
+    resolution: {integrity: sha512-fNvKytSp0nHts1WRnRBJeBEt+I9/ZdrnhIjWOucEduRNvFRU1IXjZueDdWnBiqsTSJ7MckQJi9i/hxGolaRq+g==}
     peerDependencies:
       '@types/react': '>=16.14.8'
       react: '>=16.14.0'
@@ -7283,7 +7283,7 @@ snapshots:
       dequal: 2.0.3
       react: 18.2.0
 
-  '@restart/ui@1.6.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@restart/ui@1.9.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@babel/runtime': 7.24.7
       '@popperjs/core': 2.11.8
@@ -11681,11 +11681,11 @@ snapshots:
       regenerator-runtime: 0.13.11
       whatwg-fetch: 3.6.19
 
-  react-bootstrap@2.10.5(@types/react@18.2.42)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  react-bootstrap@2.10.6(@types/react@18.2.42)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@babel/runtime': 7.24.7
       '@restart/hooks': 0.4.15(react@18.2.0)
-      '@restart/ui': 1.6.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@restart/ui': 1.9.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@types/react-transition-group': 4.4.10
       classnames: 2.3.2
       dom-helpers: 5.2.1
