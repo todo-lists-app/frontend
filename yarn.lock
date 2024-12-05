@@ -13711,7 +13711,7 @@ __metadata:
     recoil: ^0.7.7
     remark-gfm: ^4.0.0
     typescript: ^5.3.3
-    zustand: ^5.0.1
+    zustand: ^5.0.2
   languageName: unknown
   linkType: soft
 
@@ -15018,9 +15018,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zustand@npm:^5.0.1":
-  version: 5.0.1
-  resolution: "zustand@npm:5.0.1"
+"zustand@npm:^5.0.2":
+  version: 5.0.2
+  resolution: "zustand@npm:5.0.2"
   peerDependencies:
     "@types/react": ">=18.0.0"
     immer: ">=9.0.6"
@@ -15035,7 +15035,7 @@ __metadata:
       optional: true
     use-sync-external-store:
       optional: true
-  checksum: 66eb196c3134957143bd54c4adc24d0baad321a6edfbf495cd571110dfb8c52c92949c3dd246e7ac992791fa81c4947d6431c8724db2b48e26f3f5d30268bec1
+  checksum: b8c3bf776112fc606b716bda9d65642300fd8f9d13d8f2264a811492d266afed1e0348aaaecc7f4c6f52090a46dcca040fcddc6cea0e4b2f21dc798dd3bf7d92
   languageName: node
   linkType: hard
 
