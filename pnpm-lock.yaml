@@ -81,8 +81,8 @@ importers:
         specifier: ^7.54.2
         version: 7.54.2(react@18.2.0)
       react-markdown:
-        specifier: ^9.0.1
-        version: 9.0.1(@types/react@18.2.42)(react@18.2.0)
+        specifier: ^9.0.3
+        version: 9.0.3(@types/react@18.2.42)(react@18.2.0)
       react-oidc-context:
         specifier: ^3.2.0
         version: 3.2.0(oidc-client-ts@3.1.0)(react@18.2.0)
@@ -4841,8 +4841,8 @@ packages:
   react-lifecycles-compat@3.0.4:
     resolution: {integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==}
 
-  react-markdown@9.0.1:
-    resolution: {integrity: sha512-186Gw/vF1uRkydbsOIkcGXw7aHq0sZOCRFFjGrr7b9+nVZg4UfA4enXCaxm4fUzecU38sWfrNDitGhshuU7rdg==}
+  react-markdown@9.0.3:
+    resolution: {integrity: sha512-Yk7Z94dbgYTOrdk41Z74GoKA7rThnsbbqBTRYuxoe08qvfQ9tJVhmAKw6BJS/ZORG7kTy/s1QvYzSuaoBA1qfw==}
     peerDependencies:
       '@types/react': '>=18'
       react: '>=18'
@@ -11792,7 +11792,7 @@ snapshots:
 
   react-lifecycles-compat@3.0.4: {}
 
-  react-markdown@9.0.1(@types/react@18.2.42)(react@18.2.0):
+  react-markdown@9.0.3(@types/react@18.2.42)(react@18.2.0):
     dependencies:
       '@types/hast': 3.0.3
       '@types/react': 18.2.42
