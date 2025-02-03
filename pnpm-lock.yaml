@@ -51,8 +51,8 @@ importers:
         specifier: ^4.0.1
         version: 4.0.1
       jotai:
-        specifier: ^2.11.2
-        version: 2.11.2(@types/react@18.2.42)(react@18.2.0)
+        specifier: ^2.11.3
+        version: 2.11.3(@types/react@18.2.42)(react@18.2.0)
       mdi-react:
         specifier: ^9.4.0
         version: 9.4.0(react@18.2.0)
@@ -3625,8 +3625,8 @@ packages:
     resolution: {integrity: sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==}
     hasBin: true
 
-  jotai@2.11.2:
-    resolution: {integrity: sha512-H3xOvsdqjBJnXTvpgAWfff2y1B3wabi1iSA6FFd0FrLaM4ENsRJd+RJQtkNhY4PZgvAODa4PQhau9dheK+pUkw==}
+  jotai@2.11.3:
+    resolution: {integrity: sha512-B/PsewAQ0UOS5e2+TTWegUPQ3SCLPCjPY24LYUjfn2EorGlluTA2dFjVLgF1+xHLjK9Jit3y5mKHyMG3Xq/GZg==}
     engines: {node: '>=12.20.0'}
     peerDependencies:
       '@types/react': '>=17.0.0'
@@ -10382,7 +10382,7 @@ snapshots:
 
   jiti@1.21.0: {}
 
-  jotai@2.11.2(@types/react@18.2.42)(react@18.2.0):
+  jotai@2.11.3(@types/react@18.2.42)(react@18.2.0):
     optionalDependencies:
       '@types/react': 18.2.42
       react: 18.2.0
